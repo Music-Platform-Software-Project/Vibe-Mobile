@@ -1,2 +1,2 @@
 # Vibe-Mobile
-The mobile code repository for the Vibe Project
+The mobile repository for the Vibe Project
