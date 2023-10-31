@@ -23,4 +23,6 @@
     <string name="noAccount">Don\'t have an account?</string>
     <string name="registerNow">Register Now</string>
     <string name="title_activity_friends_room">FriendsRoom</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
