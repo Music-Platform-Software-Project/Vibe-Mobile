@@ -1,18 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/main_theme"
     android:layout_height="match_parent"
     tools:context="view.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <ImageView
+        android:id="@+id/vibeLogo"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:contentDescription="@string/vibeLogoDescription"
+        android:elevation="1dp"
+        android:foregroundGravity="center"
+        android:src="@drawable/vibe_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.522" />
 
+    <ImageView
+        android:layout_width="472dp"
+        android:layout_height="464dp"
+        android:layout_marginRight="10dp"
+        android:contentDescription="@string/leftWave"
+        android:src="@drawable/vibe_left_bg"
+        app:layout_constraintBottom_toTopOf="@id/vibeLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.291" />
+
+    <ImageView
+        android:layout_width="472dp"
+        android:layout_height="462dp"
+        android:src="@drawable/vibe_right_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vibeLogo"
+        app:layout_constraintVertical_bias="0.696">
+
+    </ImageView>
 </androidx.constraintlayout.widget.ConstraintLayout>

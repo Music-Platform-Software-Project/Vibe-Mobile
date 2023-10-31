@@ -12,15 +12,14 @@
         android:theme="@style/Theme.Cs308_00"
         tools:targetApi="31">
         <activity
-            android:name=".onboarding"
+            android:name="view.FriendsRoom"
             android:exported="false" />
         <activity
-            android:name=".dashboard"
-            android:exported="false"
-            android:label="@string/title_activity_dashboard"
-            android:theme="@style/Theme.Cs308_00.NoActionBar" />
+            android:name="view.LoginPage"
+            android:exported="false" />
+
         <activity
-            android:name=".MainActivity"
+            android:name="view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
