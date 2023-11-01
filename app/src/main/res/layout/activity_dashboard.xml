@@ -5,24 +5,125 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="view.Dashboard"
-    android:id="@+id/drawerLayout1"
+    android:id="@+id/drawerLayout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <LinearLayout
+
+
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:background="@color/main_bcg"
+        android:padding="30dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Activity 1"
-            android:textSize="26sp"/>
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="@string/playlists"
+                android:textSize="35sp"/>
+
+            <TextView
+                android:id="@+id/playlists_view_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/view_all"
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/playlists_rec_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:spanCount="3"
+                app:reverseLayout="false"
+                app:stackFromEnd="false"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:background="@drawable/div_bcg"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="@string/favorite_artists"
+                android:textSize="35sp"
+                android:layout_marginTop="40dp"/>
+
+            <TextView
+                android:id="@+id/artists_view_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/view_all"
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/artists_rec_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:spanCount="2"
+                app:reverseLayout="false"
+                app:stackFromEnd="false"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:background="@drawable/div_bcg"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="Favorite Tracks"
+                android:textSize="35sp"
+                android:layout_marginTop="40dp"/>
+
+            <TextView
+                android:id="@+id/tracks_view_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/view_all"
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tracks_rec_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:spanCount="3"
+                app:reverseLayout="false"
+                app:stackFromEnd="false"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:background="@drawable/div_bcg"/>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"

@@ -25,4 +25,7 @@
     <string name="title_activity_friends_room">FriendsRoom</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="playlists">Playlists</string>
+    <string name="view_all">View All</string>
+    <string name="favorite_artists">Favorite Artists</string>
 </resources>
