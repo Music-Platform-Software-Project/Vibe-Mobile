@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">cs308_0.0</string>
+    <string name="app_name"></string>
     <string name="ask">daisy</string>
     <string name="title_activity_dashboard">dashboard</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

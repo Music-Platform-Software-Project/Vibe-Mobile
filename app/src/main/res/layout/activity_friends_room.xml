@@ -9,232 +9,299 @@
             name="friendsRoomViewModel"
             type="viewmodel.FriendsRoomViewModel" />
     </data>
-
-    <ScrollView
+    <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_theme">
+        tools:context="view.Dashboard"
+        android:id="@+id/drawerLayout1"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:context="view.FriendsRoom">
+            android:layout_height="match_parent"
 
-            <LinearLayout
-                android:id="@+id/holder"
-                android:layout_width="140dp"
-                android:layout_height="60dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/input_fields"
-                android:layout_marginTop="30dp"
-               android:paddingLeft="30dp">
+            android:background="@color/main_theme">
 
-
-                <ImageView
-                    android:id="@+id/vibeFriendsRoomLogo"
-                    android:layout_width="80dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/vibe_room_logo"
-                    >
-
-                </ImageView>
-
-            </LinearLayout>
-
-            <ImageButton
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="28dp"
-                android:background="@color/transparent"
-                android:src="@drawable/nav_bar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.067"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </ImageButton>
-
-            <TextView
-                android:id="@+id/frinedsRoomTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/holder"
-                android:textColor="@color/text_color"
-                android:layout_marginTop="30dp"
-                android:text="Vibing in Test Friend's Room"
-                android:fontFamily="@font/dmsans_bold"
-                android:textSize="@dimen/_18sdp" />
-
-            <FrameLayout
-                android:id="@+id/spotifyFrame"
-                android:layout_width="280dp"
-                android:layout_height="370dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/frinedsRoomTxt"
-                android:layout_marginTop="30dp"
-                android:background="@color/spotify_green" />
-
-            <LinearLayout
-                android:id="@+id/moodHolder"
-                android:layout_width="@dimen/_280sdp"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/spotifyFrame"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical"
                 android:gravity="center"
-                >
+                android:orientation="vertical"
+                tools:context="view.FriendsRoom">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
+                    android:id="@+id/holder"
+                    android:layout_width="140dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/input_fields"
+                    android:layout_marginTop="30dp"
+                    android:paddingLeft="30dp">
 
-                    android:gravity="center"
-                    >
+
+                    <ImageView
+                        android:id="@+id/vibeFriendsRoomLogo"
+                        android:layout_width="80dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/vibe_room_logo"
+                        >
+
+                    </ImageView>
+
+                </LinearLayout>
+
 
 
                 <TextView
+                    android:id="@+id/frinedsRoomTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/holder"
+                    android:textColor="@color/text_color"
+                    android:layout_marginTop="30dp"
+                    android:text="Vibing in Test Friend's Room"
+                    android:fontFamily="@font/dmsans_bold"
+                    android:textSize="@dimen/_18sdp" />
+
+                <FrameLayout
+                    android:id="@+id/spotifyFrame"
+                    android:layout_width="280dp"
+                    android:layout_height="370dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/frinedsRoomTxt"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/spotify_green" />
+
+                <LinearLayout
+                    android:id="@+id/moodHolder"
+                    android:layout_width="@dimen/_280sdp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/spotifyFrame"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+                        >
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="@color/white"
+                            android:text="Rain"
+                            android:layout_marginLeft="@dimen/_3sdp"
+                            android:textSize="@dimen/_15sdp">
+
+                        </TextView>
+
+                        <SeekBar
+                            android:layout_width="@dimen/_190sdp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="@dimen/_22sdp"
+                            android:background="@drawable/slider_unused_bg"
+                            android:progressDrawable="@color/transparent"
+                            android:thumb="@drawable/resized_thumb"
+
+
+                            >
+
+                        </SeekBar>
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:gravity="center"
+                        >
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="@color/white"
+                            android:text="Cafe"
+                            android:layout_marginLeft="@dimen/_3sdp"
+                            android:textSize="@dimen/_15sdp">
+
+                        </TextView>
+
+                        <SeekBar
+                            android:layout_width="@dimen/_190sdp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="@dimen/_22sdp"
+                            android:background="@drawable/slider_unused_bg"
+                            android:progressDrawable="@color/transparent"
+                            android:thumb="@drawable/resized_thumb"
+
+
+                            >
+
+                        </SeekBar>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+                        >
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="@color/white"
+                            android:text="Fireplace"
+                            android:layout_marginLeft="@dimen/_3sdp"
+                            android:textSize="@dimen/_15sdp">
+
+                        </TextView>
+
+                        <SeekBar
+                            android:layout_width="@dimen/_190sdp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="@dimen/_22sdp"
+                            android:background="@drawable/slider_unused_bg"
+                            android:progressDrawable="@color/transparent"
+                            android:thumb="@drawable/resized_thumb"
+
+
+                            >
+
+                        </SeekBar>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:gravity="center"
+                        >
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="@color/white"
+                            android:text="Nature"
+                            android:layout_marginLeft="@dimen/_3sdp"
+                            android:textSize="@dimen/_15sdp">
+
+                        </TextView>
+
+                        <SeekBar
+                            android:layout_width="@dimen/_190sdp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="@dimen/_22sdp"
+                            android:background="@drawable/slider_unused_bg"
+                            android:progressDrawable="@color/transparent"
+                            android:thumb="@drawable/resized_thumb"
+
+
+                            >
+
+                        </SeekBar>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:text=""
+            android:background="@color/main_theme"
+            android:fitsSystemWindows="true"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:background="@color/main_bcg"
+                android:layout_marginTop="90dp"
+                android:gravity="left"
+                android:orientation="vertical"
+                android:padding="30dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/vibe_logo_2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/nav_vibe_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/vibe_button" />
+
+                    <TextView
+                        android:id="@+id/nav_dashboard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:text="Dashboard"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/nav_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Profile"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/nav_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Settings"
                     android:textColor="@color/white"
-                    android:text="Rain"
-                    android:layout_marginLeft="@dimen/_3sdp"
-                    android:textSize="@dimen/_15sdp">
-
-                </TextView>
-
-                    <SeekBar
-                        android:layout_width="@dimen/_190sdp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="@dimen/_22sdp"
-                        android:background="@drawable/slider_unused_bg"
-                        android:progressDrawable="@color/transparent"
-                        android:thumb="@drawable/resized_thumb"
-
-
-                        >
-
-                    </SeekBar>
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:gravity="center"
-                    >
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:textColor="@color/white"
-                        android:text="Cafe"
-                        android:layout_marginLeft="@dimen/_3sdp"
-                        android:textSize="@dimen/_15sdp">
-
-                    </TextView>
-
-                    <SeekBar
-                        android:layout_width="@dimen/_190sdp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="@dimen/_22sdp"
-                        android:background="@drawable/slider_unused_bg"
-                        android:progressDrawable="@color/transparent"
-                        android:thumb="@drawable/resized_thumb"
-
-
-                        >
-
-                    </SeekBar>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:gravity="center"
-                    >
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:textColor="@color/white"
-                        android:text="Fireplace"
-                        android:layout_marginLeft="@dimen/_3sdp"
-                        android:textSize="@dimen/_15sdp">
-
-                    </TextView>
-
-                    <SeekBar
-                        android:layout_width="@dimen/_190sdp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="@dimen/_22sdp"
-                        android:background="@drawable/slider_unused_bg"
-                        android:progressDrawable="@color/transparent"
-                        android:thumb="@drawable/resized_thumb"
-
-
-                        >
-
-                    </SeekBar>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:gravity="center"
-                    >
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:textColor="@color/white"
-                        android:text="Nature"
-                        android:layout_marginLeft="@dimen/_3sdp"
-                        android:textSize="@dimen/_15sdp">
-
-                    </TextView>
-
-                    <SeekBar
-                        android:layout_width="@dimen/_190sdp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="@dimen/_22sdp"
-                        android:background="@drawable/slider_unused_bg"
-                        android:progressDrawable="@color/transparent"
-                        android:thumb="@drawable/resized_thumb"
-
-
-                        >
-
-                    </SeekBar>
-
-                </RelativeLayout>
-
+                    android:textSize="20sp" />
             </LinearLayout>
+        </com.google.android.material.navigation.NavigationView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </ScrollView>
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
