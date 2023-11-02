@@ -28,4 +28,14 @@
     <string name="playlists">Playlists</string>
     <string name="view_all">View All</string>
     <string name="favorite_artists">Favorite Artists</string>
+    <string name="createAccount">Create an account</string>
+    <string name="email">Email</string>
+    <string name="pleaseEnter_your_email">Please enter your email</string>
+    <string name="password_again">Password Again</string>
+    <string name="please_enter_your_password_again">Please enter your password again</string>
+    <string name="register">register</string>
+    <string name="test_friend">Test Friend</string>
+    <string name="friends">Friends</string>
+    <string name="add_friends">Add Friends</string>
+    <string name="search_for_a_friend">Search for a friend</string>
 </resources>

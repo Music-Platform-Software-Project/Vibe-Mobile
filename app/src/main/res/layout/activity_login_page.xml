@@ -20,7 +20,7 @@
         android:id="@+id/vibeLogoLogin"
         android:layout_width="230dp"
         android:layout_height="180dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -161,39 +161,50 @@
        >
     </Button>
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="65dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/dmsans_medium"
-        android:text="@string/noAccount"
-        android:textColor="@color/text_color"
-        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginBtn">
+        app:layout_constraintTop_toBottomOf="@id/loginBtn"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="center">
 
-    </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="65dp"
+            android:fontFamily="@font/dmsans_medium"
+            android:text="@string/noAccount"
+            android:textColor="@color/text_color"
+            android:textSize="13sp"
+            >
 
-    <Button
-        android:id="@+id/createAccountBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="200dp"
-        android:background="@color/transparent"
-        android:fontFamily="@font/dmsans_bold"
-        android:text="@string/registerNow"
+        </TextView>
 
-        android:textAllCaps="false"
-        android:textColor="@color/secondary_app_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.358"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginBtn">
+        <Button
+            android:id="@+id/createAccountBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-    </Button>
+            android:background="@color/transparent"
+            android:fontFamily="@font/dmsans_bold"
+            android:text="@string/registerNow"
+            android:layout_marginLeft="15dp"
+            android:textAllCaps="false"
+            android:textColor="@color/secondary_app_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.358"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/loginBtn">
+
+        </Button>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
