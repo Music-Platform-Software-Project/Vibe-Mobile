@@ -20,10 +20,12 @@
             android:exported="false" />
         <activity
             android:name="view.LoginPage"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name="view.MainActivity"
-            android:exported="true">
+            android:windowNoTitle="true"
+            android:exported="true"
+            android:theme="@style/CustomTheme.Main"> <!-- Apply the custom theme here -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
