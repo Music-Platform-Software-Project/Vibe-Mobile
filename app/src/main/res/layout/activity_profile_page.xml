@@ -24,7 +24,7 @@
             android:background="@color/main_theme">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:background="@color/main_theme"
+                android:background="@color/main_bcg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context="view.ProfilePage">
@@ -48,19 +48,636 @@
                         android:src="@drawable/vibe_room_logo"
                         android:contentDescription="@string/vibeLogoDescription" />
 
+                </LinearLayout>
 
+                <ImageView
+                    android:id="@+id/userProfilePic"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/holder"
+                    android:background="@drawable/thumb_icon"
+                    android:layout_marginTop="40dp">
+                </ImageView>
+                <ImageView
+                    android:id="@+id/albumHolder"
+                    android:layout_width="@dimen/_260sdp"
+                    android:layout_height="@dimen/_300sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/userProfilePic"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/div_bcg"
+                    >
+
+                </ImageView>
+
+                <LinearLayout
+                    android:id="@+id/holder2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.214"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/albumHolder"
+                    android:layout_marginTop="@dimen/_20sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsans_regular"
+                        android:text="@string/suggested_artists"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_20sdp">
+
+                    </TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/hint_color"
+                        android:textSize="@dimen/_12sdp"
+                        android:fontFamily="@font/dmsans_regular"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/view_all">
+
+                    </TextView>
 
                 </LinearLayout>
+                
+                <LinearLayout
+                    android:id="@+id/holder3"
+                    android:layout_width="@dimen/_260sdp"
+                    android:layout_height="@dimen/_210sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/holder2"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@color/main_theme"
+
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            >
+                            <ImageView
+                                android:id="@+id/artistPic1"
+                                android:layout_width="@dimen/_60sdp"
+                                android:layout_height="@dimen/_60sdp"
+                                android:background="@drawable/thumb_icon">
+                            </ImageView>
+                            <TextView
+                                android:id="@+id/artistName1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:fontFamily="@font/dmsans_regular"
+                                android:text="Artist1">
+
+                            </TextView>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            >
+                            <ImageView
+                                android:id="@+id/artistPic2"
+                                android:layout_width="@dimen/_60sdp"
+                                android:layout_height="@dimen/_60sdp"
+                                android:background="@drawable/thumb_icon">
+                            </ImageView>
+                            <TextView
+                                android:id="@+id/artistName2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:fontFamily="@font/dmsans_regular"
+                                android:text="Artist1">
+
+                            </TextView>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            >
+                            <ImageView
+                                android:id="@+id/artistPic3"
+                                android:layout_width="@dimen/_60sdp"
+                                android:layout_height="@dimen/_60sdp"
+                                android:background="@drawable/thumb_icon">
+                            </ImageView>
+                            <TextView
+                                android:id="@+id/artistName3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:fontFamily="@font/dmsans_regular"
+                                android:text="Artist1">
+
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            >
+                            <ImageView
+                                android:id="@+id/artistPic4"
+                                android:layout_width="@dimen/_60sdp"
+                                android:layout_height="@dimen/_60sdp"
+                                android:background="@drawable/thumb_icon">
+                            </ImageView>
+                            <TextView
+                                android:id="@+id/artistName4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:fontFamily="@font/dmsans_regular"
+                                android:text="Artist1">
+
+                            </TextView>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            >
+                            <ImageView
+                                android:id="@+id/artistPic5"
+                                android:layout_width="@dimen/_60sdp"
+                                android:layout_height="@dimen/_60sdp"
+                                android:background="@drawable/thumb_icon">
+                            </ImageView>
+                            <TextView
+                                android:id="@+id/artistName5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:fontFamily="@font/dmsans_regular"
+                                android:text="Artist1">
+
+                            </TextView>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            >
+                            <ImageView
+                                android:id="@+id/artistPic6"
+                                android:layout_width="@dimen/_60sdp"
+                                android:layout_height="@dimen/_60sdp"
+                                android:background="@drawable/thumb_icon">
+                            </ImageView>
+                            <TextView
+                                android:id="@+id/artistName6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:fontFamily="@font/dmsans_regular"
+                                android:text="Artist1">
+
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/holder4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.214"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/holder3"
+                    android:layout_marginTop="@dimen/_20sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsans_regular"
+                        android:text="@string/suggested_tracks"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_20sdp">
+
+                    </TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/hint_color"
+                        android:textSize="@dimen/_12sdp"
+                        android:fontFamily="@font/dmsans_regular"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/view_all">
+
+                    </TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/holder5"
+                    android:layout_width="@dimen/_260sdp"
+                    android:layout_height="@dimen/_210sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/holder4"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="@dimen/_60sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@color/main_theme"
+                    android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        >
+                        <ImageView
+                            android:id="@+id/trackPic1"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:background="@drawable/thumb_icon">
+                        </ImageView>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="17dp"
+                                android:layout_height="17dp"
+                                android:src="@drawable/star"
+                                android:layout_marginTop="@dimen/_6sdp">
+
+                            </ImageView>
+                            <TextView
+                                android:id="@+id/trackRate1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:layout_marginLeft="@dimen/_3sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:fontFamily="@font/dmsans_regular"
+                                android:text="5">
+
+                            </TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:fontFamily="@font/dmsans_regular"
+                                android:text="/5">
+
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        >
+                        <ImageView
+                            android:id="@+id/trackPic2"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:background="@drawable/thumb_icon">
+                        </ImageView>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="17dp"
+                                android:layout_height="17dp"
+                                android:src="@drawable/star"
+                                android:layout_marginTop="@dimen/_6sdp">
+
+                            </ImageView>
+                            <TextView
+                                android:id="@+id/trackRate2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:layout_marginLeft="@dimen/_3sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:fontFamily="@font/dmsans_regular"
+                                android:text="5">
+
+                            </TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:fontFamily="@font/dmsans_regular"
+                                android:text="/5">
+
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        >
+                        <ImageView
+                            android:id="@+id/trackPic3"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:background="@drawable/thumb_icon">
+                        </ImageView>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="17dp"
+                                android:layout_height="17dp"
+                                android:src="@drawable/star"
+                                android:layout_marginTop="@dimen/_6sdp">
+
+                            </ImageView>
+                            <TextView
+                                android:id="@+id/trackRate3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:layout_marginLeft="@dimen/_3sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:fontFamily="@font/dmsans_regular"
+                                android:text="5">
+
+                            </TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:fontFamily="@font/dmsans_regular"
+                                android:text="/5">
+
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            >
+                            <ImageView
+                                android:id="@+id/trackPic4"
+                                android:layout_width="@dimen/_60sdp"
+                                android:layout_height="@dimen/_60sdp"
+                                android:background="@drawable/thumb_icon">
+                            </ImageView>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="17dp"
+                                    android:layout_height="17dp"
+                                    android:src="@drawable/star"
+                                    android:layout_marginTop="@dimen/_6sdp">
+
+                                </ImageView>
+                                <TextView
+                                    android:id="@+id/trackRate4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:layout_marginLeft="@dimen/_3sdp"
+                                    android:layout_marginTop="@dimen/_4sdp"
+                                    android:fontFamily="@font/dmsans_regular"
+                                    android:text="5">
+
+                                </TextView>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:layout_marginTop="@dimen/_4sdp"
+                                    android:fontFamily="@font/dmsans_regular"
+                                    android:text="/5">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            >
+                            <ImageView
+                                android:id="@+id/trackPic5"
+                                android:layout_width="@dimen/_60sdp"
+                                android:layout_height="@dimen/_60sdp"
+                                android:background="@drawable/thumb_icon">
+                            </ImageView>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="17dp"
+                                    android:layout_height="17dp"
+                                    android:src="@drawable/star"
+                                    android:layout_marginTop="@dimen/_6sdp">
+
+                                </ImageView>
+                                <TextView
+                                    android:id="@+id/trackRate5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:layout_marginLeft="@dimen/_3sdp"
+                                    android:layout_marginTop="@dimen/_4sdp"
+                                    android:fontFamily="@font/dmsans_regular"
+                                    android:text="5">
+
+                                </TextView>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:layout_marginTop="@dimen/_4sdp"
+                                    android:fontFamily="@font/dmsans_regular"
+                                    android:text="/5">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            >
+                            <ImageView
+                                android:id="@+id/trackPic6"
+                                android:layout_width="@dimen/_60sdp"
+                                android:layout_height="@dimen/_60sdp"
+                                android:background="@drawable/thumb_icon">
+                            </ImageView>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="17dp"
+                                    android:layout_height="17dp"
+                                    android:src="@drawable/star"
+                                    android:layout_marginTop="@dimen/_6sdp">
+
+                                </ImageView>
+                            <TextView
+                                android:id="@+id/trackRate6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"
+                                android:layout_marginLeft="@dimen/_3sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:fontFamily="@font/dmsans_regular"
+                                android:text="5">
+
+                            </TextView>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:layout_marginTop="@dimen/_4sdp"
+                                    android:fontFamily="@font/dmsans_regular"
+                                    android:text="/5">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navViewForProfile"
-            android:layout_width="@dimen/_230sdp"
+            android:layout_width="@dimen/_235sdp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:text=""
-
-            android:background="@color/main_theme"
+            android:background="@color/main_bcg"
             android:fitsSystemWindows="true"
             >
 
@@ -127,7 +744,7 @@
 
                         <ImageView
                             android:id="@+id/prfileFriendPic1"
-                            android:layout_width="45dp"
+                            android:layout_width="@dimen/_38sdp"
                             android:layout_height="@dimen/_38sdp"
                             android:src="@drawable/thumb_icon" />
 

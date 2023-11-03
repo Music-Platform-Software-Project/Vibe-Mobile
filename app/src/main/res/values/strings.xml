@@ -38,4 +38,6 @@
     <string name="friends">Friends</string>
     <string name="add_friends">Add Friends</string>
     <string name="search_for_a_friend">Search for a friend</string>
+    <string name="suggested_tracks">Suggested Tracks</string>
+    <string name="suggested_artists">Suggested Artists</string>
 </resources>
