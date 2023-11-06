@@ -16,7 +16,7 @@
         tools:context="view.Dashboard"
         android:id="@+id/drawerLayout1"
         android:fitsSystemWindows="true"
-        tools:openDrawer="start">
+        >
 
         <ScrollView
             android:layout_width="match_parent"
@@ -38,7 +38,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:background="@drawable/input_fields"
                     android:layout_marginTop="30dp"
-                    android:paddingStart="30dp">
+                    android:paddingStart="30dp"
+                    android:onClick="goToDashboard">
 
 
                     <ImageView
@@ -58,7 +59,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/holder"
                     android:background="@drawable/thumb_icon"
-                    android:layout_marginTop="40dp">
+                    android:layout_marginTop="40dp"
+                    android:onClick="goMyRoom">
                 </ImageView>
                 <ImageView
                     android:id="@+id/albumHolder"
@@ -367,13 +369,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
-                            <ImageView
-                                android:layout_width="17dp"
-                                android:layout_height="17dp"
-                                android:src="@drawable/star"
-                                android:layout_marginTop="@dimen/_6sdp">
 
-                            </ImageView>
                             <TextView
                                 android:id="@+id/trackRate1"
                                 android:layout_width="wrap_content"
@@ -383,7 +379,7 @@
                                 android:layout_marginLeft="@dimen/_3sdp"
                                 android:layout_marginTop="@dimen/_4sdp"
                                 android:fontFamily="@font/dmsans_regular"
-                                android:text="5">
+                                android:text="★ 5">
 
                             </TextView>
                             <TextView
@@ -418,13 +414,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
-                            <ImageView
-                                android:layout_width="17dp"
-                                android:layout_height="17dp"
-                                android:src="@drawable/star"
-                                android:layout_marginTop="@dimen/_6sdp">
 
-                            </ImageView>
                             <TextView
                                 android:id="@+id/trackRate2"
                                 android:layout_width="wrap_content"
@@ -434,7 +424,7 @@
                                 android:layout_marginLeft="@dimen/_3sdp"
                                 android:layout_marginTop="@dimen/_4sdp"
                                 android:fontFamily="@font/dmsans_regular"
-                                android:text="5">
+                                android:text="★ 5">
 
                             </TextView>
                             <TextView
@@ -469,13 +459,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
-                            <ImageView
-                                android:layout_width="17dp"
-                                android:layout_height="17dp"
-                                android:src="@drawable/star"
-                                android:layout_marginTop="@dimen/_6sdp">
 
-                            </ImageView>
                             <TextView
                                 android:id="@+id/trackRate3"
                                 android:layout_width="wrap_content"
@@ -485,7 +469,7 @@
                                 android:layout_marginLeft="@dimen/_3sdp"
                                 android:layout_marginTop="@dimen/_4sdp"
                                 android:fontFamily="@font/dmsans_regular"
-                                android:text="5">
+                                android:text="★ 5">
 
                             </TextView>
                             <TextView
@@ -528,13 +512,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
-                                <ImageView
-                                    android:layout_width="17dp"
-                                    android:layout_height="17dp"
-                                    android:src="@drawable/star"
-                                    android:layout_marginTop="@dimen/_6sdp">
-
-                                </ImageView>
                                 <TextView
                                     android:id="@+id/trackRate4"
                                     android:layout_width="wrap_content"
@@ -544,7 +521,7 @@
                                     android:layout_marginLeft="@dimen/_3sdp"
                                     android:layout_marginTop="@dimen/_4sdp"
                                     android:fontFamily="@font/dmsans_regular"
-                                    android:text="5">
+                                    android:text="★ 5">
 
                                 </TextView>
                                 <TextView
@@ -579,13 +556,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
-                                <ImageView
-                                    android:layout_width="17dp"
-                                    android:layout_height="17dp"
-                                    android:src="@drawable/star"
-                                    android:layout_marginTop="@dimen/_6sdp">
 
-                                </ImageView>
                                 <TextView
                                     android:id="@+id/trackRate5"
                                     android:layout_width="wrap_content"
@@ -595,7 +566,7 @@
                                     android:layout_marginLeft="@dimen/_3sdp"
                                     android:layout_marginTop="@dimen/_4sdp"
                                     android:fontFamily="@font/dmsans_regular"
-                                    android:text="5">
+                                    android:text="★ 5">
 
                                 </TextView>
                                 <TextView
@@ -630,13 +601,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
-                                <ImageView
-                                    android:layout_width="17dp"
-                                    android:layout_height="17dp"
-                                    android:src="@drawable/star"
-                                    android:layout_marginTop="@dimen/_6sdp">
 
-                                </ImageView>
                             <TextView
                                 android:id="@+id/trackRate6"
                                 android:layout_width="wrap_content"
@@ -646,7 +611,7 @@
                                 android:layout_marginLeft="@dimen/_3sdp"
                                 android:layout_marginTop="@dimen/_4sdp"
                                 android:fontFamily="@font/dmsans_regular"
-                                android:text="5">
+                                android:text="★ 5">
 
                             </TextView>
                                 <TextView
@@ -916,8 +881,8 @@
                             android:layout_width="@dimen/_20sdp"
                             android:layout_height="@dimen/_20sdp"
                             android:layout_marginTop="@dimen/_2sdp"
-                           android:layout_marginLeft="@dimen/_15sdp"
-                           android:src="@drawable/user_plus"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:src="@drawable/user_plus"
                             android:background="@color/transparent"/>
 
 

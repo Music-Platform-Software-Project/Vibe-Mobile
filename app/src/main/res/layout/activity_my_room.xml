@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="view.my_room"
+    android:id="@+id/drawerLayout"
+    android:fitsSystemWindows="true"
+
+    tools:openDrawer="start"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_bcg"
+        android:padding="30dp">
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:gravity="center">
+
+           <ImageView
+               android:id="@+id/vibeFriendsRoomLogo"
+               android:layout_width="80dp"
+               android:layout_height="60dp"
+               android:src="@drawable/personal_room_vibe_logo"
+               android:onClick="goToDashboard"
+               >
+           </ImageView>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="@color/white"
+               android:text="@string/vibing_in_your_room"
+               android:layout_marginTop="10dp"
+               android:textStyle="bold"
+               android:textSize="@dimen/_18sdp"
+               />
+
+           <FrameLayout
+               android:id="@+id/spotifyFrame"
+               android:layout_width="match_parent"
+               android:layout_height="400dp"
+               app:layout_constraintTop_toBottomOf="@id/frinedsRoomTxt"
+               android:layout_marginTop="30dp"
+               android:background="@color/spotify_green" />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:layout_marginTop="10dp"
+               android:background="@color/div_bcg"
+               android:padding="10dp"
+               >
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="10dp"
+                   android:textColor="@color/white"
+                   android:layout_marginTop="15dp"
+                   android:text="Rain"
+                   android:layout_marginLeft="@dimen/_3sdp"
+                   android:textSize="@dimen/_15sdp">
+
+               </TextView>
+
+               <SeekBar
+                   android:id="@+id/slider_rain"
+                   android:layout_width="match_parent"
+                   android:layout_height="30dp"
+                   android:background="@drawable/slider_unused_bg"
+                   android:thumb="@drawable/resized_thumb"
+                   />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="10dp"
+                   android:textColor="@color/white"
+                   android:layout_marginTop="15dp"
+                   android:text="Cafe"
+                   android:layout_marginLeft="@dimen/_3sdp"
+                   android:textSize="@dimen/_15sdp">
+
+               </TextView>
+
+               <SeekBar
+                   android:id="@+id/slider_cafe"
+                   android:layout_width="match_parent"
+                   android:layout_height="30dp"
+                   android:background="@drawable/slider_unused_bg"
+                   android:thumb="@drawable/resized_thumb"
+                   />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="10dp"
+                   android:textColor="@color/white"
+                   android:layout_marginTop="15dp"
+                   android:text="Fireplace"
+                   android:layout_marginLeft="@dimen/_3sdp"
+                   android:textSize="@dimen/_15sdp">
+
+               </TextView>
+
+               <SeekBar
+                   android:id="@+id/slider_fireplace"
+                   android:layout_width="match_parent"
+                   android:layout_height="30dp"
+                   android:background="@drawable/slider_unused_bg"
+                   android:thumb="@drawable/resized_thumb"
+                   />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="10dp"
+                   android:textColor="@color/white"
+                   android:layout_marginTop="15dp"
+                   android:text="Nature"
+                   android:layout_marginLeft="@dimen/_3sdp"
+                   android:textSize="@dimen/_15sdp">
+
+               </TextView>
+
+               <SeekBar
+                   android:id="@+id/slider_nature"
+                   android:layout_width="match_parent"
+                   android:layout_height="30dp"
+                   android:background="@drawable/slider_unused_bg"
+                   android:thumb="@drawable/resized_thumb"
+                   />
+           </LinearLayout>
+
+           <FrameLayout
+               android:id="@+id/dummyFrame"
+               android:layout_width="match_parent"
+               android:layout_height="400dp"
+               app:layout_constraintTop_toBottomOf="@id/frinedsRoomTxt"
+               android:layout_marginTop="30dp"
+               android:background="@color/spotify_green" />
+
+       </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:background="@color/main_bcg"
+            android:layout_marginTop="50dp"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/vibe_logo_2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="15"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/nav_vibe_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/vibe_button" />
+
+                <TextView
+                    android:id="@+id/nav_dashboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:text="Dashboard"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:padding="5dp"
+                    android:onClick="goToDashboard"/>
+
+                <TextView
+                    android:id="@+id/nav_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Profile"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:padding="5dp"
+                    android:background="@drawable/menu_item_selected"
+                    android:onClick="goToProfile"/>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/nav_settings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

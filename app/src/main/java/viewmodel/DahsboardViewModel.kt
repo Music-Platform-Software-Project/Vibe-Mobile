@@ -11,6 +11,7 @@ import model.Item
 import network.RetrofitClient
 import view.Dashboard
 import view.RecyclerViewAdapter
+import view.my_room
 
 class DahsboardViewModel : ViewModel() {
 
@@ -19,6 +20,11 @@ class DahsboardViewModel : ViewModel() {
 
 
     fun setContext(ctx: Dashboard) {
+        this.ctx = ctx
+        retrofitClient = RetrofitClient(ctx)
+    }
+
+    fun setContext(ctx: my_room) {
         this.ctx = ctx
         retrofitClient = RetrofitClient(ctx)
     }

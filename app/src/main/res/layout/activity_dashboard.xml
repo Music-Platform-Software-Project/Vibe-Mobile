@@ -10,9 +10,6 @@
 
     tools:openDrawer="start">
 
-
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -139,7 +136,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:background="@color/main_bcg"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="50dp"
             android:gravity="left"
             android:orientation="vertical"
             android:padding="30dp">
@@ -170,7 +167,9 @@
                     android:layout_marginBottom="20dp"
                     android:text="Dashboard"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:padding="5dp"
+                    android:background="@drawable/menu_item_selected"/>
 
                 <TextView
                     android:id="@+id/nav_profile"
@@ -178,7 +177,9 @@
                     android:layout_height="wrap_content"
                     android:text="Profile"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:padding="5dp"
+                    android:onClick="goToProfile"/>
 
 
             </LinearLayout>
@@ -189,7 +190,8 @@
                 android:layout_height="wrap_content"
                 android:text="Settings"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:padding="5dp"/>
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>
 

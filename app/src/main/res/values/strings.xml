@@ -40,4 +40,12 @@
     <string name="search_for_a_friend">Search for a friend</string>
     <string name="suggested_tracks">Suggested Tracks</string>
     <string name="suggested_artists">Suggested Artists</string>
+    <string name="forgot_pasword_message">Welcome Traveller.\n To restore your password, we will send a code to your email address.</string>
+    <string name="please_enter_your_email">Please enter your email</string>
+    <string name="CONTINUE">CONTINUE</string>
+    <string name="enter_the_code">Please enter the code that we just sent your email</string>
+    <string name="confirm">CONFIRM</string>
+    <string name="enter_new_password_again">Enter new password again</string>
+    <string name="enter_new_password">Enter new password</string>
+    <string name="vibing_in_your_room">Vibing in Your Room</string>
 </resources>

@@ -1,6 +1,7 @@
 package view
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -41,7 +42,6 @@ class Dashboard : AppCompatActivity() {
     }
 
     fun makeToast(view: View) {
-
         Toast.makeText(this, " tost yaptim", Toast.LENGTH_SHORT).show()
     }
 
@@ -66,5 +66,9 @@ class Dashboard : AppCompatActivity() {
             }
             else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    fun goToProfile(view: View) {
+        startActivity(Intent(this, ProfilePage::class.java))
     }
 }
