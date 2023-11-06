@@ -48,4 +48,6 @@
     <string name="enter_new_password_again">Enter new password again</string>
     <string name="enter_new_password">Enter new password</string>
     <string name="vibing_in_your_room">Vibing in Your Room</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="favorite_tracks">Favorite Tracks</string>
 </resources>

@@ -28,15 +28,16 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:text="@string/playlists"
-                android:textSize="35sp"/>
+                android:textSize="@dimen/_20sdp"/>
 
             <TextView
                 android:id="@+id/playlists_view_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/hint_color"
                 android:text="@string/view_all"
-                android:textSize="15sp"
+                android:textSize="12sp"
+                android:paddingTop="@dimen/_5sdp"
                 android:layout_marginBottom="20dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -50,6 +51,7 @@
                 app:stackFromEnd="false"
                 android:layout_gravity="center"
                 android:padding="10dp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:background="@drawable/div_bcg"/>
 
             <TextView
@@ -58,16 +60,17 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:text="@string/favorite_artists"
-                android:textSize="35sp"
+                android:textSize="@dimen/_20sdp"
                 android:layout_marginTop="40dp"/>
 
             <TextView
                 android:id="@+id/artists_view_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/hint_color"
                 android:text="@string/view_all"
-                android:textSize="15sp"
+                android:textSize="12sp"
+                android:paddingTop="@dimen/_5sdp"
                 android:layout_marginBottom="20dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -81,6 +84,7 @@
                 app:stackFromEnd="false"
                 android:layout_gravity="center"
                 android:padding="10dp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:background="@drawable/div_bcg"/>
 
 
@@ -89,17 +93,18 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:text="Favorite Tracks"
-                android:textSize="35sp"
+                android:text="@string/favorite_tracks"
+                android:textSize="@dimen/_20sdp"
                 android:layout_marginTop="40dp"/>
 
             <TextView
                 android:id="@+id/tracks_view_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/hint_color"
                 android:text="@string/view_all"
-                android:textSize="15sp"
+                android:textSize="12sp"
+                android:paddingTop="@dimen/_5sdp"
                 android:layout_marginBottom="20dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -111,6 +116,7 @@
                 app:spanCount="3"
                 app:reverseLayout="false"
                 app:stackFromEnd="false"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:layout_gravity="center"
                 android:padding="10dp"
                 android:background="@drawable/div_bcg"/>
@@ -144,6 +150,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_14sdp"
                 android:src="@drawable/vibe_logo_2" />
 
             <LinearLayout
@@ -153,12 +160,16 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <ImageButton
+                <Button
                     android:id="@+id/nav_vibe_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/vibe_button" />
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginBottom="40dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/dmsans_bold"
+                    android:text="VIBE"
+                    android:textSize="25sp"
+                    android:background="@drawable/my_room_bg" />
 
                 <TextView
                     android:id="@+id/nav_dashboard"
@@ -167,8 +178,8 @@
                     android:layout_marginBottom="20dp"
                     android:text="Dashboard"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:padding="5dp"
+                    android:textSize="15sp"
+                    android:padding="10dp"
                     android:background="@drawable/menu_item_selected"/>
 
                 <TextView
@@ -177,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:text="Profile"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:padding="5dp"
                     android:onClick="goToProfile"/>
 
@@ -190,7 +201,7 @@
                 android:layout_height="wrap_content"
                 android:text="Settings"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:padding="5dp"/>
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>

@@ -162,6 +162,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+
         android:fitsSystemWindows="true"
         >
 
@@ -178,6 +179,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_14sdp"
                 android:src="@drawable/vibe_logo_2" />
 
             <LinearLayout
@@ -187,21 +189,25 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <ImageButton
+                <Button
                     android:id="@+id/nav_vibe_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/vibe_button" />
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginBottom="40dp"
+                   android:textColor="@color/white"
+                    android:fontFamily="@font/dmsans_bold"
+                    android:text="VIBE"
+                    android:textSize="25sp"
+                    android:background="@drawable/my_room_bg" />
 
                 <TextView
                     android:id="@+id/nav_dashboard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
-                    android:text="Dashboard"
+                    android:text="@string/dashboard"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:padding="5dp"
                     android:onClick="goToDashboard"/>
 
@@ -211,8 +217,8 @@
                     android:layout_height="wrap_content"
                     android:text="Profile"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:padding="5dp"
+                    android:textSize="15sp"
+                    android:padding="10dp"
                     android:background="@drawable/menu_item_selected"
                     android:onClick="goToProfile"/>
 
@@ -225,7 +231,7 @@
                 android:layout_height="wrap_content"
                 android:text="Settings"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:padding="5dp"/>
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>
