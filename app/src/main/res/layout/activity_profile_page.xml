@@ -112,6 +112,18 @@
                 </Button>
 
 
+                <ImageButton
+                    android:id="@+id/btnPersonalizedTracks"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="@dimen/_65sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnImport"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/personalized_tracks_btn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:onClick="goToPersonalizedTracks">
+
+                </ImageButton>
                 <LinearLayout
                     android:id="@+id/holder2"
                     android:layout_width="wrap_content"
@@ -120,8 +132,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.214"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/btnImport"
-                    android:layout_marginTop="@dimen/_35sdp">
+                    app:layout_constraintTop_toBottomOf="@id/btnPersonalizedTracks"
+                    android:layout_marginTop="@dimen/_30sdp">
 
                     <TextView
                         android:layout_width="wrap_content"

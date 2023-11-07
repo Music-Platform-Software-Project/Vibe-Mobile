@@ -54,6 +54,10 @@ class ProfilePage : AppCompatActivity() {
         startActivity(Intent(this, my_room::class.java))
     }
 
+    fun goToPersonalizedTracks(view: View){
+        startActivity(Intent(this, PersonalizedTracks::class.java))
+    }
+
 
 
 }

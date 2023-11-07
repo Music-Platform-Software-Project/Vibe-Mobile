@@ -54,4 +54,8 @@
     <string name="profile">Profile</string>
     <string name="change_password">change password</string>
     <string name="Import">Import</string>
+    <string name="energy">Energy</string>
+    <string name="instrumentalness">Instrumentalness</string>
+    <string name="mood">Mood</string>
+    <string name="recommend">Recommend</string>
 </resources>
