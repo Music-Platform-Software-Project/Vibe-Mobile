@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/text_color"
         android:text="@string/enter_the_code"
         android:gravity="center"
         android:textSize="16sp"
@@ -26,49 +26,19 @@
         />
 
 
-    <EditText
-        android:id="@+id/newPassword"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/input_fields"
-        android:hint="@string/enter_new_password"
-        android:inputType="textPassword"
-        android:paddingLeft="13dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/hint_color"
-        android:textSize="12sp"
-        tools:ignore="LabelFor"
-        />
-
-    <EditText
-        android:id="@+id/newPasswordAgain"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/input_fields"
-        android:hint="@string/enter_new_password_again"
-        android:inputType="textPassword"
-        android:paddingLeft="13dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/hint_color"
-        android:textSize="12sp"
-        tools:ignore="LabelFor"
-        android:layout_marginBottom="10dp"
-        />
 
     <EditText
         android:id="@+id/codeField"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/input_fields"
-        android:hint="Code Here"
+        android:hint="Please enter the code"
         android:inputType="text"
         android:paddingLeft="13dp"
         android:textColor="@color/white"
         android:textColorHint="@color/hint_color"
-        android:textSize="12sp"
+        android:textSize="13sp"
         tools:ignore="LabelFor"
         />
 
@@ -77,11 +47,12 @@
         android:layout_width="140dp"
         android:layout_height="55dp"
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:text="@string/confirm"
-        android:textSize="18sp"
-        android:background="@drawable/input_fields"
-        android:textColor="@color/text_color"
+        android:textSize="19sp"
+        android:fontFamily="@font/dmsans_bold"
+        android:background="@drawable/btn_continue"
+        android:textColor="@color/white"
         >
     </Button>
 

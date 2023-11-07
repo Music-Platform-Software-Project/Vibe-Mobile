@@ -12,17 +12,17 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.example.cs308_00.R
-import viewmodel.DahsboardViewModel
+import viewmodel.DashboardViewModel
 
 class Dashboard : AppCompatActivity() {
 
     lateinit var toggle : ActionBarDrawerToggle
-    private lateinit var viewModel: DahsboardViewModel
+    private lateinit var viewModel: DashboardViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-        viewModel = ViewModelProvider(this).get(DahsboardViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
         viewModel.setContext(this)
 
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)

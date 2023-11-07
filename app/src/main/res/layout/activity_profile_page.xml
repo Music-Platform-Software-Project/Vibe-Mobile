@@ -93,17 +93,35 @@
 
                 </ImageView>
 
+                <Button
+                    android:id="@+id/btnImport"
+                    android:layout_width="@dimen/_110sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/albumHolder"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:background="@drawable/btn_continue"
+                    android:fontFamily="@font/dmsans_bold"
+                    android:textSize="@dimen/_17sdp"
+                    android:textColor="@color/white"
+                    android:text="@string/Import"
+                    android:textAllCaps="false"
+                    >
+
+                </Button>
+
+
                 <LinearLayout
                     android:id="@+id/holder2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.214"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/albumHolder"
-                    android:layout_marginTop="@dimen/_20sdp">
+                    app:layout_constraintTop_toBottomOf="@id/btnImport"
+                    android:layout_marginTop="@dimen/_35sdp">
 
                     <TextView
                         android:layout_width="wrap_content"

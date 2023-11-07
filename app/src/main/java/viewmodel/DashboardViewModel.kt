@@ -12,7 +12,7 @@ import view.Dashboard
 import view.RecyclerViewAdapter
 import view.my_room
 
-class DahsboardViewModel : ViewModel() {
+class DashboardViewModel() : ViewModel() {
 
     private lateinit var ctx: Context
     private lateinit var retrofitClient: RetrofitClient
