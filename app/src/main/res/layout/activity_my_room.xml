@@ -219,8 +219,21 @@
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     android:padding="10dp"
-                    android:background="@drawable/menu_item_selected"
                     android:onClick="goToProfile"/>
+
+                <TextView
+                    android:id="@+id/nav_myRoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_room"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:paddingLeft="7dp"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="@drawable/menu_item_selected"
+                    android:paddingTop="@dimen/_10sdp" />
 
 
             </LinearLayout>

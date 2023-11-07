@@ -7,10 +7,9 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import com.example.cs308_00.R
-import com.example.cs308_00.databinding.ActivityFriendsRoomBinding
 import com.example.cs308_00.databinding.ActivityProfilePageBinding
-import viewmodel.FriendsRoomViewModel
 import viewmodel.ProfilePageViewModel
 
 class ProfilePage : AppCompatActivity() {
@@ -20,16 +19,24 @@ class ProfilePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_page)
+        viewModel = ViewModelProvider(this).get(ProfilePageViewModel::class.java)
+        viewModel.setContext(this)
 
         //var navBarBtn = findViewById<ImageButton>(R.id.navBarBtn)
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout1)
-
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        viewModel.setRecyclerView()
+
+        viewModel.setRecyclerViewForArtists()
+        viewModel.setRecyclerViewForTracks()
 
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

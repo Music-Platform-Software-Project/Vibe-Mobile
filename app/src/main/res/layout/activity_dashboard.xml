@@ -186,11 +186,23 @@
                     android:id="@+id/nav_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Profile"
+                    android:text="@string/profile"
                     android:textColor="@color/white"
                     android:textSize="15sp"
-                    android:padding="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="@dimen/_13sdp"
                     android:onClick="goToProfile"/>
+
+                <TextView
+                    android:id="@+id/nav_myRoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_room"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="@dimen/_20sdp"
+                    android:onClick="goToMyRoom"/>
 
 
             </LinearLayout>

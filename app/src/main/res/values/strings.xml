@@ -50,4 +50,6 @@
     <string name="vibing_in_your_room">Vibing in Your Room</string>
     <string name="dashboard">Dashboard</string>
     <string name="favorite_tracks">Favorite Tracks</string>
+    <string name="my_room">My Room</string>
+    <string name="profile">Profile</string>
 </resources>

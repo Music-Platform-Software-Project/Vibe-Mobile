@@ -71,4 +71,8 @@ class Dashboard : AppCompatActivity() {
     fun goToProfile(view: View) {
         startActivity(Intent(this, ProfilePage::class.java))
     }
+
+    fun goToMyRoom(view: View){
+        startActivity(Intent(this, my_room::class.java))
+    }
 }

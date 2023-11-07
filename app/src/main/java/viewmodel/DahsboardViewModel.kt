@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
 import model.Item
