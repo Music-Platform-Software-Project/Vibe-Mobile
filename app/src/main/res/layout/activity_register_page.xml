@@ -139,7 +139,6 @@
             android:autofillHints="password"
             android:background="@drawable/input_fields"
             android:hint="@string/enterYourUsername"
-            android:inputType="textWebPassword"
             android:paddingLeft="13dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint_color"
