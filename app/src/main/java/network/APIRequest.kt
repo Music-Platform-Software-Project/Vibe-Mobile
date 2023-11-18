@@ -1,10 +1,9 @@
 package network
 
+import model.LoginPayload
 import model.RegisterPayload
-import model.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
@@ -14,5 +13,12 @@ interface APIRequest {
     @Headers("Content-Type: application/json")
     fun registerUser(
         @Body request: RegisterPayload
-    ): Call<RegisterResponse>
+    ): Call<String>
+
+
+    @POST("/auth/login")
+    @Headers("Content-Type: application/json")
+    fun loginUser(
+        @Body request: LoginPayload
+    ): Call<String>
 }

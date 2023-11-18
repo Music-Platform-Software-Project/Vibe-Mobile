@@ -3,8 +3,10 @@ package view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.cs308_00.R
+import org.w3c.dom.Text
 import viewmodel.LoginPageViewModel
 
 class LoginPage : AppCompatActivity() {
@@ -29,7 +31,9 @@ class LoginPage : AppCompatActivity() {
             viewModel.goForgotPassword()
         }
         loginButton.setOnClickListener {
-            viewModel.goToDashboard()
+            val email = findViewById<TextView>(R.id.usernameField).text.toString()
+            val password = findViewById<TextView>(R.id.passwordField).text.toString()
+            viewModel.loginUser(email, password)
         }
 
 

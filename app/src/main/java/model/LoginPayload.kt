@@ -1,7 +1,6 @@
 package model
 
-data class RegisterPayload(
+data class LoginPayload(
     val email: String,
-    val username: String,
     val password: String
 )

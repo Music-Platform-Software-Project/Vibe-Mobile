@@ -3,10 +3,8 @@ package viewmodel
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import model.RegisterPayload
-import model.RegisterResponse
 import network.APIRequest
 import network.RetrofitClient
 import network.constants
@@ -41,23 +39,32 @@ class RegisterPageViewModel() :ViewModel() {
             val retrofitData = retrofitBuilder.registerUser(request)
             Log.e("registration process", "going...")
 
-            retrofitData.enqueue(object: Callback<RegisterResponse> {
-                override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
+            retrofitData.enqueue(object : Callback<String> {
+                override fun onResponse(call: Call<String>, response: Response<String>) {
                     Log.e("registration response:", "retrieving body")
                     if (response.isSuccessful) {
                         val responseBody = response.body()
-                        Log.e("registration response: ", response.body().toString())
+                        Log.e("registration response: ", responseBody ?: "Response body is null")
+                        // Parse the responseBody as needed or handle the string response
                         ctx.startActivity(Intent(ctx, LoginPage::class.java))
-                    } else {
-                        Log.e("registration error: ", "HTTP ${response.code()}: ${response.message()}")
-                        Log.e("registration error: ", response.message())
+                    }
+                    else {
+                        try {
+                            val errorBody = response.errorBody()?.string()
+                            Log.e("registration error: ", "HTTP ${response.code()}: $errorBody")
+                        } catch (e: Exception) {
+                            Log.e("registration error: ", "Error parsing error response.")
+                        }
                     }
                 }
 
-                override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                override fun onFailure(call: Call<String>, t: Throwable) {
                     Log.e("registration error: ", t.toString())
                 }
             })
+
+
+
 
         }
         catch (e: Exception) {
