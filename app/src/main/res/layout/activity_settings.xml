@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="settingsViewModel"
+            type="viewmodel.SettingsViewModel" />
+    </data>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:background="@color/main_theme"
+    android:layout_height="match_parent"
+    tools:context="view.Settings">
+
+
+    <LinearLayout
+        android:id="@+id/holder"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/input_fields"
+        android:layout_marginTop="30dp"
+        android:paddingStart="30dp">
+
+
+        <ImageView
+            android:id="@+id/vibePersonalizedTracksLogo"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:src="@drawable/vibe_room_logo"
+            android:contentDescription="@string/vibeLogoDescription" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/backBtn"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="22dp"
+        android:background="@color/transparent"
+        android:src="@drawable/back_arrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="goToProfilePage">
+
+    </ImageButton>
+
+    <TextView
+        android:id="@+id/settingsTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/holder"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:textSize="@dimen/_20sdp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/dmsans_bold"
+        android:text="@string/action_settings"
+        >
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/updateInfoTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsTxt"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:textSize="@dimen/_14sdp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/dmsans_medium"
+        android:text="Update User Information"
+        >
+
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/updateInfoHolder"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_180sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/updateInfoTxt"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/delete_user"
+        >
+
+        <TextView
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="@string/updateUsername"
+            android:fontFamily="@font/dmsans_medium"
+            >
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/newUsername"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:background="@drawable/input_fields"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:hint="Please enter new username..."
+            android:textColorHint="@color/hint_color"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp"
+            android:padding="@dimen/_8sdp">
+
+        </EditText>
+
+        <Button
+           android:id="@+id/btnChangeUsername"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/input_fields"
+            android:layout_marginTop="@dimen/_20sdp"
+           android:fontFamily="@font/dmsans_bold"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/white"
+            >
+
+        </Button>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/dangerZoneTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/danger_red"
+        android:textSize="@dimen/_25sdp"
+        android:fontFamily="@font/dmsans_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/updateInfoHolder"
+        android:layout_marginTop="@dimen/_60sdp"
+        android:text="@string/danger_zone"
+        >
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/deleteAccountTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp"
+        android:fontFamily="@font/dmsans_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dangerZoneTxt"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:text="Delete Your Account"
+        >
+
+    </TextView>
+
+
+
+    <LinearLayout
+        android:id="@+id/deleteUserHolder"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_130sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_50sdp"
+        app:layout_constraintTop_toBottomOf="@id/deleteAccountTxt"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/delete_user"
+        >
+
+        <TextView
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="@string/goodbye_text"
+            android:fontFamily="@font/dmsans_medium"
+            >
+
+        </TextView>
+
+        <Button
+            android:id="@+id/btnDeleteAccount"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/btn_delete_account"
+            android:layout_marginTop="@dimen/_13sdp"
+            android:textColor="@color/white"
+            android:text="delete account"
+            android:fontFamily="@font/dmsans_bold"
+            >
+
+        </Button>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+</layout>

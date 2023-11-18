@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
@@ -39,11 +40,14 @@ class Dashboard : AppCompatActivity() {
         viewModel.setRecyclerViewForArtists()
         viewModel.setRecyclerViewForTracks()
 
+        val settingsBtn : TextView = findViewById(R.id.nav_settings)
+
+        settingsBtn.setOnClickListener {
+            viewModel.switchToSettings()
+        }
+
     }
 
-    fun makeToast(view: View) {
-        Toast.makeText(this, " tost yaptim", Toast.LENGTH_SHORT).show()
-    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.action_bar_menu, menu)

@@ -16,4 +16,8 @@ interface RequestDataInterface {
     data class ForgotPasswordRequest(
         val email: String
     )
+
+    data class UpdateUserRequest(
+        val username : String
+    )
 }

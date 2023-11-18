@@ -58,4 +58,7 @@
     <string name="instrumentalness">Instrumentalness</string>
     <string name="mood">Mood</string>
     <string name="recommend">Recommend</string>
+    <string name="updateUsername">Ahoy Viber ! Please enter the new username you wish to have</string>
+    <string name="danger_zone">DANGER ZONE</string>
+    <string name="goodbye_text">Goodbye Viber We are sorry to see you go :(</string>
 </resources>

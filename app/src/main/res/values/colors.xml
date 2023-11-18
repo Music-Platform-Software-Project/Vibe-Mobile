@@ -19,5 +19,7 @@
     <color name="item_bcg">#D9D9D9</color>
     <color name="div_bcg">#363942</color>
     <color name="menu_item_selected">#7B7E87</color>
+    <color name="danger_red">#D53333</color>
+    <color name="danger_yellow">#F8FF95</color>
 
 </resources>

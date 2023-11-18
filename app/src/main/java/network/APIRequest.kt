@@ -27,4 +27,22 @@ interface APIRequest {
         @Body request: RequestDataInterface.ForgotPasswordRequest
     ): Call<String>
 
+
+    @POST("/user/get")
+    @Headers(constants.contentType)
+    fun userGetData(
+    ): Call<String>
+
+    @POST("/user/update")
+    @Headers(constants.contentType)
+    fun updateUser(
+        @Body request: RequestDataInterface.UpdateUserRequest
+    ): Call<String>
+
+    @POST("/user/delete")
+    @Headers(constants.contentType)
+    fun deleteUser():Call<String>
+
+
+
 }

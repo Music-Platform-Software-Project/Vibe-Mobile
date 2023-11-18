@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
@@ -36,6 +37,11 @@ class my_room : AppCompatActivity() {
         viewModel.setRecyclerView()
         viewModel.setRecyclerViewForArtists()
         viewModel.setRecyclerViewForTracks()
+
+        val settingBtn : TextView = findViewById(R.id.nav_settings)
+        settingBtn.setOnClickListener {
+            viewModel.switchToSettings()
+        }
 
 
     }

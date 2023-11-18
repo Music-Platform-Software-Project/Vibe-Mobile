@@ -2,6 +2,7 @@ package viewmodel
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +11,8 @@ import model.Item
 import network.RetrofitClient
 import view.Dashboard
 import view.RecyclerViewAdapter
+import view.RegisterPage
+import view.Settings
 import view.my_room
 
 class DashboardViewModel() : ViewModel() {
@@ -26,6 +29,11 @@ class DashboardViewModel() : ViewModel() {
     fun setContext(ctx: my_room) {
         this.ctx = ctx
         retrofitClient = RetrofitClient(ctx)
+    }
+
+    fun switchToSettings(){
+        val intent = Intent(ctx, Settings::class.java)
+        ctx.startActivity(intent)
     }
 
 

@@ -3,6 +3,7 @@ package viewmodel
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import model.RequestDataInterface
 import network.APIRequest
@@ -59,14 +60,19 @@ class LoginPageViewModel() : ViewModel() {
                     Log.e("login response:", "retrieving body")
                     if (response.isSuccessful) {
                         val responseBody = response.body()
+                        constants.bearerToken = responseBody.toString()
+                        Log.e("token tag", "Bearer Token is: ${constants.bearerToken}")
                         Log.e("login response: ", responseBody ?: "Response body is null")
                         // Parse the responseBody as needed or handle the string response
                         goToDashboard()
                     }
                     else {
                         try {
-                            val errorBody = response.errorBody()?.string()
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
                             Log.e("login error: ", "HTTP ${response.code()}: $errorBody")
+                            Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show()
                         } catch (e: Exception) {
                             Log.e("login error: ", "Error parsing error response.")
                         }

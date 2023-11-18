@@ -3,6 +3,7 @@ package viewmodel
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import model.RequestDataInterface
 import network.APIRequest
@@ -28,11 +29,7 @@ class RegisterPageViewModel() :ViewModel() {
     fun registerUser(email: String, username: String, password: String) {
 
         try {
-            val retrofitBuilder = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(constants.baseURL)
-                .build()
-                .create(APIRequest::class.java)
+            val retrofitBuilder = retrofitClient.createAPIRequest()
 
             val request = RequestDataInterface.RegisterPayload(email, username, password)
 
@@ -45,13 +42,17 @@ class RegisterPageViewModel() :ViewModel() {
                     if (response.isSuccessful) {
                         val responseBody = response.body()
                         Log.e("registration response: ", responseBody ?: "Response body is null")
+                        constants.bearerToken = responseBody.toString()
                         // Parse the responseBody as needed or handle the string response
                         ctx.startActivity(Intent(ctx, LoginPage::class.java))
                     }
                     else {
                         try {
-                            val errorBody = response.errorBody()?.string()
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
                             Log.e("registration error: ", "HTTP ${response.code()}: $errorBody")
+                            Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show()
                         } catch (e: Exception) {
                             Log.e("registration error: ", "Error parsing error response.")
                         }
