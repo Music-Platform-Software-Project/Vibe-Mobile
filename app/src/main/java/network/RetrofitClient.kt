@@ -8,8 +8,8 @@ class RetrofitClient(private val ctx: Context) {
 
     fun createAPIRequest(): APIRequest {
         val retrofit = Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(constants.baseURL)
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         return retrofit.create(APIRequest::class.java)

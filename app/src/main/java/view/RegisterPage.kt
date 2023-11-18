@@ -2,6 +2,7 @@ package view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -28,10 +29,13 @@ class RegisterPage : AppCompatActivity() {
             val passAgain : String = findViewById<EditText>(R.id.registerPasswordAgainField).text.toString()
 
             if (password != passAgain){
-                Toast.makeText(this, "passwords do not match", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
 
             }
             else{
+                Log.e("registration process", "Email is: $email")
+                Log.e("registration process", "username is: $username")
+                Log.e("registration process", "password is: $password")
                 viewModel.registerUser(email, username, password)
             }
         }

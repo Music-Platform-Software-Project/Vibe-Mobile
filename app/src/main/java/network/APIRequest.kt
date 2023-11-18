@@ -1,7 +1,6 @@
 package network
 
-import model.LoginPayload
-import model.RegisterPayload
+import model.RequestDataInterface
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Headers
@@ -10,15 +9,22 @@ import retrofit2.http.POST
 interface APIRequest {
 
     @POST("/auth/register")
-    @Headers("Content-Type: application/json")
+    @Headers(constants.contentType)
     fun registerUser(
-        @Body request: RegisterPayload
+        @Body request: RequestDataInterface.RegisterPayload
     ): Call<String>
 
 
     @POST("/auth/login")
-    @Headers("Content-Type: application/json")
+    @Headers(constants.contentType)
     fun loginUser(
-        @Body request: LoginPayload
+        @Body request: RequestDataInterface.LoginPayload
     ): Call<String>
+
+    @POST("/auth/forgotPassword")
+    @Headers(constants.contentType)
+    fun forgotPassword(
+        @Body request: RequestDataInterface.ForgotPasswordRequest
+    ): Call<String>
+
 }

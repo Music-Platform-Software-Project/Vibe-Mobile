@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import model.RegisterPayload
+import model.RequestDataInterface
 import network.APIRequest
 import network.RetrofitClient
 import network.constants
@@ -34,7 +34,7 @@ class RegisterPageViewModel() :ViewModel() {
                 .build()
                 .create(APIRequest::class.java)
 
-            val request = RegisterPayload(email, username, password)
+            val request = RequestDataInterface.RegisterPayload(email, username, password)
 
             val retrofitData = retrofitBuilder.registerUser(request)
             Log.e("registration process", "going...")
