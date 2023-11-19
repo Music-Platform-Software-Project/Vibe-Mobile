@@ -61,4 +61,9 @@
     <string name="updateUsername">Ahoy Viber ! Please enter the new username you wish to have</string>
     <string name="danger_zone">DANGER ZONE</string>
     <string name="goodbye_text">Goodbye Viber We are sorry to see you go :(</string>
+    <string name="title_activity_manage_friends">ManageFriends</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

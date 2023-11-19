@@ -16,7 +16,6 @@ class ResetPassword : AppCompatActivity() {
 
         val continueButton = findViewById<Button>(R.id.btn_confirm)
         continueButton.setOnClickListener {
-            val code : Editable = findViewById<EditText>(R.id.codeField).text
             val newPassword : String = findViewById<EditText>(R.id.newPassword).text.toString()
             val newPasswordAgain : String = findViewById<EditText>(R.id.newPasswordAgain).text.toString()
 

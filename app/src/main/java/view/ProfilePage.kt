@@ -1,10 +1,16 @@
 package view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
@@ -37,6 +43,20 @@ class ProfilePage : AppCompatActivity() {
 
         viewModel.setRecyclerViewForArtists()
         viewModel.setRecyclerViewForTracks()
+
+        val friendButton = findViewById<TextView>(R.id.nav_settings)
+        friendButton.setOnClickListener {
+            startActivity(Intent(this, ManageFriends::class.java))
+        }
+
+        val sendFriendRequestButton = findViewById<ImageButton>(R.id.profileAddFriendsBtn)
+        sendFriendRequestButton.setOnClickListener {
+            val username = findViewById<EditText>(R.id.profileAddFriendsField).text.toString()
+            val editText = findViewById<EditText>(R.id.profileAddFriendsField)
+            editText.text = Editable.Factory.getInstance().newEditable("")
+            Toast.makeText(this, "friend request sent", Toast.LENGTH_SHORT).show()
+            viewModel.sendRequest(username)
+        }
 
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

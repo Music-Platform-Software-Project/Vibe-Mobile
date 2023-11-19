@@ -2,15 +2,25 @@ package viewmodel
 
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
 import model.Item
+import model.RequestDataInterface
+import network.APIRequest
 import network.RetrofitClient
+import network.constants
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import view.LoginPage
 import view.ProfilePage
 import view.RecyclerViewAdapter
+import view.ui.main.IncomingRequests
 
 class ProfilePageViewModel() : ViewModel() {
     private lateinit var ctx: Context
@@ -104,5 +114,57 @@ class ProfilePageViewModel() : ViewModel() {
         recyclerView?.adapter = adapter
 
 
+    }
+
+    fun sendRequest(username: String) {
+        try {
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl(constants.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val retrofitBuilder = retrofit.create(APIRequest::class.java)
+            val request = RequestDataInterface.friendRequestPayload(username)
+
+            val token = "Bearer " + constants.bearerToken
+            val retrofitData = retrofitBuilder.sendRequest(token, request)
+            Log.e("sending invitation", "going...")
+
+            retrofitData.enqueue(object : Callback<String> {
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    Log.e("sending invitation:", "retrieving body")
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.e("sending invitation: ",
+                            (responseBody ?: "Response body is null").toString()
+                        )
+                        // Parse the responseBody as needed or handle the string response
+                        if (responseBody != null) {
+                            Log.e("sending invitation", "end")
+                        }
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("sending error: ", "HTTP ${response.code()}: $errorBody")
+
+                        } catch (e: Exception) {
+                            Log.e("sending error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    Log.e("sending error: ", t.toString())
+                }
+            })
+        }
+        catch (e: Exception) {
+            Log.e("error", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
     }
 }

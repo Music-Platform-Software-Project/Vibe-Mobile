@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:background="@color/main_bcg">
+
+    <TextView
+        android:id="@+id/incomingUsername"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:text="denemeUsername"
+        android:textColor="@color/white"
+        android:textSize="24sp"/>
+
+    <Button
+        android:id="@+id/acceptButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/baseline_add_task_24"
+        android:background="@color/main_bcg"
+        android:layout_marginRight="5dp"/>
+
+    <Button
+        android:id="@+id/rejectButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/baseline_clear_24"
+        android:background="@color/main_bcg"/>
+
+
+</LinearLayout>

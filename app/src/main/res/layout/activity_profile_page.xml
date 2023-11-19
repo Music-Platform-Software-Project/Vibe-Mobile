@@ -16,6 +16,7 @@
         tools:context="view.Dashboard"
         android:id="@+id/drawerLayout1"
         android:fitsSystemWindows="true"
+        tools:openDrawer="start"
         >
 
         <ScrollView
@@ -503,7 +504,8 @@
                             android:hint="@string/search_for_a_friend"
                             android:textColorHint="@color/hint_color"
                             android:textSize="@dimen/_8sdp"
-                            android:paddingLeft="@dimen/_6sdp"/>
+                            android:paddingLeft="@dimen/_6sdp"
+                            android:textColor="@color/white"/>
 
                         <ImageButton
                             android:id="@+id/profileAddFriendsBtn"
@@ -512,7 +514,8 @@
                             android:layout_marginTop="@dimen/_2sdp"
                             android:layout_marginLeft="@dimen/_15sdp"
                             android:src="@drawable/user_plus_icon"
-                            android:background="@color/transparent"/>
+                            android:background="@color/transparent"
+                            />
 
 
 

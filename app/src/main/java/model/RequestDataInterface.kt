@@ -20,4 +20,17 @@ interface RequestDataInterface {
     data class UpdateUserRequest(
         val username : String
     )
+
+    data class friendRequests(
+        val sender: String,
+        val id: String
+    )
+
+    data class friendRequestPayload(
+        val username: String
+    )
+
+    data class acceptRequestPayload(
+        val id: String
+    )
 }

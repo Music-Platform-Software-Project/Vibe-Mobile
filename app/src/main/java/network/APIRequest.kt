@@ -3,6 +3,8 @@ package network
 import model.RequestDataInterface
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
@@ -43,6 +45,34 @@ interface APIRequest {
     @Headers(constants.contentType)
     fun deleteUser():Call<String>
 
+
+    @GET("/invitation/list")
+    @Headers(constants.contentType)
+    fun getRequests(
+        @Header("Authorization") bearerToken: String
+    ):Call<List<RequestDataInterface.friendRequests>>
+
+    @POST("/invitation/send")
+    @Headers(constants.contentType)
+    fun sendRequest(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.friendRequestPayload
+    ):Call<String>
+
+
+    @POST("/invitation/accept")
+    @Headers(constants.contentType)
+    fun acceptRequest(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.acceptRequestPayload
+    ):Call<String>
+
+    @POST("/invitation/reject")
+    @Headers(constants.contentType)
+    fun rejectRequest(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.acceptRequestPayload
+    ):Call<String>
 
 
 }
