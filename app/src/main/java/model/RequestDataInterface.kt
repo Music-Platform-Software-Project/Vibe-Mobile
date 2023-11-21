@@ -25,6 +25,10 @@ interface RequestDataInterface {
         val sender: String,
         val id: String
     )
+    data class sentFriendRequests(
+        val receiver: String,
+        val id: String
+    )
 
     data class friendRequestPayload(
         val username: String

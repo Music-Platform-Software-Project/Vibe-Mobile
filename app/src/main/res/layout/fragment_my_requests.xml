@@ -2,12 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="view.ui.main.MyRequests">
+    tools:context="view.ui.main.MyRequests"
+    android:background="@color/main_bcg"
+    android:padding="20dp"
+    >
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/MyRequestsRecView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="my requests" />
+        android:layout_height="wrap_content"/>
 
 </FrameLayout>

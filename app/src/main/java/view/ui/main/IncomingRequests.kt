@@ -6,12 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
 import model.RequestDataInterface
-import viewmodel.DashboardViewModel
 import viewmodel.IncomingRequestsViewModel
 
 // TODO: Rename parameter arguments, choose names that match
@@ -53,10 +51,6 @@ class IncomingRequests : Fragment() {
 
         recyclerView = view.findViewById(R.id.incomingRequestsRecView)
         recyclerView.layoutManager = LinearLayoutManager(context)
-
-        // Example data for testing
-        val request1 = RequestDataInterface.friendRequests("ege", "123")
-        val request2 = RequestDataInterface.friendRequests("zeynep", "456")
 
 
         viewModel.getRequests()

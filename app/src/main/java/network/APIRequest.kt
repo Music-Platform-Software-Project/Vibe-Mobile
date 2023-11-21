@@ -52,6 +52,12 @@ interface APIRequest {
         @Header("Authorization") bearerToken: String
     ):Call<List<RequestDataInterface.friendRequests>>
 
+    @GET("/invitation/listSent")
+    @Headers(constants.contentType)
+    fun getSentRequests(
+        @Header("Authorization") bearerToken: String
+    ):Call<List<RequestDataInterface.sentFriendRequests>>
+
     @POST("/invitation/send")
     @Headers(constants.contentType)
     fun sendRequest(
@@ -74,5 +80,12 @@ interface APIRequest {
         @Body request: RequestDataInterface.acceptRequestPayload
     ):Call<String>
 
+
+    @POST("/invitation/deleteSent")
+    @Headers(constants.contentType)
+    fun rejectSentRequest(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.acceptRequestPayload
+    ):Call<String>
 
 }

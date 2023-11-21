@@ -1,11 +1,17 @@
 package view.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
+import model.RequestDataInterface
+import viewmodel.IncomingRequestsViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,11 +23,15 @@ private const val ARG_PARAM2 = "param2"
  * Use the [MyRequests.newInstance] factory method to
  * create an instance of this fragment.
  */
+
+lateinit var requestAdapter: MyRequestAdapter
+lateinit var requestRecyclerView: RecyclerView
 class MyRequests : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var viewModel: IncomingRequestsViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,8 +44,21 @@ class MyRequests : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_requests, container, false)
+
+        viewModel = ViewModelProvider(this@MyRequests).get(IncomingRequestsViewModel::class.java)
+        viewModel.setContext(this)
+        val view = inflater.inflate(R.layout.fragment_my_requests, container, false)
+
+        requestRecyclerView = view.findViewById(R.id.MyRequestsRecView)
+        requestRecyclerView.layoutManager = LinearLayoutManager(context)
+
+
+        Log.e("mrb", "burdayim")
+        viewModel.getRequests2()
+
+        //val requestList = listOf(request1, request2)
+
+        return view
     }
 
     companion object {
@@ -56,5 +79,10 @@ class MyRequests : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+
+        fun applyChanges(invitationList: List<RequestDataInterface.sentFriendRequests>) {
+            requestAdapter = MyRequestAdapter(invitationList)
+            requestRecyclerView.adapter = requestAdapter
+        }
     }
 }

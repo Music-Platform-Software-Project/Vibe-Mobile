@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:background="@color/main_bcg">
+
+    <TextView
+        android:id="@+id/sentIncomingUsername"
+        android:layout_width="0dp"
+        android:layout_weight="6"
+        android:layout_height="wrap_content"
+        android:text="denemeUsername"
+        android:textColor="@color/white"
+        android:textSize="24sp"/>
+
+
+
+    <Button
+        android:id="@+id/sentRejectButton"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/baseline_clear_24"
+        android:background="@color/main_bcg"
+        android:gravity="center"/>
+
+
+</LinearLayout>
