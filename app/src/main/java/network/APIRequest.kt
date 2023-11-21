@@ -33,7 +33,8 @@ interface APIRequest {
     @POST("/user/get")
     @Headers(constants.contentType)
     fun userGetData(
-    ): Call<String>
+        @Header("Authorization") bearerToken: String
+    ): Call<RequestDataInterface.getUserDataResponse>
 
     @POST("/user/update")
     @Headers(constants.contentType)

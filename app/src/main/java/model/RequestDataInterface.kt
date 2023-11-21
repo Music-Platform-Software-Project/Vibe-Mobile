@@ -30,6 +30,19 @@ interface RequestDataInterface {
         val id: String
     )
 
+    data class getUserDataResponse(
+        val email : String,
+        val username: String,
+        val active : Boolean,
+        val friends : List<friends>
+    )
+
+    data class friends(
+        val id : String,
+        val username : String
+
+    )
+
     data class friendRequestPayload(
         val username: String
     )
@@ -37,4 +50,6 @@ interface RequestDataInterface {
     data class acceptRequestPayload(
         val id: String
     )
+
+
 }

@@ -27,6 +27,8 @@ class LoginPage : AppCompatActivity() {
             viewModel.goRegister()
         }
 
+
+
         forgotButton.setOnClickListener {
             viewModel.goForgotPassword()
         }

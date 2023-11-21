@@ -2,7 +2,10 @@ package viewmodel
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.Log
+import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +23,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import view.LoginPage
 import view.ProfilePage
 import view.RecyclerViewAdapter
+import view.RegisterPage
+import view.SeeAllFriends
 import view.ui.main.IncomingRequests
 
 class ProfilePageViewModel() : ViewModel() {
@@ -114,6 +119,63 @@ class ProfilePageViewModel() : ViewModel() {
         recyclerView?.adapter = adapter
 
 
+    }
+
+    fun switchToSeeAllFriends(){
+        val i = Intent(ctx, SeeAllFriends::class.java)
+        ctx.startActivity(i)
+    }
+    fun setUsernameandFriends(){
+        try{
+            val retrofitBuilder = retrofitClient.createAPIRequest()
+            val token = "Bearer " + constants.bearerToken
+            Log.e("bearer set username", constants.bearerToken)
+            val retrofitData = retrofitBuilder.userGetData(token)
+            Log.e("username process", "Going...")
+            retrofitData.enqueue(object : Callback<RequestDataInterface.getUserDataResponse> {
+                override fun onResponse(call: Call<RequestDataInterface.getUserDataResponse>, response: Response<RequestDataInterface.getUserDataResponse>) {
+                    Log.e("set username response:", "retrieving body")
+                    if (response.isSuccessful) {
+                        val responseBody = response.body().toString()
+                        Log.e("user get response: ", responseBody ?: "Response body is null")
+                        val username = (ctx as? Activity)?.findViewById<TextView>(R.id.profileUsername)
+                        username!!.text = response.body()!!.username
+                        val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
+                        friend1!!.text = response.body()!!.friends[0].username
+                        val friend2 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername2)
+                        friend2!!.text = response.body()!!.friends[1].username
+                        val friend3 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername3)
+                        friend3!!.text = response.body()!!.friends[2].username
+                        val friend4 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername4)
+                        friend4!!.text = response.body()!!.friends[3].username
+                        // Parse the responseBody as needed or handle the string response
+
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("username error: ", "HTTP ${response.code()}: $errorBody")
+
+
+                        } catch (e: Exception) {
+                            Log.e("set username error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<RequestDataInterface.getUserDataResponse>, t: Throwable) {
+                    Log.e("registration error: ", t.toString())
+                }
+            })
+
+        }
+
+        catch (e: Exception) {
+            Log.e("error", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
     }
 
     fun sendRequest(username: String) {

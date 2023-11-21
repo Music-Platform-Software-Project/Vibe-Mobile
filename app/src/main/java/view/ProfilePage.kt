@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
@@ -44,12 +45,20 @@ class ProfilePage : AppCompatActivity() {
         viewModel.setRecyclerViewForArtists()
         viewModel.setRecyclerViewForTracks()
 
-        val friendButton = findViewById<TextView>(R.id.nav_settings)
+        viewModel.setUsernameandFriends()
+
+        val friendButton = findViewById<TextView>(R.id.manageFriends)
         friendButton.setOnClickListener {
             startActivity(Intent(this, ManageFriends::class.java))
         }
 
-        val sendFriendRequestButton = findViewById<ImageButton>(R.id.profileAddFriendsBtn)
+        val seeFriend = findViewById<Button>(R.id.seeFriends)
+        seeFriend.setOnClickListener {
+            viewModel.switchToSeeAllFriends()
+        }
+
+
+        val sendFriendRequestButton = findViewById<Button>(R.id.profileAddFriendsBtn)
         sendFriendRequestButton.setOnClickListener {
             val username = findViewById<EditText>(R.id.profileAddFriendsField).text.toString()
             val editText = findViewById<EditText>(R.id.profileAddFriendsField)
