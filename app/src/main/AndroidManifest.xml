@@ -17,9 +17,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name="view.SeeAllFriends"
+            android:name="view.ImportTrack"
             android:exported="false"
             android:theme="@style/Theme.Cs308_00.NoActionBar"/>
+        <activity
+            android:name="view.SeeAllFriends"
+            android:exported="false"
+            android:theme="@style/Theme.Cs308_00.NoActionBar" />
         <activity
             android:name="view.ManageFriends"
             android:exported="true"

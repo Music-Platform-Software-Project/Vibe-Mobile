@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:textSize="14dp"
     android:padding="@dimen/_5sdp"
-    android:background="@color/main_theme"
+    android:background="@color/hint_color"
     android:textColor="@color/white">
 
 </TextView>

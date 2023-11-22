@@ -57,6 +57,11 @@ class ProfilePage : AppCompatActivity() {
             viewModel.switchToSeeAllFriends()
         }
 
+        val importBtn = findViewById<Button>(R.id.btnImport)
+        importBtn.setOnClickListener {
+            viewModel.switchToImportTrack()
+        }
+
 
         val sendFriendRequestButton = findViewById<Button>(R.id.profileAddFriendsBtn)
         sendFriendRequestButton.setOnClickListener {

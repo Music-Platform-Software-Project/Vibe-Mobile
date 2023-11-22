@@ -20,6 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import view.ImportTrack
 import view.LoginPage
 import view.ProfilePage
 import view.RecyclerViewAdapter
@@ -119,6 +120,11 @@ class ProfilePageViewModel() : ViewModel() {
         recyclerView?.adapter = adapter
 
 
+    }
+
+    fun switchToImportTrack(){
+        val i = Intent(ctx, ImportTrack::class.java)
+        ctx.startActivity(i)
     }
 
     fun switchToSeeAllFriends(){

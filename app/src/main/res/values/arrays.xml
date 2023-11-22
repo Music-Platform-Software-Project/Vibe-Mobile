@@ -7,4 +7,38 @@
         <item>Item4</item>
         <item>Item5</item>
     </array>
+
+    <array name="genre_items">
+        <item>Ambient</item>
+        <item>Blues</item>
+        <item>Classical</item>
+        <item>Country</item>
+        <item>Disco</item>
+        <item>Electronic</item>
+        <item>Folk</item>
+        <item>Funk</item>
+        <item>Gospel</item>
+        <item>Hip Hop</item>
+        <item>House</item>
+        <item>Indie</item>
+        <item>Jazz</item>
+        <item>K-Pop</item>
+        <item>Latin</item>
+        <item>Metal</item>
+        <item>Pop</item>
+        <item>Punk</item>
+        <item>R&amp;B</item>
+        <item>Reggae</item>
+        <item>Rock</item>
+        <item>Ska</item>
+        <item>Soul</item>
+        <item>Trance</item>
+
+    </array>
+
+    <array name="mood_items">
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+    </array>
 </resources>
