@@ -92,7 +92,7 @@ interface APIRequest {
     @POST("/track/add")
     @Headers(constants.contentType)
     fun addTrack(
-        @Header("Authorization") bearerToken: String,
+        //@Header("Authorization") bearerToken: String,
         @Body request: RequestDataInterface.addTrackRequest
     ):Call<String>
 

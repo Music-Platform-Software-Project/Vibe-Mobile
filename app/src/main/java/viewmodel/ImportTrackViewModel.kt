@@ -35,12 +35,12 @@ class ImportTrackViewModel() : ViewModel() {
                   instrumentalness: Int, mood: String){
         try {
 
-            val retrofitBuilder = retrofitClient.createAPIRequest()
+            val retrofitBuilder = retrofitClient.createAPIRequestWithToken(constants.bearerToken)
             val token = "Bearer " + constants.bearerToken
             Log.e("bearer set username", constants.bearerToken)
             val data = RequestDataInterface.TrackData(name, artist, album, genre, tempo, acousticness, energy, instrumentalness, mood)
             val request = RequestDataInterface.addTrackRequest(data)
-            val retrofitData = retrofitBuilder.addTrack(token,request)
+            val retrofitData = retrofitBuilder.addTrack(request)
             retrofitData.enqueue(object : Callback<String> {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     Log.e("login response:", "retrieving body")
