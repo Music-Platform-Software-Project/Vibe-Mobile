@@ -78,7 +78,7 @@ class ImportTrack : AppCompatActivity() {
             Log.e("selected mood", selectedMood)
             val tempoInput : Int = findViewById<EditText>(R.id.tempoInput).text.toString().toInt()
             val artistInput = findViewById<EditText>(R.id.artistInput).text.toString()
-            val artistsList = artistInput.split("\\s+").map { it.trim() }
+            val artistsList = artistInput.split("#").map { it.trim() }
             Log.e("artist list", artistsList.toString())
             val trackInput = findViewById<EditText>(R.id.trackInput).text.toString()
             val albumInput = findViewById<EditText>(R.id.albumInput).text.toString()

@@ -52,6 +52,10 @@ interface RequestDataInterface {
     )
 
     data class addTrackRequest(
+        val track: TrackData
+    )
+
+    data class TrackData(
         val name: String,
         val artists: List<String>,
         val album: String,
@@ -61,8 +65,8 @@ interface RequestDataInterface {
         val energy: Int,
         val instrumentalness: Int,
         val mood: String
-
     )
+
 
 
 }

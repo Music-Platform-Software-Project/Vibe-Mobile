@@ -89,9 +89,10 @@ interface APIRequest {
         @Body request: RequestDataInterface.acceptRequestPayload
     ):Call<String>
 
-    @POST("/add")
+    @POST("/track/add")
     @Headers(constants.contentType)
     fun addTrack(
+        @Header("Authorization") bearerToken: String,
         @Body request: RequestDataInterface.addTrackRequest
     ):Call<String>
 
