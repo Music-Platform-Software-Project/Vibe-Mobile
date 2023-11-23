@@ -89,4 +89,10 @@ interface APIRequest {
         @Body request: RequestDataInterface.acceptRequestPayload
     ):Call<String>
 
+    @POST("/add")
+    @Headers(constants.contentType)
+    fun addTrack(
+        @Body request: RequestDataInterface.addTrackRequest
+    ):Call<String>
+
 }
