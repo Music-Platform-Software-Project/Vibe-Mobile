@@ -20,7 +20,7 @@ class SeeAllFriends : AppCompatActivity() {
 
         val goback = findViewById<ImageButton>(R.id.goBackBtn)
         goback.setOnClickListener {
-            viewModel.goBack()
+            super.onBackPressed()
         }
 
 

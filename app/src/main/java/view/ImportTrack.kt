@@ -64,7 +64,7 @@ class ImportTrack : AppCompatActivity() {
 
         val backToProfile = findViewById<ImageButton>(R.id.goBackBtn)
         backToProfile.setOnClickListener {
-            viewModel.backToProfile()
+            super.onBackPressed()
         }
         val importBtn = findViewById<Button>(R.id.importButton)
 
@@ -85,7 +85,8 @@ class ImportTrack : AppCompatActivity() {
             val accousticInput: Int = findViewById<EditText>(R.id.accousticInput).text.toString().toInt()
             val energyInput: Int = findViewById<EditText>(R.id.energyInput).text.toString().toInt()
             val instrumentalInput : Int = findViewById<EditText>(R.id.instrumentalInput).text.toString().toInt()
-            viewModel.addTrack(trackInput,artistsList, albumInput, selectedGenre,tempoInput, accousticInput,  energyInput, instrumentalInput, selectedMood )
+            val durationInput : Int = findViewById<EditText>(R.id.durationInput).text.toString().toInt()
+            viewModel.addTrack(trackInput,artistsList, albumInput, selectedGenre,tempoInput, accousticInput,  energyInput, instrumentalInput, selectedMood, durationInput)
         }
 
 

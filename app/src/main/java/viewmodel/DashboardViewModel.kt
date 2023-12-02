@@ -3,12 +3,22 @@ package viewmodel
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
 import model.Item
+import model.RequestDataInterface
+import network.APIRequest
 import network.RetrofitClient
+import network.constants
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import view.Dashboard
 import view.RecyclerViewAdapter
 import view.RegisterPage
@@ -38,27 +48,9 @@ class DashboardViewModel() : ViewModel() {
 
 
 
-    fun setRecyclerView(){
+    fun setRecyclerView(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.playlists_rec_view)
         recyclerView?.layoutManager =  GridLayoutManager(ctx, 3, GridLayoutManager.HORIZONTAL, false)
-
-        val itemList = listOf(
-            Item(R.drawable.vibe_logo_2, "Item 1"),
-            Item(R.drawable.vibe_logo_2, "Item 2"),
-            Item(R.drawable.vibe_logo_2, "Item 3"),
-            // Add more items as needed
-            Item(R.drawable.vibe_logo_2, "Item 4"),
-            Item(R.drawable.vibe_logo_2, "Item 5"),
-            Item(R.drawable.vibe_logo_2, "Item 6"),
-
-            Item(R.drawable.vibe_logo_2, "Item 7"),
-            Item(R.drawable.vibe_logo_2, "Item 8"),
-            Item(R.drawable.vibe_logo_2, "Item 9"),
-            // Add more items as needed
-            Item(R.drawable.vibe_logo_2, "Item 10"),
-            Item(R.drawable.vibe_logo_2, "Item 11"),
-            Item(R.drawable.vibe_logo_2, "Item 12"),
-        )
 
         val adapter = RecyclerViewAdapter(itemList, 1)
         recyclerView?.adapter = adapter
@@ -66,59 +58,135 @@ class DashboardViewModel() : ViewModel() {
 
     }
 
-    fun setRecyclerViewForArtists(){
+    fun setRecyclerViewForArtists(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.artists_rec_view)
         recyclerView?.layoutManager =  GridLayoutManager(ctx, 2, GridLayoutManager.HORIZONTAL, false)
-
-        val itemList = listOf(
-            Item(R.drawable.vibe_logo_2, "Artist 1"),
-            Item(R.drawable.vibe_logo_2, "Artist 2"),
-            Item(R.drawable.vibe_logo_2, "Artist 3"),
-            // Add more items as needed
-            Item(R.drawable.vibe_logo_2, "Artist 4"),
-            Item(R.drawable.vibe_logo_2, "Artist 5"),
-            Item(R.drawable.vibe_logo_2, "Artist 6"),
-
-            Item(R.drawable.vibe_logo_2, "Artist 7"),
-            Item(R.drawable.vibe_logo_2, "Artist 8"),
-            Item(R.drawable.vibe_logo_2, "Artist 9"),
-            // Add more items as needed
-            Item(R.drawable.vibe_logo_2, "Artist 10"),
-            Item(R.drawable.vibe_logo_2, "Artist 11"),
-            Item(R.drawable.vibe_logo_2, "Artist 12"),
-        )
 
         val adapter = RecyclerViewAdapter(itemList, 2)
         recyclerView?.adapter = adapter
 
     }
 
-    fun setRecyclerViewForTracks(){
+    fun setRecyclerViewForTracks(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.tracks_rec_view)
         recyclerView?.layoutManager =  GridLayoutManager(ctx, 2, GridLayoutManager.HORIZONTAL, false)
 
+        /*
         val itemList = listOf(
-            Item(R.drawable.vibe_logo_2, "★ 5/5"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5"),
+            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
+            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
+            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
             // Add more items as needed
-            Item(R.drawable.vibe_logo_2, "★ 5/5"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5"),
+            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
+            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
+            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
 
-            Item(R.drawable.vibe_logo_2, "★ 5/5"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5"),
+            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
+            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
+            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
             // Add more items as needed
-            Item(R.drawable.vibe_logo_2, "★ 5/5"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5"),
+            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
+            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
+            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
         )
+         */
 
         val adapter = RecyclerViewAdapter(itemList, 3)
         recyclerView?.adapter = adapter
 
 
+    }
+
+    fun addPlaylist(userInput: String) {
+        try {
+            val retrofitBuilder = retrofitClient.createAPIRequest()
+
+            val request = RequestDataInterface.addPlaylistRequest(userInput)
+            val token = "Bearer " + constants.bearerToken
+            val retrofitData = retrofitBuilder.addPlaylist(token, request)
+            Log.e("playlist process", "going...")
+
+            retrofitData.enqueue(object : Callback<Boolean> {
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                    Log.e("playlist response:", "retrieving body")
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.e("playlist response: ",
+                            (responseBody ?: "Response body is null").toString()
+                        )
+                        refreshPlaylists()
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("login error: ", "HTTP ${response.code()}: $errorBody")
+                            Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show()
+                        } catch (e: Exception) {
+                            Log.e("login error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                    Log.e("login error: ", t.toString())
+                }
+            })
+
+        }
+        catch (e: Exception) {
+            Log.e("error", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
+    }
+
+
+    fun refreshPlaylists(){
+        try {
+            val retrofit = Retrofit.Builder()
+                .baseUrl(constants.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val retrofitBuilder = retrofit.create(APIRequest::class.java)
+
+            val token = "Bearer " + constants.bearerToken
+            val retrofitData = retrofitBuilder.getOwnPlaylists(token)
+
+            retrofitData.enqueue(object : Callback<List<RequestDataInterface.MyPlaylistsResponse>> {
+                override fun onResponse(call: Call<List<RequestDataInterface.MyPlaylistsResponse>>, response: Response<List<RequestDataInterface.MyPlaylistsResponse>>) {
+                    Log.e("refresh response:", "retrieving body")
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                       Log.e("refresh response: ",
+                            (responseBody ?: "Response body is null").toString()
+                        )
+                        setRecyclerView(response.body()!!)
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("refresh error: ", "HTTP ${response.code()}: $errorBody")
+                            Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show()
+                        } catch (e: Exception) {
+                            Log.e("refresh error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<List<RequestDataInterface.MyPlaylistsResponse>>, t: Throwable) {
+                    Log.e("refresh error: ", t.toString())
+                }
+            })
+
+        }
+        catch (e: Exception) {
+            Log.e("error", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
     }
 
 

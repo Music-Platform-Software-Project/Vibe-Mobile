@@ -8,8 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
 import model.Item
+import model.RequestDataInterface
 
-class RecyclerViewAdapter(private val itemList: List<Item>, private val type : Int) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class RecyclerViewAdapter(private val itemList: List<RequestDataInterface.MyPlaylistsResponse>, private val type : Int) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
@@ -32,8 +33,8 @@ class RecyclerViewAdapter(private val itemList: List<Item>, private val type : I
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = itemList[position]
-        holder.imageView.setImageResource(currentItem.imageResource)
-        holder.textView.text = currentItem.text
+        holder.imageView.setImageResource(R.drawable.vibe_logo_2)
+        holder.textView.text = currentItem.name
     }
 
     override fun getItemCount(): Int {

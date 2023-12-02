@@ -11,6 +11,7 @@ import network.constants
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import view.Dashboard
 import view.ImportTrack
 import view.PersonalizedTracks
 import view.ProfilePage
@@ -32,27 +33,22 @@ class ImportTrackViewModel() : ViewModel() {
 
     fun addTrack(name : String, artist : List<String>, album :String,
                  genre : String, tempo : Int,  acousticness: Int, energy: Int,
-                  instrumentalness: Int, mood: String){
+                  instrumentalness: Int, mood: String, duration: Int){
         try {
 
             val retrofitBuilder = retrofitClient.createAPIRequestWithToken(constants.bearerToken)
             val token = "Bearer " + constants.bearerToken
             Log.e("bearer set username", constants.bearerToken)
-            val data = RequestDataInterface.TrackData(name, artist, album, genre, tempo, acousticness, energy, instrumentalness, mood)
+            val data = RequestDataInterface.TrackData(name, artist, album, genre, tempo, acousticness, energy, instrumentalness, mood, duration)
             val request = RequestDataInterface.addTrackRequest(data)
             val retrofitData = retrofitBuilder.addTrack(request)
-            retrofitData.enqueue(object : Callback<String> {
-                override fun onResponse(call: Call<String>, response: Response<String>) {
+            retrofitData.enqueue(object : Callback<List<RequestDataInterface.addTrackResponse>> {
+                override fun onResponse(call: Call<List<RequestDataInterface.addTrackResponse>>, response: Response<List<RequestDataInterface.addTrackResponse>>) {
                     Log.e("login response:", "retrieving body")
                     if (response.isSuccessful) {
-                        var responseBody = response.body()
-                        responseBody =  responseBody!!.substringAfter(":").trim()
-                        responseBody = responseBody.replace(Regex("[\"{}]"), "").trim()
-                        Toast.makeText(ctx, responseBody, Toast.LENGTH_LONG).show()
-                        //constants.bearerToken = responseBody.toString()
-                        //Log.e("token tag", "Bearer Token is: ${constants.bearerToken}")
-                        Log.e("add Track response: ", responseBody ?: "Response body is null")
-                        // Parse the responseBody as needed or handle the string response
+                        var responseBody = response.body()?.get(0)
+                        Log.e("add Track response: ", responseBody.toString() ?: "Response body is null")
+                        ctx.startActivity(Intent(ctx, Dashboard::class.java ))
                     }
                     else {
                         try {
@@ -67,7 +63,7 @@ class ImportTrackViewModel() : ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<String>, t: Throwable) {
+                override fun onFailure(call: Call<List<RequestDataInterface.addTrackResponse>>, t: Throwable) {
                     Log.e("login error: ", t.toString())
                 }
             })

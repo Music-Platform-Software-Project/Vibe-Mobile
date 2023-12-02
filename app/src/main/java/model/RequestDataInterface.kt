@@ -64,7 +64,21 @@ interface RequestDataInterface {
         val acousticness: Int,
         val energy: Int,
         val instrumentalness: Int,
-        val mood: String
+        val mood: String,
+        val duration : Int
+    )
+    data class addTrackResponse(
+        val id: String,
+        val name: String,
+        val artists: List<String>
+    )
+    data class addPlaylistRequest(
+        val name: String
+    )
+
+    data class MyPlaylistsResponse(
+        val id: String,
+        val name: String
     )
 
 

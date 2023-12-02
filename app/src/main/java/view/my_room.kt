@@ -34,9 +34,12 @@ class my_room : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+        /*
         viewModel.setRecyclerView()
         viewModel.setRecyclerViewForArtists()
         viewModel.setRecyclerViewForTracks()
+
+         */
 
         val settingBtn : TextView = findViewById(R.id.nav_settings)
         settingBtn.setOnClickListener {

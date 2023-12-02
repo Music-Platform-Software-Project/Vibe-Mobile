@@ -51,7 +51,7 @@
         android:id="@+id/artistTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/dmsans_bold"
         android:text="Artist"
         android:textColor="@color/white"
@@ -355,7 +355,6 @@
         android:id="@+id/moodSpinner"
         android:layout_width="@dimen/_150sdp"
         android:layout_height="@dimen/_30sdp"
-
         android:layout_marginTop="8dp"
         android:background="@drawable/import_track_entry"
         android:entries="@array/mood_items"
@@ -365,6 +364,45 @@
         app:layout_constraintTop_toBottomOf="@id/moodTxt">
 
     </Spinner>
+
+
+    <TextView
+        android:id="@+id/durationTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/dmsans_bold"
+        android:text="Duration"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintEnd_toEndOf="@id/moodSpinner"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/instrumentalInput"
+        app:layout_constraintTop_toBottomOf="@id/moodSpinner">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/durationInput"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/import_track_entry"
+        android:hint="seconds"
+        android:inputType="number"
+        android:paddingLeft="@dimen/_10sdp"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_11sdp"
+        app:layout_constraintEnd_toEndOf="@id/accousticTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/durationTxt"
+        app:layout_constraintTop_toBottomOf="@+id/durationTxt">
+
+    </EditText>
 
     <Button
         android:id="@+id/importButton"
@@ -376,10 +414,12 @@
         android:text="Import"
         android:textColor="@color/white"
         android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/moodSpinner"
-        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/moodSpinner" />
+        app:layout_constraintTop_toBottomOf="@id/moodSpinner"
+        app:layout_constraintVertical_bias="0.063" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
