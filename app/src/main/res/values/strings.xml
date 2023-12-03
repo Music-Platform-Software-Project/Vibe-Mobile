@@ -14,7 +14,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="vibeLogoDescription">Vibe Logo</string>
     <string name="leftWave">Left Wave</string>
-    <string name="exampleText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="exampleText">Welcome back to Vibe ! Your journey continues here. Please log in to access your account. If you\'re new to Vibe, tap the Register button to get started. We're excited to have you with us!</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="enterYourPassword">Please enter your password</string>
