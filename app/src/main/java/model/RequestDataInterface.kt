@@ -81,6 +81,48 @@ interface RequestDataInterface {
         val name: String
     )
 
+    data class PlaylistTrackSearchRequest(
+        val searchKey : String
+    )
+
+    data class SearchTrackResponse(
+        val id: String,
+        val name: String,
+        val artists: List<String>
+    )
+
+    data class  SearchPlaylistResponse(
+        val id: String,
+        val name: String,
+    )
+
+    data class Track(
+        val id: String,
+        val name: String,
+        val artists: List<String>,
+        val duration: Int,
+        val rating: Double
+    )
+
+    data class TrackDetailRequest(
+        val id : String
+    )
+
+    data class TrackDetailResponse(
+        val id : String,
+        val name : String,
+        val artists : List<String>,
+        val album : String,
+        val genre : String,
+        val tempo : Int,
+        val acousticness : Int,
+        val energy : Int,
+        val instrumentalness : Int,
+        val mood : String,
+        val duration: Int,
+        val rating : Int
+    )
+
 
 
 }

@@ -22,6 +22,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import view.Dashboard
 import view.RecyclerViewAdapter
 import view.RegisterPage
+import view.SearchPlaylist
+import view.SearchTrack
 import view.Settings
 import view.my_room
 
@@ -188,6 +190,18 @@ class DashboardViewModel() : ViewModel() {
             // Handle the exception here (e.g. log it or display an error message)
         }
     }
+
+
+    fun switchToSearchPlaylist(){
+        val intent = Intent(ctx, SearchPlaylist::class.java)
+        ctx.startActivity(intent)
+    }
+
+    fun switchToSearchTrack(){
+        val intent = Intent(ctx, SearchTrack::class.java)
+        ctx.startActivity(intent)
+    }
+
 
 
 }

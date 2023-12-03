@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -71,7 +73,7 @@ class Dashboard : AppCompatActivity() {
 
         when (item.itemId) {
             R.id.action_search -> {
-                Toast.makeText(this, "search button clicked", Toast.LENGTH_SHORT).show()
+                showSearchDialog()
                 return true
             }
             R.id.action_plus -> {
@@ -110,6 +112,29 @@ class Dashboard : AppCompatActivity() {
         }
 
         builder.show()
+    }
+
+    private fun showSearchDialog() {
+        val builder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.search_dialog, null)
+        val buttonPlaylist = dialogView.findViewById<Button>(R.id.buttonPlaylist)
+        val buttonTrack = dialogView.findViewById<Button>(R.id.buttonTrack)
+
+        builder.setView(dialogView)
+
+        val dialog = builder.create()
+        buttonPlaylist.setOnClickListener {
+            viewModel.switchToSearchPlaylist()
+            dialog.dismiss()
+        }
+
+        buttonTrack.setOnClickListener {
+            viewModel.switchToSearchTrack()
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
 

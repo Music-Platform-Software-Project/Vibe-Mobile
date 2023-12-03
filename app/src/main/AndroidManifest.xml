@@ -17,9 +17,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name="view.SearchPlaylist"
+            android:exported="false" />
+        <activity
+            android:name="view.SearchTrack"
+            android:exported="false" />
+        <activity
             android:name="view.ImportTrack"
             android:exported="false"
-            android:theme="@style/Theme.Cs308_00.NoActionBar"/>
+            android:theme="@style/Theme.Cs308_00.NoActionBar" />
         <activity
             android:name="view.SeeAllFriends"
             android:exported="false"
@@ -28,9 +34,7 @@
             android:name="view.ManageFriends"
             android:exported="true"
             android:label="@string/title_activity_manage_friends"
-            android:theme="@style/Theme.Cs308_00.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.Cs308_00.NoActionBar" />
         <activity
             android:name="view.Settings"
             android:exported="false" />

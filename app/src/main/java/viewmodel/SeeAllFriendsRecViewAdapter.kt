@@ -23,9 +23,9 @@ class SeeAllFriendsRecViewAdapter(private val context : Context, private val dat
 
     override fun onBindViewHolder(holder: SeeAllFriendsRecViewAdapter.ViewHolder, position: Int) {
         val friendName = data[position]
-            Log.e("tag", "Item is: $friendName")
-            Log.e("tag", "Text View Text: " + holder.userName.text.toString())
-            holder.userName.text = friendName.toString()
+        Log.e("tag", "Item is: $friendName")
+        Log.e("tag", "Text View Text: " + holder.userName.text.toString())
+        holder.userName.text = friendName.toString()
 
     }
 

@@ -109,4 +109,25 @@ interface APIRequest {
         @Header("Authorization") bearerToken: String
     ):Call<List<RequestDataInterface.MyPlaylistsResponse>>
 
+    @POST("/playlist/get")
+    @Headers(constants.contentType)
+    fun searchPlaylist(
+        @Body request: RequestDataInterface.PlaylistTrackSearchRequest
+    ):Call<List<RequestDataInterface.SearchPlaylistResponse>>
+
+    @POST("/track/get")
+    @Headers(constants.contentType)
+    fun searchTrack(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.PlaylistTrackSearchRequest
+    ):Call<List<RequestDataInterface.SearchTrackResponse>>
+
+    @POST("/track/getDetail")
+    @Headers(constants.contentType)
+    fun getTrackDetails(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.TrackDetailRequest
+    ): Call<RequestDataInterface.TrackDetailResponse>
+
+
 }

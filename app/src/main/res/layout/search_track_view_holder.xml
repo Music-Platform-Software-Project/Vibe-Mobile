@@ -1,0 +1,32 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_115sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/input_fields"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:layout_height="120dp">
+
+    <TextView
+        android:id="@+id/trackNameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dmsans_bold"
+        android:text="Track Name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/trackArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dmsans_regular"
+        android:layout_below="@id/trackNameTxt"
+        android:layout_alignLeft="@id/trackNameTxt"
+        android:text="Artist1, Artits2, Artist3"
+        android:textColor="@color/hint_color"
+        android:textSize="@dimen/_7sdp"
+        android:layout_gravity="center_vertical" />
+</RelativeLayout>
