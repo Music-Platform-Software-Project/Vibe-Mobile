@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="view.DetailedPlaylist"
+    android:orientation="vertical"
+    android:background="@color/main_bcg"
+    android:paddingTop="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/playlistIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/vibe_logo_2"
+            android:background="@drawable/square_bcg"/>
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:layout_marginRight="10dp"
+            >
+            <TextView
+                android:id="@+id/playlistName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Playlist Name"
+
+                android:textSize="26sp"/>
+            <TextView
+                android:id="@+id/numOfTracks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/num_of_tracks"
+                />
+            <TextView
+                android:id="@+id/totalDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/total_duration"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="10dp">
+
+            <Button
+                android:id="@+id/editPlaylist"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/square_bcg"
+                android:text="EDIT"
+                android:textColor="@color/white"
+                android:layout_marginBottom="3dp"/>
+
+            <Button
+                android:id="@+id/deletePlaylist"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/square_bcg"
+                android:text="DELETE"
+                android:textColor="@color/white"/>
+
+
+        </LinearLayout>
+        
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tracksInPlaylist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/div_bcg"/>
+
+</LinearLayout>

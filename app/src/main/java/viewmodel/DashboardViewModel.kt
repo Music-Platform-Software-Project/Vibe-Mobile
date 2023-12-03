@@ -73,26 +73,6 @@ class DashboardViewModel() : ViewModel() {
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.tracks_rec_view)
         recyclerView?.layoutManager =  GridLayoutManager(ctx, 2, GridLayoutManager.HORIZONTAL, false)
 
-        /*
-        val itemList = listOf(
-            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
-            // Add more items as needed
-            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
-
-            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
-            // Add more items as needed
-            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
-            Item(R.drawable.vibe_logo_2, "★ 5/5", "0"),
-        )
-         */
-
         val adapter = RecyclerViewAdapter(itemList, 3)
         recyclerView?.adapter = adapter
 

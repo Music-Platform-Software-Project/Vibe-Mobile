@@ -1,14 +1,17 @@
 package viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
 import model.RequestDataInterface
+import view.DetailedPlaylist
 
 class SearchPlaylistRecViewAdapter(private val context : Context, private val data : List<RequestDataInterface.SearchPlaylistResponse>)
     : RecyclerView.Adapter<SearchPlaylistRecViewAdapter.ViewHolder>() {
@@ -28,11 +31,18 @@ class SearchPlaylistRecViewAdapter(private val context : Context, private val da
         Log.e("on bind data", data.toString())
         // Populate the UI elements with track data
         holder.playlistName.text = playlist.name
+        holder.row_item.setOnClickListener {
+            val intent = Intent(holder.row_item.context, DetailedPlaylist::class.java)
+            intent.putExtra("id", playlist.id)
+            // You can also pass data to the new activity using putExtra if needed
+            // intent.putExtra("key", value)
+            holder.row_item.context.startActivity(intent)
+        }
 
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val playlistName: TextView = itemView.findViewById(R.id.playlistNameTxt)
-
+        val row_item : RelativeLayout = itemView.findViewById(R.id.RLitemPlaylist)
     }
 }

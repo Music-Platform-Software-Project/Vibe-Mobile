@@ -94,7 +94,7 @@ interface APIRequest {
     fun addTrack(
         //@Header("Authorization") bearerToken: String,
         @Body request: RequestDataInterface.addTrackRequest
-    ):Call<List<RequestDataInterface.addTrackResponse>>
+    ):Call<Boolean>
 
     @POST("/playlist/add")
     @Headers(constants.contentType)
@@ -128,6 +128,13 @@ interface APIRequest {
         @Header("Authorization") bearerToken: String,
         @Body request: RequestDataInterface.TrackDetailRequest
     ): Call<RequestDataInterface.TrackDetailResponse>
+
+    @POST("/playlist/getDetail")
+    @Headers(constants.contentType)
+    fun getPlaylistDetails(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.acceptRequestPayload
+    ): Call<RequestDataInterface.PlaylistDetailResponse>
 
 
 }

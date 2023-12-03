@@ -42,11 +42,11 @@ class ImportTrackViewModel() : ViewModel() {
             val data = RequestDataInterface.TrackData(name, artist, album, genre, tempo, acousticness, energy, instrumentalness, mood, duration)
             val request = RequestDataInterface.addTrackRequest(data)
             val retrofitData = retrofitBuilder.addTrack(request)
-            retrofitData.enqueue(object : Callback<List<RequestDataInterface.addTrackResponse>> {
-                override fun onResponse(call: Call<List<RequestDataInterface.addTrackResponse>>, response: Response<List<RequestDataInterface.addTrackResponse>>) {
+            retrofitData.enqueue(object : Callback<Boolean> {
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
                     Log.e("login response:", "retrieving body")
                     if (response.isSuccessful) {
-                        var responseBody = response.body()?.get(0)
+                        var responseBody = response.body()
                         Log.e("add Track response: ", responseBody.toString() ?: "Response body is null")
                         ctx.startActivity(Intent(ctx, Dashboard::class.java ))
                     }
@@ -63,7 +63,7 @@ class ImportTrackViewModel() : ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<List<RequestDataInterface.addTrackResponse>>, t: Throwable) {
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
                     Log.e("login error: ", t.toString())
                 }
             })

@@ -67,11 +67,7 @@ interface RequestDataInterface {
         val mood: String,
         val duration : Int
     )
-    data class addTrackResponse(
-        val id: String,
-        val name: String,
-        val artists: List<String>
-    )
+
     data class addPlaylistRequest(
         val name: String
     )
@@ -122,6 +118,15 @@ interface RequestDataInterface {
         val duration: Int,
         val rating : Int
     )
+
+    data class PlaylistDetailResponse(
+        val id : String,
+        val name : String,
+        val trackCount: Int,
+        val totalDuration: Int,
+        val tracks : List<Track>
+    )
+
 
 
 

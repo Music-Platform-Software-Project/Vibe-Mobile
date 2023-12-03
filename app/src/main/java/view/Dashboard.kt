@@ -42,12 +42,6 @@ class Dashboard : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         viewModel.refreshPlaylists()
 
-        /*
-        viewModel.setRecyclerView()
-        viewModel.setRecyclerViewForArtists()
-        viewModel.setRecyclerViewForTracks()
-
-         */
 
         val settingsBtn : TextView = findViewById(R.id.nav_settings)
         settingsBtn.setOnClickListener {
@@ -136,6 +130,5 @@ class Dashboard : AppCompatActivity() {
 
         dialog.show()
     }
-
 
 }

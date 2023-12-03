@@ -5,7 +5,8 @@
     android:background="@drawable/input_fields"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    android:layout_height="120dp">
+    android:layout_height="120dp"
+    android:id="@+id/RLitemPlaylist">
 
     <TextView
         android:id="@+id/playlistNameTxt"
