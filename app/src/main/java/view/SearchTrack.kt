@@ -2,6 +2,7 @@ package view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -19,6 +20,9 @@ class SearchTrack : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(SearchTrackViewModel::class.java)
         viewModel.setContext(this)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
         val searchButton : ImageButton = findViewById(R.id.searchButton)
         val searchTxt : EditText = findViewById(R.id.trackTxt)
 
@@ -31,10 +35,16 @@ class SearchTrack : AppCompatActivity() {
             }
         }
 
-        val goBack : ImageButton = findViewById(R.id.backArrow)
-        goBack.setOnClickListener {
-            viewModel.switchToDashboard()
-        }
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // Respond to the action bar's Up/Home button
+                onBackPressed() // This will call the default behavior of going back
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

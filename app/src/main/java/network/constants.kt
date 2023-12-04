@@ -6,5 +6,6 @@ object constants {
     const val contentType = "Content-Type: application/json"
     const val  acceptType = "accept: application/json"
     var bearerToken = ""
+    var currentPlaylistID = ""
 
 }

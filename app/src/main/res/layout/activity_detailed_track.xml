@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="view.DetailedTrack"
+    android:orientation="vertical"
+    android:background="@color/main_bcg"
+    android:gravity="center_horizontal"
+    android:padding="40dp"
+    >
+    <ImageView
+        android:id="@+id/trackPhoto"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/vibe_logo_2"
+        android:background="@drawable/square_bcg"/>
+
+    <TextView
+        android:id="@+id/trackName"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Track Name"
+        android:textSize="36sp"/>
+
+    <TextView
+        android:id="@+id/trackArtist"
+        android:layout_width="200dp"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Artist Names"
+        android:textSize="20sp"/>
+
+    <RatingBar
+        android:id="@+id/rBar"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stepSize="0.5"
+        android:theme="@style/Widget.AppCompat.RatingBar"
+        android:numStars="5"/>
+
+    <TextView
+        android:id="@+id/trackTempo"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Tempo: 120bpm"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/trackAcoustic"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Acouisticness: Digital/Mix/Analog "
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/trackInstrument"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Instrumentalness:Vocal/Mix"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/trackEnergy"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Energy: Low/Medium/High"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/trackMood"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Mood: Low/Medium/High"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/trackRate"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RATE"
+        android:textColor="@color/white"
+        android:background="@drawable/my_room_bg"/>
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/hint_color"
+        android:text="Delete Track"
+        android:gravity="end"
+        android:onClick="deleteTrack"/>
+
+</LinearLayout>

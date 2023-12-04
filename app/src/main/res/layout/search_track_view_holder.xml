@@ -6,7 +6,8 @@
     android:orientation="vertical"
     android:gravity="center_vertical"
     android:layout_margin="@dimen/_10sdp"
-    android:layout_height="120dp">
+    android:layout_height="120dp"
+    android:id="@+id/trackRow">
 
     <TextView
         android:id="@+id/trackNameTxt"

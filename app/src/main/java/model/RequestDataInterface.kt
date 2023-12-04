@@ -104,6 +104,11 @@ interface RequestDataInterface {
         val id : String
     )
 
+    data class TrackDetailRequestPlaylist(
+        val id : String,
+        val trackId : String
+    )
+
     data class TrackDetailResponse(
         val id : String,
         val name : String,

@@ -59,7 +59,7 @@ class DetailedPlaylistViewModel(): ViewModel() {
                         val time = secondsToMinutes(responseBody?.totalDuration!!)
                         (ctx as? Activity)?.findViewById<TextView>(R.id.totalDuration)?.text =
                             "Total Duration: $time"
-
+                        constants.currentPlaylistID = responseBody.id
                         val trackList = responseBody?.tracks
                         val recView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.tracksInPlaylist)
                         recView?.layoutManager = LinearLayoutManager(ctx)

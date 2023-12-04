@@ -1,15 +1,19 @@
 package viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
 import model.RequestDataInterface
+import network.constants
+import view.DetailedTrack
 
 class SearchTrackRecViewAdapter(private val context : Context, private val data : List<RequestDataInterface.SearchTrackResponse>)
     : RecyclerView.Adapter<SearchTrackRecViewAdapter.ViewHolder>(){
@@ -31,12 +35,20 @@ class SearchTrackRecViewAdapter(private val context : Context, private val data 
         //holder.trackArtist.text = data[3].toString() // Assuming trackArtist is a property of RequestDataInterface.SearchTrackResponse
         holder.trackName.text = track.name
         holder.trackArtist.text = track.artists.joinToString(", ")
+        holder.item.setOnClickListener {
+            val intent = Intent(holder.item.context, DetailedTrack::class.java)
+            intent.putExtra("id", track.id)
+            intent.putExtra("from", "searchTrack")
+            constants.currentPlaylistID = "0"
+            holder.item.context.startActivity(intent)
+        }
 
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val trackName: TextView = itemView.findViewById(R.id.trackNameTxt)
         val trackArtist : TextView = itemView.findViewById(R.id.trackArtist)
+        val item : RelativeLayout = itemView.findViewById(R.id.trackRow)
 
     }
 

@@ -71,6 +71,14 @@
                 android:background="@drawable/div_bcg"/>
 
             <TextView
+                android:id="@+id/favPlaylist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="You do not have any playlist"
+                android:visibility="gone"/>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -102,6 +110,14 @@
                 android:padding="10dp"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:background="@drawable/div_bcg"/>
+
+            <TextView
+                android:id="@+id/favArtist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="You do not have any favoruite artist"
+                android:visibility="gone"/>
 
 
             <TextView
@@ -136,6 +152,14 @@
                 android:layout_gravity="center"
                 android:padding="10dp"
                 android:background="@drawable/div_bcg"/>
+
+            <TextView
+                android:id="@+id/favTrack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="You do not have any favourite track"
+                android:visibility="gone"/>
 
 
         </LinearLayout>

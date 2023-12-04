@@ -136,5 +136,19 @@ interface APIRequest {
         @Body request: RequestDataInterface.acceptRequestPayload
     ): Call<RequestDataInterface.PlaylistDetailResponse>
 
+    @POST("/track/delete")
+    @Headers(constants.contentType)
+    fun deleteTrack(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.TrackDetailRequest
+    ): Call<Boolean>
+
+    @POST("/playlist/removeTrack")
+    @Headers(constants.contentType)
+    fun deleteTrackFromPlaylist(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.TrackDetailRequestPlaylist
+    ): Call<Boolean>
+
 
 }

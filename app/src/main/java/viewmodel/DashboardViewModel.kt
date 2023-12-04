@@ -3,7 +3,10 @@ package viewmodel
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.opengl.Visibility
 import android.util.Log
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
@@ -52,31 +55,55 @@ class DashboardViewModel() : ViewModel() {
 
     fun setRecyclerView(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.playlists_rec_view)
-        recyclerView?.layoutManager =  GridLayoutManager(ctx, 3, GridLayoutManager.HORIZONTAL, false)
+        val msg = (ctx as? Activity)?.findViewById<TextView>(R.id.favPlaylist)
+        if(itemList.isEmpty()){
+            recyclerView?.visibility =  View.INVISIBLE
+            msg?.visibility = View.VISIBLE
+        }
+        else{
+            recyclerView?.layoutManager =  GridLayoutManager(ctx, 3, GridLayoutManager.HORIZONTAL, false)
+            val adapter = RecyclerViewAdapter(itemList, 1)
+            recyclerView?.adapter = adapter
+            recyclerView?.visibility =  View.VISIBLE
+            msg?.visibility = View.INVISIBLE
+        }
 
-        val adapter = RecyclerViewAdapter(itemList, 1)
-        recyclerView?.adapter = adapter
 
 
     }
 
     fun setRecyclerViewForArtists(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.artists_rec_view)
-        recyclerView?.layoutManager =  GridLayoutManager(ctx, 2, GridLayoutManager.HORIZONTAL, false)
+        val msg = (ctx as? Activity)?.findViewById<TextView>(R.id.favArtist)
+        if(itemList.isEmpty()){
+            recyclerView?.visibility =  View.INVISIBLE
+            msg?.visibility = View.VISIBLE
+        }
+        else{
+            recyclerView?.layoutManager =  GridLayoutManager(ctx, 2, GridLayoutManager.HORIZONTAL, false)
 
-        val adapter = RecyclerViewAdapter(itemList, 2)
-        recyclerView?.adapter = adapter
-
+            val adapter = RecyclerViewAdapter(itemList, 2)
+            recyclerView?.adapter = adapter
+            recyclerView?.visibility =  View.VISIBLE
+            msg?.visibility = View.INVISIBLE
+        }
     }
 
     fun setRecyclerViewForTracks(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.tracks_rec_view)
-        recyclerView?.layoutManager =  GridLayoutManager(ctx, 2, GridLayoutManager.HORIZONTAL, false)
+        val msg = (ctx as? Activity)?.findViewById<TextView>(R.id.favTrack)
+        if(itemList.isEmpty()){
+            recyclerView?.visibility =  View.INVISIBLE
+            msg?.visibility = View.VISIBLE
+        }
+        else{
+            recyclerView?.layoutManager =  GridLayoutManager(ctx, 2, GridLayoutManager.HORIZONTAL, false)
 
-        val adapter = RecyclerViewAdapter(itemList, 3)
-        recyclerView?.adapter = adapter
-
-
+            val adapter = RecyclerViewAdapter(itemList, 3)
+            recyclerView?.adapter = adapter
+            recyclerView?.visibility =  View.VISIBLE
+            msg?.visibility = View.INVISIBLE
+        }
     }
 
     fun addPlaylist(userInput: String) {

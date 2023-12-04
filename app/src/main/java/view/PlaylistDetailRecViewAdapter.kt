@@ -1,5 +1,6 @@
 package view
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
 import model.RequestDataInterface
+import network.constants.currentPlaylistID
 
 class PlaylistDetailRecViewAdapter(private val itemList: List<RequestDataInterface.Track>) : RecyclerView.Adapter<PlaylistDetailRecViewAdapter.ViewHolder>() {
 
@@ -44,7 +46,11 @@ class PlaylistDetailRecViewAdapter(private val itemList: List<RequestDataInterfa
         holder.rating.text = rating
 
         holder.item.setOnClickListener {
-
+            val intent = Intent(holder.item.context, DetailedTrack::class.java)
+            intent.putExtra("id", currentItem.id)
+            intent.putExtra("from", "playlist")
+            intent.putExtra("playlistID", currentPlaylistID)
+            holder.item.context.startActivity(intent)
         }
 
     }

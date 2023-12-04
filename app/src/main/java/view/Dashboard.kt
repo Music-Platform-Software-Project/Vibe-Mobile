@@ -41,6 +41,8 @@ class Dashboard : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         viewModel.refreshPlaylists()
+        viewModel.setRecyclerViewForArtists(emptyList())
+        viewModel.setRecyclerViewForTracks(emptyList())
 
 
         val settingsBtn : TextView = findViewById(R.id.nav_settings)

@@ -35,8 +35,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:text="Playlist Name"
-
-                android:textSize="26sp"/>
+                android:textSize="36sp"/>
             <TextView
                 android:id="@+id/numOfTracks"
                 android:layout_width="wrap_content"
@@ -53,35 +52,36 @@
                 />
 
         </LinearLayout>
+        
+    </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/editPlaylist"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:gravity="end"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginEnd="10dp">
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/square_bcg"
+            android:text="EDIT"
+            android:textColor="@color/white"
+            android:layout_marginEnd="10dp"/>
 
-            <Button
-                android:id="@+id/editPlaylist"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/square_bcg"
-                android:text="EDIT"
-                android:textColor="@color/white"
-                android:layout_marginBottom="3dp"/>
-
-            <Button
-                android:id="@+id/deletePlaylist"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/square_bcg"
-                android:text="DELETE"
-                android:textColor="@color/white"/>
+        <Button
+            android:id="@+id/deletePlaylist"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/square_bcg"
+            android:text="DELETE"
+            android:textColor="@color/white" />
 
 
-        </LinearLayout>
-        
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

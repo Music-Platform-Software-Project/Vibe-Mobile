@@ -50,17 +50,18 @@ class SearchTrackViewModel() :ViewModel() {
                     if (response.isSuccessful) {
                         val responseBody = response.body()
                         Log.e("search response: ", (responseBody ?: "Response body is null").toString())
-                        responseBody?.let {
-                            trackList.addAll(it)
-                            // Create the adapter and set it to the RecyclerView
-                            val recView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.searchTrackRecView)
-                            recView?.layoutManager = LinearLayoutManager(ctx)
-                            val adapter = SearchTrackRecViewAdapter(ctx, trackList)
-                            recView?.adapter = adapter
-                            recView?.layoutManager = GridLayoutManager(ctx, 2)
+                        if(!responseBody?.isEmpty()!!){
+                            responseBody?.let {
+                                trackList.addAll(it)
+                                // Create the adapter and set it to the RecyclerView
+                                val recView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.searchTrackRecView)
+                                recView?.layoutManager = LinearLayoutManager(ctx)
+                                val adapter = SearchTrackRecViewAdapter(ctx, trackList)
+                                recView?.adapter = adapter
+                                recView?.layoutManager = GridLayoutManager(ctx, 2)
+                            }
+                            Log.e("search tag", trackList[0].toString())
                         }
-                        Log.e("search tag", trackList[0].toString())
-
                     } else {
                         try {
                             var errorBody = response.errorBody()?.string()

@@ -20,20 +20,7 @@
     android:layout_height="match_parent"
     tools:context="view.SearchTrack">
 
-    <ImageButton
-        android:id="@+id/backArrow"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/trackTxt"
-        android:src="@drawable/back_arrow"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@color/transparent">
 
-    </ImageButton>
 
     <TextView
         android:layout_width="wrap_content"
