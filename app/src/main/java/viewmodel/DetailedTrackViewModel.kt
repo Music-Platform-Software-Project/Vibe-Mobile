@@ -2,6 +2,7 @@ package viewmodel
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
@@ -172,6 +173,7 @@ class DetailedTrackViewModel(): ViewModel() {
                             (responseBody ?: "Response body is null").toString()
                         )
                         Toast.makeText(ctx, "Track Deleted", Toast.LENGTH_SHORT).show()
+                        ctx.startActivity(Intent(ctx, Dashboard::class.java))
                     }
                     else {
                         try {
@@ -221,6 +223,7 @@ class DetailedTrackViewModel(): ViewModel() {
                             (responseBody ?: "Response body is null").toString()
                         )
                         Toast.makeText(ctx, "Track Deleted", Toast.LENGTH_SHORT).show()
+                        ctx.startActivity(Intent(ctx, Dashboard::class.java))
                     }
                     else {
                         try {

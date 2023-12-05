@@ -74,7 +74,8 @@ interface RequestDataInterface {
 
     data class MyPlaylistsResponse(
         val id: String,
-        val name: String
+        val name: String,
+        val owner: String = "TEST"
     )
 
     data class PlaylistTrackSearchRequest(
@@ -90,6 +91,7 @@ interface RequestDataInterface {
     data class  SearchPlaylistResponse(
         val id: String,
         val name: String,
+        val owner: String = "TEST"
     )
 
     data class Track(
@@ -129,7 +131,8 @@ interface RequestDataInterface {
         val name : String,
         val trackCount: Int,
         val totalDuration: Int,
-        val tracks : List<Track>
+        val tracks : List<Track>,
+        val owner: String = "TEST"
     )
 
 

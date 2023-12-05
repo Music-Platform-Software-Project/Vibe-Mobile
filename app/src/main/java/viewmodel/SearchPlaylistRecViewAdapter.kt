@@ -36,6 +36,7 @@ class SearchPlaylistRecViewAdapter(private val context : Context, private val da
             intent.putExtra("id", playlist.id)
             // You can also pass data to the new activity using putExtra if needed
             // intent.putExtra("key", value)
+            intent.putExtra("from", "search")
             holder.row_item.context.startActivity(intent)
         }
 

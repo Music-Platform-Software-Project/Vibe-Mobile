@@ -2,6 +2,7 @@ package viewmodel
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
@@ -18,6 +19,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import view.Dashboard
 import view.DetailedPlaylist
 import view.PlaylistDetailRecViewAdapter
 
@@ -59,6 +61,8 @@ class DetailedPlaylistViewModel(): ViewModel() {
                         val time = secondsToMinutes(responseBody?.totalDuration!!)
                         (ctx as? Activity)?.findViewById<TextView>(R.id.totalDuration)?.text =
                             "Total Duration: $time"
+                        (ctx as? Activity)?.findViewById<TextView>(R.id.creator)?.text =
+                            "Creator: ${responseBody?.owner.toString()}"
                         constants.currentPlaylistID = responseBody.id
                         val trackList = responseBody?.tracks
                         val recView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.tracksInPlaylist)
@@ -98,5 +102,55 @@ class DetailedPlaylistViewModel(): ViewModel() {
         val minutes = (duration / 60).toInt().toString()
         val seconds = (duration % 60).toString()
         return "$minutes:$seconds"
+    }
+
+    fun deletePlaylist(id: String) {
+        try {
+            val retrofit = Retrofit.Builder()
+                .baseUrl(constants.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val retrofitBuilder = retrofit.create(APIRequest::class.java)
+            val token = "Bearer " + constants.bearerToken
+            val request = RequestDataInterface.TrackDetailRequest(id)
+            val retrofitData = retrofitBuilder.deletePlaylist(token, request)
+            Log.e("deleteP process", "going...")
+
+            retrofitData.enqueue(object : Callback<Boolean> {
+
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                    Log.e("deleteP response:", "retrieving body")
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.e("deleteP response: ",
+                            (responseBody ?: "Response body is null").toString()
+                        )
+                        Toast.makeText(ctx, "Playlist Deleted", Toast.LENGTH_LONG).show()
+                        ctx.startActivity(Intent(ctx, Dashboard::class.java))
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("deleteP error: ", "HTTP ${response.code()}: $errorBody")
+                            Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show()
+                        } catch (e: Exception) {
+                            Log.e("deleteP error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                    Log.e("deleteP error: ", t.toString())
+                }
+            })
+
+        }
+        catch (e: Exception) {
+            Log.e("deleteP error2", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
     }
 }

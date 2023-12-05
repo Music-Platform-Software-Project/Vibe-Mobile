@@ -51,6 +51,14 @@
                 android:text="@string/total_duration"
                 />
 
+            <TextView
+                android:id="@+id/creator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/creator"
+                />
+
         </LinearLayout>
         
     </LinearLayout>

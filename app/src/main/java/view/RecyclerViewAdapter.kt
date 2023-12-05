@@ -39,11 +39,21 @@ class RecyclerViewAdapter(private val itemList: List<RequestDataInterface.MyPlay
         holder.textView.text = currentItem.name
         holder.item.setOnClickListener {
 
-            val intent = Intent(holder.itemView.context, DetailedPlaylist::class.java)
-            intent.putExtra("id", currentItem.id)
-            // You can also pass data to the new activity using putExtra if needed
-            // intent.putExtra("key", value)
-            holder.itemView.context.startActivity(intent)
+            if(type ==1 ){ //when clicked on playlist
+                val intent = Intent(holder.itemView.context, DetailedPlaylist::class.java)
+                intent.putExtra("id", currentItem.id)
+                // You can also pass data to the new activity using putExtra if needed
+                // intent.putExtra("key", value)
+                intent.putExtra("from", "dashboard")
+                holder.itemView.context.startActivity(intent)
+            }
+            else if(type == 2) { //when clicked on fav artist
+
+            }
+            else if(type == 3){ //when clicked on fav tracks
+
+            }
+
         }
 
     }

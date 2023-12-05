@@ -103,12 +103,15 @@ interface APIRequest {
         @Body request: RequestDataInterface.addPlaylistRequest
     ):Call<Boolean>
 
+    //change
     @GET("/playlist/getOwn")
     @Headers(constants.contentType)
     fun getOwnPlaylists(
         @Header("Authorization") bearerToken: String
     ):Call<List<RequestDataInterface.MyPlaylistsResponse>>
 
+
+    //change
     @POST("/playlist/get")
     @Headers(constants.contentType)
     fun searchPlaylist(
@@ -129,6 +132,8 @@ interface APIRequest {
         @Body request: RequestDataInterface.TrackDetailRequest
     ): Call<RequestDataInterface.TrackDetailResponse>
 
+
+    //change
     @POST("/playlist/getDetail")
     @Headers(constants.contentType)
     fun getPlaylistDetails(
@@ -148,6 +153,14 @@ interface APIRequest {
     fun deleteTrackFromPlaylist(
         @Header("Authorization") bearerToken: String,
         @Body request: RequestDataInterface.TrackDetailRequestPlaylist
+    ): Call<Boolean>
+
+
+    @POST("/playlist/delete")
+    @Headers(constants.contentType)
+    fun deletePlaylist(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.TrackDetailRequest
     ): Call<Boolean>
 
 
