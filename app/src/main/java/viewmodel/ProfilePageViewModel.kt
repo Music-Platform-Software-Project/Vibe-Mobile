@@ -85,7 +85,6 @@ class ProfilePageViewModel() : ViewModel() {
         try{
             val retrofitBuilder = retrofitClient.createAPIRequest()
             val token = "Bearer " + constants.bearerToken
-            Log.e("bearer set username", constants.bearerToken)
             val retrofitData = retrofitBuilder.userGetData(token)
             Log.e("username process", "Going...")
             retrofitData.enqueue(object : Callback<RequestDataInterface.getUserDataResponse> {
@@ -170,9 +169,7 @@ class ProfilePageViewModel() : ViewModel() {
                     Log.e("registration error: ", t.toString())
                 }
             })
-
         }
-
         catch (e: Exception) {
             Log.e("error", e.toString())
             // Handle the exception here (e.g. log it or display an error message)

@@ -31,7 +31,14 @@ class SearchTrack : AppCompatActivity() {
                 Toast.makeText(this, "Please enter a track name", Toast.LENGTH_LONG).show()
             }
             else{
-                viewModel.searchTrack(searchTxt.text.toString())
+                val addToPlaylist = intent.getBooleanExtra("addToPlaylist", false)
+                if (addToPlaylist){
+                    viewModel.searchTrackToAdd(searchTxt.text.toString())
+                }
+                else{
+                    viewModel.searchTrack(searchTxt.text.toString())
+                }
+
             }
         }
 

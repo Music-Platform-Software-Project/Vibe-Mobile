@@ -5,9 +5,14 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.view.MenuItem
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +26,7 @@ import viewmodel.SearchPlaylistRecViewAdapter
 
 class DetailedPlaylist : AppCompatActivity() {
     private lateinit var viewModel: DetailedPlaylistViewModel
+    private lateinit var textView: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_playlist)
@@ -33,20 +39,41 @@ class DetailedPlaylist : AppCompatActivity() {
 
         val id = intent.getStringExtra("id")
         val from = intent.getStringExtra("from")
+        textView = findViewById(R.id.playlistName)
         viewModel.getDetails(id!!)
 
         val editButton: Button = findViewById(R.id.editPlaylist)
         val deleteButton: Button = findViewById(R.id.deletePlaylist)
+        val addTrack: LinearLayout = findViewById(R.id.addToPlaylist)
+        val changeName: ImageView = findViewById(R.id.changePlaylistName)
         if (from == "search"){
             deleteButton.isClickable = false
             deleteButton.setBackgroundResource(R.drawable.unclikcable_button_bcg)
+            editButton.isClickable = false
+            editButton.setBackgroundResource(R.drawable.unclikcable_button_bcg)
         }
         else{
             deleteButton.setOnClickListener {
                 showInputDialog(id)
             }
+            editButton.setOnClickListener{
+                //TODO
+            }
+            addTrack.setOnClickListener {
+                val intent = Intent(this, SearchTrack::class.java)
+                intent.putExtra("addToPlaylist", true)
+                startActivity(intent)
+            }
+            changeName.setOnClickListener {
+                showInputDialog2(id)
+            }
         }
+
+
+
     }
+
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -72,6 +99,30 @@ class DetailedPlaylist : AppCompatActivity() {
             if(userInput == "SURE"){
                 viewModel.deletePlaylist(id)
             }
+            // Handle the user input here
+            // For example, you can display it in a Toast
+        }
+
+        builder.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.cancel()
+        }
+
+        builder.show()
+    }
+
+    private fun showInputDialog2(playlistID: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Rename Your Playlist")
+
+        val input = EditText(this)
+        builder.setView(input)
+        input.hint = "Playlist Name"
+
+        builder.setPositiveButton("OK") { _, _ ->
+            val userInput = input.text.toString()
+
+            viewModel.changePlaylistName(playlistID,userInput)
+
             // Handle the user input here
             // For example, you can display it in a Toast
         }

@@ -29,13 +29,30 @@
             android:paddingLeft="20dp"
             android:layout_marginRight="10dp"
             >
-            <TextView
-                android:id="@+id/playlistName"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="Playlist Name"
-                android:textSize="30sp"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+                <TextView
+                    android:id="@+id/playlistName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Playlist Name"
+                    android:textSize="30sp"/>
+
+                <ImageView
+                    android:id="@+id/changePlaylistName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_create_24"
+                    android:padding="10dp"
+                    />
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/numOfTracks"
                 android:layout_width="wrap_content"
@@ -94,6 +111,28 @@
             android:textColor="@color/white" />
 
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/addToPlaylist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        >
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/baseline_add_24"
+            android:background="@color/hint_color"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:text="Add to playlist"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

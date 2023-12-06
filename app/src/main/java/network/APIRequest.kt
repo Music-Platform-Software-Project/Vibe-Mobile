@@ -163,5 +163,18 @@ interface APIRequest {
         @Body request: RequestDataInterface.TrackDetailRequest
     ): Call<Boolean>
 
+    @POST("/playlist/addTrack")
+    @Headers(constants.contentType)
+    fun addTrackToPlaylist(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.AddTrackToPlaylist
+    ): Call<Boolean>
+
+    @POST("/playlist/update")
+    @Headers(constants.contentType)
+    fun changePlaylistName(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.changePlaylistName
+    ): Call<Boolean>
 
 }
