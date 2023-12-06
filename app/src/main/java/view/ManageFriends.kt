@@ -1,5 +1,6 @@
 package view
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -11,6 +12,7 @@ import android.view.MenuItem
 import android.view.View
 import view.ui.main.SectionsPagerAdapter
 import com.example.cs308_00.databinding.ActivityManageFriendsBinding
+import viewmodel.ProfilePageViewModel
 
 class ManageFriends : AppCompatActivity() {
 
@@ -31,6 +33,11 @@ class ManageFriends : AppCompatActivity() {
     }
 
     fun goBack(view: View) {
-        super.onBackPressed()
+        val intent = Intent(this, ProfilePage::class.java)
+        startActivity(intent)
+        finish()
+
     }
+
+
 }

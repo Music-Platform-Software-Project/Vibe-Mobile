@@ -1,5 +1,7 @@
 package network
 
+import model.RequestDataInterface
+
 object constants {
     //declare global constants here
     const val baseURL = "http://64.226.98.158:8080/"
@@ -7,5 +9,6 @@ object constants {
     const val  acceptType = "accept: application/json"
     var bearerToken = ""
     var currentPlaylistID = ""
+    var friendsList = mutableListOf<RequestDataInterface.friends>()
 
 }

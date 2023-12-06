@@ -1,8 +1,8 @@
 package view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.cs308_00.R
 import viewmodel.ProfilePageViewModel
@@ -20,10 +20,15 @@ class SeeAllFriends : AppCompatActivity() {
 
         val goback = findViewById<ImageButton>(R.id.goBackBtn)
         goback.setOnClickListener {
-            super.onBackPressed()
+            viewModel.goBack()
         }
 
 
 
     }
+
+
+
+
+
 }

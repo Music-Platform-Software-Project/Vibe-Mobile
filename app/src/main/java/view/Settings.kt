@@ -20,6 +20,9 @@ class Settings : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
         viewModel.setContext(this)
 
+        viewModel.getOwnTracks()
+        viewModel.getDetails()
+
         val submitBtn : Button = findViewById(R.id.btnChangeUsername)
         val backBtn : ImageButton = findViewById(R.id.backBtn)
         val deleteBtn : Button = findViewById(R.id.btnDeleteAccount)
@@ -35,6 +38,7 @@ class Settings : AppCompatActivity() {
                 viewModel.updateUsername(newUsername)
             }
         }
+
 
 
         deleteBtn.setOnClickListener {

@@ -46,6 +46,12 @@ interface APIRequest {
     @Headers(constants.contentType)
     fun deleteUser():Call<String>
 
+    @POST("/user/removeFriend")
+    @Headers(constants.contentType)
+    fun removeFriend(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.removeFriendRequest
+    ):Call<String>
 
     @GET("/invitation/list")
     @Headers(constants.contentType)
@@ -176,5 +182,11 @@ interface APIRequest {
         @Header("Authorization") bearerToken: String,
         @Body request: RequestDataInterface.changePlaylistName
     ): Call<Boolean>
+
+    @GET("/track/getOwn")
+    @Headers(constants.contentType)
+    fun getOwnTracks(
+        @Header("Authorization") bearerToken: String,
+    ):Call<List<RequestDataInterface.GetOwnTrackResponse>>
 
 }

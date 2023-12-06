@@ -145,6 +145,20 @@ interface RequestDataInterface {
         val name: String
     )
 
+    data class removeFriendRequest(
+
+        val id : String
+    )
+
+
+    data class GetOwnTrackResponse(
+        val id: String,
+        val name: String,
+        val artists: List<String>,
+        val rating: Int,
+        val duration: Int
+    )
+
 
 
 

@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
@@ -40,6 +41,7 @@ class ProfilePage : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+
         /*
         viewModel.setRecyclerView()
         viewModel.setRecyclerViewForArtists()
@@ -47,6 +49,14 @@ class ProfilePage : AppCompatActivity() {
          */
 
         viewModel.setUsernameandFriends()
+
+        val remove1 : Button = findViewById(R.id.profileVibeFriend1)
+        remove1.setOnClickListener {
+            Log.e("remove", "Remove cliked")
+            val username : TextView = findViewById(R.id.profileFriendUsername1)
+            val text = username.text.toString()
+            viewModel.removeFriend(text)
+        }
 
         val friendButton = findViewById<TextView>(R.id.manageFriends)
         friendButton.setOnClickListener {
@@ -91,6 +101,11 @@ class ProfilePage : AppCompatActivity() {
 
     fun goToPersonalizedTracks(view: View){
         startActivity(Intent(this, PersonalizedTracks::class.java))
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.updateUI()
     }
 
 
