@@ -98,7 +98,7 @@ class ProfilePageViewModel() : ViewModel() {
                         if(response.body()!!.friends.isNotEmpty())
                         {
                             checker = true
-                            if (response.body()!!.friends[0].username.isNotEmpty()){
+                            if (response.body()!!.friends.size == 1){
                                 val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
                                 friend1!!.text = response.body()!!.friends[0].username
                             }
@@ -106,7 +106,7 @@ class ProfilePageViewModel() : ViewModel() {
                                 val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
                                 friend1!!.text = "No Friend :("
                             }
-                            if (response.body()!!.friends[1].username.isNotEmpty()){
+                            if (response.body()!!.friends.size == 2){
                                 val friend2 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername2)
                                 friend2!!.text = response.body()!!.friends[1].username
                             }
@@ -114,7 +114,7 @@ class ProfilePageViewModel() : ViewModel() {
                                 val friend2 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername2)
                                 friend2!!.text ="No Friend :("
                             }
-                            if (response.body()!!.friends[2].username.isNotEmpty()){
+                            if (response.body()!!.friends.size == 3){
                                 val friend3 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername3)
                                 friend3!!.text = response.body()!!.friends[2].username
                             }
@@ -123,7 +123,7 @@ class ProfilePageViewModel() : ViewModel() {
                                 val friend3 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername3)
                                 friend3!!.text = "No Friend :("
                             }
-                            if (response.body()!!.friends[3].username.isNotEmpty()){
+                            if (response.body()!!.friends.size == 4){
                                 val friend4 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername4)
                                 friend4!!.text = response.body()!!.friends[3].username
                             }
