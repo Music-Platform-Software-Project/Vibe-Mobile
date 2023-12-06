@@ -30,7 +30,7 @@ interface APIRequest {
     ): Call<String>
 
 
-    @POST("/user/get")
+    @GET("/user/get")
     @Headers(constants.contentType)
     fun userGetData(
         @Header("Authorization") bearerToken: String

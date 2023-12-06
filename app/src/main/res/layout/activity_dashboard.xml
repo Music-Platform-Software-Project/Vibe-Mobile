@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="You do not have any playlist"
+                android:text="You do not have any playlists to display"
                 android:visibility="gone"/>
 
             <TextView
@@ -116,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="You do not have any favoruite artist"
+                android:text="You do not have any favorite artists to display"
                 android:visibility="gone"/>
 
 
@@ -158,7 +158,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="You do not have any favourite track"
+                android:fontFamily="@font/dmsans_regular"
+                android:text="You do not have any favorite tracks to display"
                 android:visibility="gone"/>
 
 

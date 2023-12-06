@@ -55,7 +55,7 @@ class ProfilePage : AppCompatActivity() {
 
         val seeFriend = findViewById<Button>(R.id.seeFriends)
         seeFriend.setOnClickListener {
-            viewModel.switchToSeeAllFriends()
+            viewModel.checkForFriends()
         }
 
         val importBtn = findViewById<Button>(R.id.btnImport)

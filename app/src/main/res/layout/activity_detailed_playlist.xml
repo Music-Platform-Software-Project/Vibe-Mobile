@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="10dp"
+            android:paddingLeft="20dp"
             android:layout_marginRight="10dp"
             >
             <TextView
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:text="Playlist Name"
-                android:textSize="36sp"/>
+                android:textSize="30sp"/>
             <TextView
                 android:id="@+id/numOfTracks"
                 android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:orientation="horizontal">
 
         <Button
@@ -76,7 +76,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
             android:background="@drawable/square_bcg"
-            android:text="EDIT"
+            android:text="Edit Playlist"
+            android:textSize="@dimen/_11sdp"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:layout_marginEnd="10dp"/>
 
@@ -86,7 +88,9 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:background="@drawable/square_bcg"
-            android:text="DELETE"
+            android:text="Delete Playlist"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_11sdp"
             android:textColor="@color/white" />
 
 

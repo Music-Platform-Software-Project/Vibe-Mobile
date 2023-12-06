@@ -4,6 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.view.View
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
@@ -31,6 +34,7 @@ import view.ui.main.IncomingRequests
 class ProfilePageViewModel() : ViewModel() {
     private lateinit var ctx: Context
     private lateinit var retrofitClient: RetrofitClient
+    private var checker : Boolean = false
 
     fun setContext(ctx: ProfilePage) {
         this.ctx = ctx
@@ -92,14 +96,59 @@ class ProfilePageViewModel() : ViewModel() {
                         Log.e("user get response: ", responseBody ?: "Response body is null")
                         val username = (ctx as? Activity)?.findViewById<TextView>(R.id.profileUsername)
                         username!!.text = response.body()!!.username
-                        val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
-                        friend1!!.text = response.body()!!.friends[0].username
-                        val friend2 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername2)
-                        friend2!!.text = response.body()!!.friends[1].username
-                        val friend3 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername3)
-                        friend3!!.text = response.body()!!.friends[2].username
-                        val friend4 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername4)
-                        friend4!!.text = response.body()!!.friends[3].username
+                        if(response.body()!!.friends.isNotEmpty())
+                        {
+                            checker = true
+                            if (response.body()!!.friends[0].username.isNotEmpty()){
+                                val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
+                                friend1!!.text = response.body()!!.friends[0].username
+                            }
+                            else{
+                                val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
+                                friend1!!.text = "No Friend :("
+                            }
+                            if (response.body()!!.friends[1].username.isNotEmpty()){
+                                val friend2 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername2)
+                                friend2!!.text = response.body()!!.friends[1].username
+                            }
+                            else{
+                                val friend2 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername2)
+                                friend2!!.text ="No Friend :("
+                            }
+                            if (response.body()!!.friends[2].username.isNotEmpty()){
+                                val friend3 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername3)
+                                friend3!!.text = response.body()!!.friends[2].username
+                            }
+
+                            else{
+                                val friend3 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername3)
+                                friend3!!.text = "No Friend :("
+                            }
+                            if (response.body()!!.friends[3].username.isNotEmpty()){
+                                val friend4 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername4)
+                                friend4!!.text = response.body()!!.friends[3].username
+                            }
+                            else{
+                                val friend4 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername4)
+                                friend4!!.text ="No Friend :("
+                            }
+
+
+                        }
+                        else{
+                            val friendsHolder1 = (ctx as? Activity)?.findViewById<LinearLayout>(R.id.friendsHolder1)
+                            friendsHolder1!!.visibility = View.INVISIBLE
+                            val friendsHolder2 = (ctx as? Activity)?.findViewById<LinearLayout>(R.id.friendsHolder2)
+                            friendsHolder2!!.visibility = View.INVISIBLE
+                            val friendsHolder3 = (ctx as? Activity)?.findViewById<LinearLayout>(R.id.friendsHolder3)
+                            friendsHolder3!!.visibility = View.INVISIBLE
+                            val friendsHolder4 = (ctx as? Activity)?.findViewById<LinearLayout>(R.id.friendsHolder4)
+                            friendsHolder4!!.visibility = View.INVISIBLE
+                            val noFriend = (ctx as? Activity)?.findViewById<TextView>(R.id.noFriends)
+                            noFriend!!.visibility = View.VISIBLE
+
+                        }
+
                         // Parse the responseBody as needed or handle the string response
 
                     }
@@ -129,6 +178,18 @@ class ProfilePageViewModel() : ViewModel() {
             // Handle the exception here (e.g. log it or display an error message)
         }
     }
+
+
+    fun checkForFriends(){
+        if (checker){
+            switchToSeeAllFriends()
+        }
+        else{
+            Toast.makeText(ctx, "You Do Not Have Any Friends To Display", Toast.LENGTH_LONG).show()
+        }
+
+    }
+
 
     fun sendRequest(username: String) {
         try {

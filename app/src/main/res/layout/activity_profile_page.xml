@@ -297,6 +297,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/friendsHolder"
                     android:layout_width="@dimen/_210sdp"
                     android:layout_height="0dp"
                     android:layout_weight="15"
@@ -335,8 +336,23 @@
                         </Button>
                     </LinearLayout>
 
+                    <TextView
+                        android:id="@+id/noFriends"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp"
+                        android:fontFamily="@font/dmsans_bold"
+                        android:text="You Do Not Have Any Friends "
+                        >
+
+                    </TextView>
+
 
                     <LinearLayout
+                        android:id="@+id/friendsHolder1"
                         android:layout_width="@dimen/_200sdp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_12sdp"
@@ -372,12 +388,14 @@
                             android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginStart="@dimen/_17sdp"
                             android:textColor="@color/white"
-                            android:text="vibe"
+                            android:text="Remove"
+                            android:textAllCaps="false"
                             android:background="@drawable/vibeing_friend" />
                         </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/friendsHolder2"
                         android:layout_width="@dimen/_200sdp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_30sdp"
@@ -413,12 +431,14 @@
                             android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginStart="@dimen/_17sdp"
                             android:textColor="@color/white"
-                            android:text="vibe"
+                            android:text="Remove"
+                            android:textAllCaps="false"
                             android:background="@drawable/vibeing_friend" />
                         </LinearLayout>
 
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/friendsHolder3"
                         android:layout_width="@dimen/_200sdp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_30sdp"
@@ -453,12 +473,14 @@
                             android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginStart="@dimen/_17sdp"
                             android:textColor="@color/white"
-                            android:text="vibe"
+                            android:text="Remove"
+                            android:textAllCaps="false"
                             android:background="@drawable/vibeing_friend" />
 
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/friendsHolder4"
                         android:layout_width="@dimen/_200sdp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_30sdp"
@@ -494,7 +516,8 @@
                             android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginStart="@dimen/_17sdp"
                             android:textColor="@color/white"
-                            android:text="vibe"
+                            android:text="Remove"
+                            android:textAllCaps="false"
                             android:background="@drawable/vibeing_friend" />
 
 

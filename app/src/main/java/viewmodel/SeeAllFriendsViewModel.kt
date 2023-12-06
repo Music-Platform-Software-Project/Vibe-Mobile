@@ -59,6 +59,7 @@ class SeeAllFriendsViewModel() : ViewModel() {
 
                         Log.e("user get response: ", responseBody ?: "Response body is null")
                         // Parse the responseBody as needed or handle the string response
+
                         val recView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.friendsRecView)
                         recView?.layoutManager = LinearLayoutManager(ctx)
                         val adapter = SeeAllFriendsRecViewAdapter(ctx, recViewList)
