@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -12,6 +13,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -45,14 +47,31 @@ class Dashboard : AppCompatActivity() {
         viewModel.setRecyclerViewForTracks(emptyList())
 
 
+        val playlistAddButton : ImageView = findViewById(R.id.btnAddPlaylist)
+
+
         val settingsBtn : TextView = findViewById(R.id.nav_settings)
         settingsBtn.setOnClickListener {
             viewModel.switchToSettings()
         }
-        val playlistAddButton : ImageView = findViewById(R.id.btnAddPlaylist)
+
+
+
         playlistAddButton.setOnClickListener {
             showInputDialog()
+            playlistAddButton.visibility = View.GONE   //REMOVE THIS AFTER MVP
         }
+
+        //REMOVE BELOW AFTER MVP
+        viewModel.isThereALikedPL { result ->
+            Log.e("checker return", result.toString())
+            // Use the result (counter value) here.
+            playlistAddButton.visibility = View.GONE
+        }
+
+
+
+
 
     }
 
@@ -90,7 +109,7 @@ class Dashboard : AppCompatActivity() {
 
     private fun showInputDialog() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Enter the name of the Playlist")
+        builder.setTitle("Enter the name of your Liked Songs collection")
 
         val input = EditText(this)
         builder.setView(input)
@@ -109,6 +128,7 @@ class Dashboard : AppCompatActivity() {
 
         builder.show()
     }
+
 
     private fun showSearchDialog() {
         val builder = AlertDialog.Builder(this)

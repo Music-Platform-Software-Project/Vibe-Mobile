@@ -45,5 +45,7 @@ class SearchPlaylistRecViewAdapter(private val context : Context, private val da
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val playlistName: TextView = itemView.findViewById(R.id.playlistNameTxt)
         val row_item : RelativeLayout = itemView.findViewById(R.id.RLitemPlaylist)
+
+
     }
 }

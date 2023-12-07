@@ -72,6 +72,7 @@ class DashboardViewModel() : ViewModel() {
 
     }
 
+
     fun setRecyclerViewForArtists(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.artists_rec_view)
         val msg = (ctx as? Activity)?.findViewById<TextView>(R.id.favArtist)
@@ -151,6 +152,7 @@ class DashboardViewModel() : ViewModel() {
     }
 
 
+
     fun refreshPlaylists(){
         try {
             val retrofit = Retrofit.Builder()
@@ -197,6 +199,60 @@ class DashboardViewModel() : ViewModel() {
             // Handle the exception here (e.g. log it or display an error message)
         }
     }
+
+
+
+    // COMMENT THIS FUNCTION OUT AFTER THE MVP
+    fun isThereALikedPL(callback: (Int) -> Unit) {
+        var counter: Int = 0
+        try {
+            val retrofit = Retrofit.Builder()
+                .baseUrl(constants.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val retrofitBuilder = retrofit.create(APIRequest::class.java)
+
+            val token = "Bearer " + constants.bearerToken
+            val retrofitData = retrofitBuilder.getOwnPlaylists(token)
+
+            retrofitData.enqueue(object : Callback<List<RequestDataInterface.MyPlaylistsResponse>> {
+                override fun onResponse(
+                    call: Call<List<RequestDataInterface.MyPlaylistsResponse>>,
+                    response: Response<List<RequestDataInterface.MyPlaylistsResponse>>
+                ) {
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        if (responseBody != null && responseBody.isNotEmpty()) {
+                            counter++
+                        }
+                    } else {
+                        try {
+                            // Handle error response
+                        } catch (e: Exception) {
+                            // Handle parsing error
+                        }
+                    }
+                    // Call the callback with the counter value
+                    callback(counter)
+                }
+
+                override fun onFailure(call: Call<List<RequestDataInterface.MyPlaylistsResponse>>, t: Throwable) {
+                    // Handle failure...
+                    callback(counter) // Call the callback with the counter value
+                }
+            })
+
+        } catch (e: Exception) {
+            // Handle exceptions...
+            callback(counter) // Call the callback with the counter value
+        }
+    }
+
+
+
+
+
 
 
     fun switchToSearchPlaylist(){

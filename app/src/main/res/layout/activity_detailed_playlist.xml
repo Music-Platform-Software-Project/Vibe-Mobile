@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
             android:background="@drawable/square_bcg"
-            android:text="Edit Playlist"
+            android:text="Edit Liked Songs"
             android:textSize="@dimen/_11sdp"
             android:textAllCaps="false"
             android:textColor="@color/white"
@@ -105,7 +105,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:background="@drawable/square_bcg"
-            android:text="Delete Playlist"
+            android:text="Delete Liked Songs"
             android:textAllCaps="false"
             android:textSize="@dimen/_11sdp"
             android:textColor="@color/white" />
@@ -132,7 +132,7 @@
             android:layout_marginLeft="10dp"
             android:textColor="@color/white"
             android:textSize="26sp"
-            android:text="Add to playlist"/>
+            android:text="Add to Liked Songs"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -21,10 +21,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:gravity="center_vertical"
                 >
                 <TextView
@@ -32,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:text="@string/playlists"
+                    android:text="Liked Songs"
                     android:textSize="@dimen/_20sdp"/>
 
                 <ImageView
@@ -77,6 +81,9 @@
                 android:textColor="@color/white"
                 android:text="You do not have any playlists to display"
                 android:visibility="gone"/>
+
+
+
 
             <TextView
                 android:layout_width="wrap_content"

@@ -112,11 +112,11 @@ class DetailedPlaylist : AppCompatActivity() {
 
     private fun showInputDialog2(playlistID: String) {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Rename Your Playlist")
+        builder.setTitle("Rename Your Liked Songs Collection")
 
         val input = EditText(this)
         builder.setView(input)
-        input.hint = "Playlist Name"
+        input.hint = "Name of the Liked Songs Collection"
 
         builder.setPositiveButton("OK") { _, _ ->
             val userInput = input.text.toString()
