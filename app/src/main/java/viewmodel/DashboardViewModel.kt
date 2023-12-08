@@ -203,8 +203,8 @@ class DashboardViewModel() : ViewModel() {
 
 
     // COMMENT THIS FUNCTION OUT AFTER THE MVP
+// In your ViewModel
     fun isThereALikedPL(callback: (Int) -> Unit) {
-        var counter: Int = 0
         try {
             val retrofit = Retrofit.Builder()
                 .baseUrl(constants.baseURL)
@@ -223,31 +223,31 @@ class DashboardViewModel() : ViewModel() {
                 ) {
                     if (response.isSuccessful) {
                         val responseBody = response.body()
-                        if (responseBody != null && responseBody.isNotEmpty()) {
-                            counter++
+                        val counter = if (responseBody != null && responseBody.isNotEmpty()) {
+                            responseBody.size // Count of liked playlists
+                        } else {
+                            0 // No liked playlists
                         }
+                        // Call the callback with the counter value
+                        callback(counter)
                     } else {
-                        try {
-                            // Handle error response
-                        } catch (e: Exception) {
-                            // Handle parsing error
-                        }
+                        // Handle error response
+                        callback(0) // No liked playlists
                     }
-                    // Call the callback with the counter value
-                    callback(counter)
                 }
 
                 override fun onFailure(call: Call<List<RequestDataInterface.MyPlaylistsResponse>>, t: Throwable) {
                     // Handle failure...
-                    callback(counter) // Call the callback with the counter value
+                    callback(0) // No liked playlists
                 }
             })
 
         } catch (e: Exception) {
             // Handle exceptions...
-            callback(counter) // Call the callback with the counter value
+            callback(0) // No liked playlists
         }
     }
+
 
 
 

@@ -4,6 +4,7 @@ package view
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
@@ -35,13 +36,17 @@ class DetailedTrack : AppCompatActivity() {
         fromWhere = from!!
         viewModel.getAll(id!!)
 
-        val rBar = findViewById<RatingBar>(R.id.rBar)
-        val msg = rBar.rating
-
         val rateButton = findViewById<Button>(R.id.trackRate)
         rateButton.setOnClickListener {
-            //viewModel.rateTrack(trackID, myRate)
+            val rBar = findViewById<RatingBar>(R.id.rBar)
+            val ratingValue = rBar.rating // Get the current rating as a float
+            val ratingInt = ratingValue.toInt() // Convert it to an integer if needed
+            Log.e("original rate: ", ratingValue.toString())
+            Log.e("int rate: ", ratingInt.toString())
+
+            viewModel.rateTrack(idx, ratingInt)
         }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

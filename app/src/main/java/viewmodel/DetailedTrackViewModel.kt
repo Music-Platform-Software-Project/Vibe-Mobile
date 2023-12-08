@@ -7,8 +7,6 @@ import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
 import model.RequestDataInterface
 import network.APIRequest
@@ -21,15 +19,17 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import view.Dashboard
 import view.DetailedTrack
-import view.PlaylistDetailRecViewAdapter
 
 class DetailedTrackViewModel(): ViewModel() {
 
     private lateinit var ctx: Context
 
 
+    private lateinit var retrofitClient: RetrofitClient
+
     fun setContext(ctx: DetailedTrack) {
         this.ctx = ctx
+        retrofitClient = RetrofitClient(ctx)
     }
 
     fun getAll(id: String) {
@@ -55,13 +55,17 @@ class DetailedTrackViewModel(): ViewModel() {
                             (responseBody ?: "Response body is null").toString()
                         )
                         (ctx as? Activity)?.findViewById<TextView>(R.id.trackName)?.text = responseBody?.name
-                        (ctx as? Activity)?.findViewById<TextView>(R.id.trackArtist)?.text = manageArtist(responseBody?.artists)
+
+                        (ctx as? Activity)?.findViewById<TextView>(R.id.trackArtist)?.text = manageArtist(responseBody!!.artist)
+                        //Log.e("artists: ", responseBody!!.artist.toString())
                         (ctx as? Activity)?.findViewById<TextView>(R.id.trackTempo)?.text = manageTempo(responseBody?.tempo)
                         (ctx as? Activity)?.findViewById<TextView>(R.id.trackAcoustic)?.text = manageAcoustic(responseBody?.acousticness)
                         (ctx as? Activity)?.findViewById<TextView>(R.id.trackInstrument)?.text = manageInstrument(responseBody?.instrumentalness)
                         (ctx as? Activity)?.findViewById<TextView>(R.id.trackEnergy)?.text = manageEnergy(responseBody?.energy)
-                        val mood = responseBody?.mood
-                        (ctx as? Activity)?.findViewById<TextView>(R.id.trackMood)?.text = "Mood: $mood"
+                        val albumName = responseBody?.album!!.name
+                        (ctx as? Activity)?.findViewById<TextView>(R.id.trackAlbumName)?.text = "Album Name: $albumName"
+                        val rating = responseBody.rating.toString()
+                        (ctx as? Activity)?.findViewById<TextView>(R.id.trackCurrRate)?.text = "Rating: $rating"
 
                     }
                     else {
@@ -125,10 +129,10 @@ class DetailedTrackViewModel(): ViewModel() {
             str = "Acousticness: Digital"
         }
         else if(acousticness!! >= 31 && acousticness < 62){
-            str = "Acousticness: Mix"
+            str = "Accousticness: Mix"
         }
         else{
-            str = "Acousticness: Analog"
+            str = "Accousticness: Analog"
         }
         return str
     }
@@ -244,6 +248,51 @@ class DetailedTrackViewModel(): ViewModel() {
             })
 
         }
+        catch (e: Exception) {
+            Log.e("error", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
+    }
+
+    fun rateTrack(id: String, rate : Int){
+        try {
+
+            val retrofitBuilder = retrofitClient.createAPIRequestWithToken(constants.bearerToken)
+            val request = RequestDataInterface.TrackRateRequest(id, rate)
+            val retrofitData = retrofitBuilder.rateTrack(request)
+
+            retrofitData.enqueue(object : Callback<Boolean> {
+
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                    Log.e("rate track response:", "retrieving body")
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.e("rate track response: ", (responseBody ?: "Response body is null").toString())
+                        Toast.makeText(ctx, "Track Rated as ${rate.toString()}", Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("delete track error: ", "HTTP ${response.code()}: $errorBody")
+                            Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show()
+                            getAll(id)
+                        } catch (e: Exception) {
+                            Log.e("delete track error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                    Log.e("delete track error2: ", t.toString())
+                }
+            })
+
+
+
+        }
+
         catch (e: Exception) {
             Log.e("error", e.toString())
             // Handle the exception here (e.g. log it or display an error message)

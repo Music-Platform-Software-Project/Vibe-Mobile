@@ -62,11 +62,14 @@ class Dashboard : AppCompatActivity() {
             playlistAddButton.visibility = View.GONE   //REMOVE THIS AFTER MVP
         }
 
-        //REMOVE BELOW AFTER MVP
+        //REMOVE THIS AFTER MVP
         viewModel.isThereALikedPL { result ->
             Log.e("checker return", result.toString())
-            // Use the result (counter value) here.
-            playlistAddButton.visibility = View.GONE
+            // If result is greater than 0, hide the button
+            if (result > 0) {
+                playlistAddButton.visibility = View.GONE
+
+            }
         }
 
 

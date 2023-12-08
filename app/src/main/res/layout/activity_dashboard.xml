@@ -44,6 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/plus_icon_white"
+                    android:visibility="visible"
                     android:background="@drawable/white_circle"
                     android:layout_marginStart="10dp"/>
 
@@ -79,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="You do not have any playlists to display"
+                android:text="You do not have any liked songs to display"
                 android:visibility="gone"/>
 
 

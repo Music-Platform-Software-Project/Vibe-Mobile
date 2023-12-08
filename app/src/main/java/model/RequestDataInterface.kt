@@ -56,17 +56,31 @@ interface RequestDataInterface {
     )
 
     data class TrackData(
+        val album: Album,
+        val artists: List<Artist>,
         val name: String,
-        val artists: List<String>,
-        val album: String,
         val genre: String,
+        val duration_ms: Int,
         val tempo: Int,
-        val acousticness: Int,
-        val energy: Int,
         val instrumentalness: Int,
-        val mood: String,
-        val duration : Int
+        val acousticness: Int,
+        val energy: Int
     )
+
+    data class Album(
+        val album_type: String,
+        val artists: List<Artist>,
+        val genres: List<String>,
+        val name: String,
+        val release_year: Int,
+        val total_tracks: Int
+    )
+
+    data class Artist(
+        val genres: List<String>,
+        val name: String
+    )
+
 
     data class addPlaylistRequest(
         val name: String
@@ -85,7 +99,9 @@ interface RequestDataInterface {
     data class SearchTrackResponse(
         val id: String,
         val name: String,
-        val artists: List<String>
+        val artists: List<String>,
+        val duration_ms : Int,
+        val rating: Int
     )
 
     data class  SearchPlaylistResponse(
@@ -112,18 +128,24 @@ interface RequestDataInterface {
     )
 
     data class TrackDetailResponse(
-        val id : String,
-        val name : String,
-        val artists : List<String>,
-        val album : String,
-        val genre : String,
-        val tempo : Int,
-        val acousticness : Int,
-        val energy : Int,
-        val instrumentalness : Int,
-        val mood : String,
-        val duration: Int,
-        val rating : Int
+        val id: String,
+        val name: String,
+        val album: AlbumForTrackDetails,
+        val genre: String,
+        val artist: List<String>,
+        val rating: Double,
+        val duration_ms: Int,
+        val tempo: Int,
+        val instrumentalness: Int,
+        val acousticness: Int,
+        val energy: Int
+    )
+
+    data class AlbumForTrackDetails(
+        val album_type: String,
+        val name: String,
+        val release_year: Int,
+        val total_tracks: Int
     )
 
     data class PlaylistDetailResponse(
@@ -155,8 +177,13 @@ interface RequestDataInterface {
         val id: String,
         val name: String,
         val artists: List<String>,
+        val duration_ms: Int,
         val rating: Int,
-        val duration: Int
+    )
+
+    data class TrackRateRequest(
+        val id: String,
+        val rate : Int
     )
 
 

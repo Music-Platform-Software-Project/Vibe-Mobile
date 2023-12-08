@@ -189,4 +189,12 @@ interface APIRequest {
         @Header("Authorization") bearerToken: String,
     ):Call<List<RequestDataInterface.GetOwnTrackResponse>>
 
+    @POST("/track/rate")
+    @Headers(constants.contentType)
+    fun rateTrack(
+        @Body request: RequestDataInterface.TrackRateRequest
+    ):Call<Boolean>
+
+
+
 }

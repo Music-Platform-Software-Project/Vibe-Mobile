@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.cs308_00.R
+import model.RequestDataInterface
 import viewmodel.ImportTrackViewModel
 
 class ImportTrack : AppCompatActivity() {
@@ -21,46 +22,8 @@ class ImportTrack : AppCompatActivity() {
         setContentView(R.layout.activity_import_track)
         viewModel = ViewModelProvider(this).get(ImportTrackViewModel::class.java)
         viewModel.setContext(this)
-        val genreSpinner = findViewById<Spinner>(R.id.genreSpinner)
-        val moodSpinner = findViewById<Spinner>(R.id.moodSpinner)
-        val moodList = arrayOf<String?>("High", "Medium", "Low")
-        val genreList = arrayOf<String?>(
-            "Ambient",
-            "Blues",
-            "Classical",
-            "Country",
-            "Disco",
-            "Electronic",
-            "Folk",
-            "Funk",
-            "Gospel",
-            "Hip Hop",
-            "House",
-            "Indie",
-            "Jazz",
-            "K-Pop",
-            "Latin",
-            "Metal",
-            "Pop",
-            "Punk",
-            "R&B",
-            "Reggae",
-            "Rock",
-            "Ska",
-            "Soul",
-            "Trance"
-        )
 
 
-        val genreAdapter =
-            ArrayAdapter<Any?>(this, R.layout.customized_spinner_item, genreList)
-        genreAdapter.setDropDownViewResource(R.layout.customized_spinner_list)
-        genreSpinner.adapter = genreAdapter
-
-        val moodAdapter =
-            ArrayAdapter<Any?>(this, R.layout.customized_spinner_item, moodList)
-        moodAdapter.setDropDownViewResource(R.layout.customized_spinner_list)
-        moodSpinner.adapter = moodAdapter
 
         val backToProfile = findViewById<ImageButton>(R.id.goBackBtn)
         backToProfile.setOnClickListener {
@@ -72,21 +35,42 @@ class ImportTrack : AppCompatActivity() {
 
 
         importBtn.setOnClickListener {
-            val selectedGenre: String = genreSpinner.selectedItem.toString()
-            Log.e("selected genre", selectedGenre)
-            val selectedMood: String = moodSpinner.selectedItem.toString()
-            Log.e("selected mood", selectedMood)
-            val tempoInput : Int = findViewById<EditText>(R.id.tempoInput).text.toString().toInt()
-            val artistInput = findViewById<EditText>(R.id.artistInput).text.toString()
-            val artistsList = artistInput.split("#").map { it.trim() }
-            Log.e("artist list", artistsList.toString())
-            val trackInput = findViewById<EditText>(R.id.trackInput).text.toString()
-            val albumInput = findViewById<EditText>(R.id.albumInput).text.toString()
-            val accousticInput: Int = findViewById<EditText>(R.id.accousticInput).text.toString().toInt()
-            val energyInput: Int = findViewById<EditText>(R.id.energyInput).text.toString().toInt()
-            val instrumentalInput : Int = findViewById<EditText>(R.id.instrumentalInput).text.toString().toInt()
-            val durationInput : Int = findViewById<EditText>(R.id.durationInput).text.toString().toInt()
-            viewModel.addTrack(trackInput,artistsList, albumInput, selectedGenre,tempoInput, accousticInput,  energyInput, instrumentalInput, selectedMood, durationInput)
+            val albumType : String = findViewById<EditText>(R.id.albumType).text.toString()
+            val artistName: String = findViewById<EditText>(R.id.artistInput).text.toString()
+            val tempo : String = findViewById<EditText>(R.id.tempoInput).text.toString()
+            val tempoInt = tempo.toIntOrNull()!!
+            val instrument : String = findViewById<EditText>(R.id.instrumentalInput).text.toString()
+            val instrumentInt = instrument.toIntOrNull()!!
+            val accoustic : String = findViewById<EditText>(R.id.accousticInput).text.toString()
+            val accousticInt = accoustic.toIntOrNull()!!
+            val energy : String = findViewById<EditText>(R.id.energyInput).text.toString()
+            val energyInt = energy.toIntOrNull()!!
+            val albumName : String = findViewById<EditText>(R.id.albumInput).text.toString()
+            val releaseYear : String = findViewById<EditText>(R.id.releaseYear).text.toString()
+            val releaseYearInt: Int = releaseYear.toIntOrNull()!!
+            val totalTracks : String = findViewById<EditText>(R.id.totalTracks).text.toString()
+            val totalTracksInt: Int = totalTracks.toIntOrNull()!!
+            val trackName : String = findViewById<EditText>(R.id.trackInput).text.toString()
+            val duration : String = findViewById<EditText>(R.id.durationInput).text.toString()
+            val durationInt = duration.toIntOrNull()!!
+            val albumGenre : String = findViewById<EditText>(R.id.albumGenre).text.toString()
+            val trackGenre : String = findViewById<EditText>(R.id.trackGenre).text.toString()
+            val artistGenre : String = findViewById<EditText>(R.id.artistGenre).text.toString()
+
+            val genresInput = artistGenre.trim() // Get the input text and remove leading/trailing spaces
+            val artistGenreList = genresInput.split(" ") // Split the input text into a list of strings
+
+            val albumgenresInput = albumGenre.trim() // Get the input text and remove leading/trailing spaces
+            val albumGenreList = genresInput.split(" ") // Split the input text into a list of strings
+
+            val artistData = RequestDataInterface.Artist(artistGenreList, artistName)
+            val artistList = listOf<RequestDataInterface.Artist>(artistData)
+            val albumData = RequestDataInterface.Album(albumType, artistList , albumGenreList,albumName, releaseYearInt ,totalTracksInt)
+            val importData = RequestDataInterface.TrackData(albumData, artistList, trackName, trackGenre, durationInt, tempoInt, instrumentInt, accousticInt, energyInt)
+            val request = RequestDataInterface.addTrackRequest(importData)
+            viewModel.addTrack(request)
+
+
         }
 
 

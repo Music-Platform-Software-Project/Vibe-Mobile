@@ -10,6 +10,6 @@ object constants {
     var bearerToken = ""
     var currentPlaylistID = ""
     var friendsList = mutableListOf<RequestDataInterface.friends>()
-    var likedSongsId = ""
+    var accoustcAv = 0
 
 }

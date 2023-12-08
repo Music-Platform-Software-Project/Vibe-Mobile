@@ -9,12 +9,17 @@
             type="view.ImportTrack"/>
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_theme">
 
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:background="@color/main_theme"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:foregroundGravity="center_vertical"
+
     tools:context="view.ImportTrack">
 
 
@@ -97,21 +102,23 @@
         app:layout_constraintTop_toBottomOf="@id/artistInput">
 
     </TextView>
+
     <EditText
         android:id="@+id/trackInput"
         android:layout_width="@dimen/_270sdp"
         android:layout_height="@dimen/_35sdp"
-        android:hint="Enter the name of the track"
+        android:layout_marginTop="8dp"
         android:background="@drawable/import_track_entry"
+        android:hint="Enter the name of the track"
         android:paddingLeft="@dimen/_10sdp"
         android:textAlignment="textStart"
         android:textColor="@color/white"
         android:textColorHint="@color/hint_color"
         android:textSize="@dimen/_11sdp"
-        app:layout_constraintTop_toBottomOf="@id/trackTxt"
-        app:layout_constraintStart_toStartOf="@id/artistInput"
         app:layout_constraintEnd_toEndOf="@id/artistInput"
-        android:layout_marginTop="10dp" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/artistInput"
+        app:layout_constraintTop_toBottomOf="@id/trackTxt" />
 
     <TextView
         android:id="@+id/albumTxt"
@@ -186,36 +193,42 @@
     </EditText>
 
     <TextView
-        android:id="@+id/genreTxt"
+        android:id="@+id/albumGenreTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/dmsans_bold"
-        android:text="Genre"
+        android:text="Album Genres"
         android:textAlignment="textStart"
         android:textColor="@color/white"
         android:textColorHint="@color/hint_color"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.377"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toEndOf="@id/tempoTxt"
         app:layout_constraintTop_toBottomOf="@id/albumInput">
 
     </TextView>
 
-    <Spinner
-        android:id="@+id/genreSpinner"
+    <EditText
+        android:id="@+id/albumGenre"
         android:layout_width="@dimen/_150sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/import_track_entry"
-        android:entries="@array/genre_items"
+        android:hint="E.g. Pop"
+        android:inputType="text"
+        android:paddingLeft="@dimen/_10sdp"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_11sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tempoInput"
-        app:layout_constraintTop_toBottomOf="@id/genreTxt">
+        app:layout_constraintTop_toBottomOf="@id/albumGenreTxt">
 
-    </Spinner>
+    </EditText>
 
     <TextView
         android:id="@+id/accousticTxt"
@@ -268,10 +281,10 @@
         android:textColor="@color/white"
         android:textColorHint="@color/hint_color"
         android:textSize="@dimen/_14sdp"
-        app:layout_constraintEnd_toEndOf="@id/genreTxt"
-        app:layout_constraintHorizontal_bias="0.309"
-        app:layout_constraintStart_toStartOf="@id/genreTxt"
-        app:layout_constraintTop_toBottomOf="@id/genreSpinner">
+        app:layout_constraintEnd_toEndOf="@id/albumGenreTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/albumGenreTxt"
+        app:layout_constraintTop_toBottomOf="@id/albumGenre">
 
     </TextView>
 
@@ -288,9 +301,9 @@
         android:textColor="@color/white"
         android:textColorHint="@color/hint_color"
         android:textSize="@dimen/_11sdp"
-        app:layout_constraintEnd_toEndOf="@id/genreTxt"
+        app:layout_constraintEnd_toEndOf="@id/albumGenreTxt"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/genreTxt"
+        app:layout_constraintStart_toStartOf="@id/albumGenreTxt"
         app:layout_constraintTop_toBottomOf="@id/energyTxt">
 
     </EditText>
@@ -339,7 +352,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/dmsans_bold"
-        android:text="Mood"
+        android:text="Release Year"
         android:textAlignment="textStart"
         android:textColor="@color/white"
         android:textColorHint="@color/hint_color"
@@ -351,19 +364,23 @@
 
     </TextView>
 
-    <Spinner
-        android:id="@+id/moodSpinner"
-        android:layout_width="@dimen/_150sdp"
+    <EditText
+        android:id="@+id/releaseYear"
+        android:layout_width="@dimen/_90sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginTop="8dp"
         android:background="@drawable/import_track_entry"
-        android:entries="@array/mood_items"
+        android:hint="E.g. 2022"
+        android:textColorHint="@color/hint_color"
         app:layout_constraintEnd_toEndOf="@id/moodTxt"
+        android:textSize="@dimen/_11sdp"
+        android:paddingLeft="@dimen/_10sdp"
         app:layout_constraintHorizontal_bias="0.034"
+        android:inputType="number"
         app:layout_constraintStart_toStartOf="@id/moodTxt"
         app:layout_constraintTop_toBottomOf="@id/moodTxt">
 
-    </Spinner>
+    </EditText>
 
 
     <TextView
@@ -377,10 +394,10 @@
         android:textColor="@color/white"
         android:textColorHint="@color/hint_color"
         android:textSize="@dimen/_14sdp"
-        app:layout_constraintEnd_toEndOf="@id/moodSpinner"
+        app:layout_constraintEnd_toEndOf="@id/releaseYear"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/instrumentalInput"
-        app:layout_constraintTop_toBottomOf="@id/moodSpinner">
+        app:layout_constraintTop_toBottomOf="@id/releaseYear">
 
     </TextView>
 
@@ -404,23 +421,178 @@
 
     </EditText>
 
+    <TextView
+        android:id="@+id/artistGenreTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/dmsans_bold"
+        android:text="Artist Genres"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintEnd_toEndOf="@id/releaseYear"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/releaseYear"
+        app:layout_constraintTop_toBottomOf="@id/releaseYear">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/artistGenre"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/import_track_entry"
+        android:hint="E.g. Pop"
+        android:inputType="text"
+        android:paddingLeft="@dimen/_10sdp"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_11sdp"
+        app:layout_constraintEnd_toEndOf="@id/artistGenreTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/artistGenreTxt"
+        app:layout_constraintTop_toBottomOf="@+id/artistGenreTxt">
+
+    </EditText>
+    <TextView
+        android:id="@+id/albumTypeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/dmsans_bold"
+        android:text="Album Type"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintEnd_toEndOf="@id/durationTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/durationTxt"
+        app:layout_constraintTop_toBottomOf="@id/durationInput">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/albumType"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/import_track_entry"
+        android:hint="E.g. Studio"
+        android:inputType="text"
+        android:paddingLeft="@dimen/_10sdp"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_11sdp"
+        app:layout_constraintEnd_toEndOf="@id/albumTypeTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/albumTypeTxt"
+        app:layout_constraintTop_toBottomOf="@+id/albumTypeTxt">
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/totalTracksTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/dmsans_bold"
+        android:text="Total Tracks in Album"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintEnd_toEndOf="@id/artistGenreTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/artistGenreTxt"
+        app:layout_constraintTop_toBottomOf="@id/artistGenre">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/totalTracks"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/import_track_entry"
+        android:hint="E.g. 23"
+        android:inputType="number"
+        android:paddingLeft="@dimen/_10sdp"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_11sdp"
+        app:layout_constraintEnd_toEndOf="@id/totalTracksTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/totalTracksTxt"
+        app:layout_constraintTop_toBottomOf="@id/totalTracksTxt">
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/trackGenreTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/dmsans_bold"
+        android:text="Track Genre"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintEnd_toEndOf="@id/albumType"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/albumType"
+        app:layout_constraintTop_toBottomOf="@id/albumType">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/trackGenre"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/import_track_entry"
+        android:hint="E.g. Rock"
+        android:inputType="text"
+        android:paddingLeft="@dimen/_10sdp"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_11sdp"
+        app:layout_constraintEnd_toEndOf="@id/trackGenreTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/trackGenreTxt"
+        android:layout_marginBottom="@dimen/_50sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trackGenreTxt"/>
+
+
     <Button
         android:id="@+id/importButton"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_40sdp"
-        android:layout_marginTop="35dp"
         android:background="@drawable/import_track_entry"
         android:fontFamily="@font/dmsans_bold"
         android:text="Import"
         android:textColor="@color/white"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/moodSpinner"
-        app:layout_constraintHorizontal_bias="0.98"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/moodSpinner"
-        app:layout_constraintVertical_bias="0.063" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.479"
+        android:layout_marginBottom="@dimen/_50sdp"
+        app:layout_constraintStart_toEndOf="@id/trackGenre"
+        app:layout_constraintTop_toTopOf="@id/trackGenreTxt"
+
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

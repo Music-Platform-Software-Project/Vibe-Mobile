@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:text="Playlist name"
-        android:textSize="26sp"
+        android:textSize="18sp"
         android:layout_marginRight="5dp"/>
 
     <TextView

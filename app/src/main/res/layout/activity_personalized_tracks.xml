@@ -50,17 +50,23 @@
 
     </ImageButton>
 
-    <ImageView
-        android:id="@+id/chart"
-        android:layout_width="@dimen/_280sdp"
-        android:layout_height="@dimen/_200sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/holder"
-        android:layout_marginTop="@dimen/_30sdp"
-        android:src="@drawable/chart">
+   <RelativeLayout
+       android:id="@+id/barHolder"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/_300sdp"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/holder"
+       android:layout_marginTop="@dimen/_30sdp">
 
-    </ImageView>
+       <com.github.mikephil.charting.charts.BarChart
+           android:id="@+id/barChart"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+       </com.github.mikephil.charting.charts.BarChart>
+
+   </RelativeLayout>
 
     <TextView
         android:id="@+id/tracksTxt"
@@ -68,11 +74,11 @@
         android:layout_height="@dimen/_40sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/chart"
+        app:layout_constraintTop_toBottomOf="@id/barHolder"
         android:fontFamily="@font/dmsans_bold"
         android:textColor="@color/white"
         android:textSize="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="30dp"
         android:text="Personalized Tracks"
         android:gravity="center">
 
