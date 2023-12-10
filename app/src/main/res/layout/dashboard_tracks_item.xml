@@ -7,6 +7,7 @@
     android:background="@color/div_bcg"
     android:gravity="center_horizontal"
     android:padding="5dp"
+    android:id="@+id/playlistItem"
     >
 
     <!-- Your item content goes here -->

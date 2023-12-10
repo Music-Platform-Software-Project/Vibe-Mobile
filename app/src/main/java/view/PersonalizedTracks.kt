@@ -1,27 +1,20 @@
 package view
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.Paint
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.os.StrictMode
-import android.os.storage.StorageManager
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.MediaController
+import android.widget.ImageView
 import android.widget.Spinner
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.FileProvider
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.cs308_00.R
 import com.github.mikephil.charting.charts.BarChart
@@ -30,6 +23,7 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import model.RequestDataInterface
 import network.APIRequest
 import network.constants
@@ -62,6 +56,7 @@ class PersonalizedTracks : AppCompatActivity() {
     private var averageInstrumentalness: Double = 0.0
     private var averageAcousticness: Double = 0.0
     private var averageEnergy: Double = 0.0
+    private var currentTime = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,11 +64,15 @@ class PersonalizedTracks : AppCompatActivity() {
         setContentView(R.layout.activity_personalized_tracks)
         barChart = findViewById(R.id.barChart);
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         viewModel = ViewModelProvider(this).get(PersonalizedTracksViewModel::class.java)
         viewModel.setContext(this)
 
         getStatistics(7)
+        val changeButton : ImageView = findViewById(R.id.changeTime)
         val spinner1 = findViewById<Spinner>(R.id.acousticSpinner)
         val categoriesList = arrayOf<String?>("Item1","Item2", "Item3","Item4")
         val adapter1 =
@@ -146,6 +145,30 @@ class PersonalizedTracks : AppCompatActivity() {
             startActivity(Intent.createChooser(intent, "Share To: "))
         }
 
+        val text : TextView = findViewById(R.id.textView2)
+        changeButton.setOnClickListener {
+            if(currentTime == 0){
+                getStatistics(30)
+                text.text = "Average for the Past 30 Days"
+                currentTime = 1
+            }
+            else if(currentTime == 1){
+                getStatistics(7)
+                text.text = "Average for the Past 7 Days"
+                currentTime = 0
+            }
+        }
+
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // Respond to the action bar's Up/Home button
+                onBackPressed() // This will call the default behavior of going back
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
@@ -253,14 +276,14 @@ class PersonalizedTracks : AppCompatActivity() {
     ) {
         // Create a list of BarEntry with the average values.
         val barEntries = mutableListOf(
-            BarEntry(1f, averageTempo.toFloat()),
-            BarEntry(2f, averageInstrumentalness.toFloat()),
-            BarEntry(3f, averageAcousticness.toFloat()),
-            BarEntry(4f, averageEnergy.toFloat())
+            BarEntry(0f, averageTempo.toFloat(), "Tempo"),
+            BarEntry(1f, averageInstrumentalness.toFloat(), "Instrumentalness"),
+            BarEntry(2f, averageAcousticness.toFloat(), "Acousticness"),
+            BarEntry(3f, averageEnergy.toFloat(), "Energy")
         )
 
         // Create a BarDataSet with BarEntries and set label.
-        val dataSet = BarDataSet(barEntries, "Average Values")
+        val dataSet = BarDataSet(barEntries, "")
 
         // Customize the appearance of the bar chart.
         dataSet.color = barChart.context.resources.getColor(R.color.purple_200)
@@ -271,20 +294,42 @@ class PersonalizedTracks : AppCompatActivity() {
         data.barWidth = 0.4f
         // Set data to the bar chart.
         barChart.data = data
+        barChart.invalidate()
 
         // Customize the bar chart further as needed.
         val xAxis = barChart.xAxis
+        xAxis.setDrawLabels(false)
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setDrawGridLines(false)
 
+
         // Set custom labels for the X-axis.
+
         val labels = listOf("Tempo", "Instrumentalness", "Acousticness", "Energy")
+        xAxis.run {
+            setLabelCount(labels.size, true) // Set the label count and enable auto-adjustment
+            //labelRotationAngle = 45f // Set the rotation angle for better visibility
+            valueFormatter = IndexAxisValueFormatter(labels)
+        }
+
         xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+        xAxis.axisMinimum = -0.5f
+        xAxis.axisMaximum = labels.size - 0.5f
+        xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+
+
+
 
         // Customize the numbers on the horizontal part of the chart.
         xAxis.textColor = Color.WHITE
         barChart.axisLeft.textColor = Color.WHITE
         barChart.axisRight.textColor = Color.WHITE
+
+        data.setValueFormatter(object : ValueFormatter() {
+            override fun getFormattedValue(value: Float): String {
+                return value.toString()
+            }
+        })
 
         barChart.setFitBars(true)
         barChart.description.isEnabled = false

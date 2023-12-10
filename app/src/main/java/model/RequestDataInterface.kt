@@ -101,7 +101,7 @@ interface RequestDataInterface {
         val name: String,
         val artists: List<artiz>,
         val duration_ms : Int,
-        val rating: Int
+        val rating: Double
     )
 
     data class  SearchPlaylistResponse(
@@ -114,7 +114,7 @@ interface RequestDataInterface {
         val id: String,
         val name: String,
         val artists: List<String>,
-        val duration: Int,
+        val duration_ms: Int,
         val rating: Double
     )
 

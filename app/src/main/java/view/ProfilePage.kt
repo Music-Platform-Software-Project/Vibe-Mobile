@@ -42,11 +42,9 @@ class ProfilePage : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
 
-        /*
-        viewModel.setRecyclerView()
-        viewModel.setRecyclerViewForArtists()
-        viewModel.setRecyclerViewForTracks()
-         */
+
+       viewModel.refreshArtists()
+
 
         viewModel.setUsernameandFriends()
 

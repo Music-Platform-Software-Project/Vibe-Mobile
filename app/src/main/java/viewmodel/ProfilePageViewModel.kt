@@ -5,16 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
-import model.Item
 import model.RequestDataInterface
 import network.APIRequest
 import network.RetrofitClient
@@ -25,12 +22,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import view.ImportTrack
-import view.LoginPage
 import view.ProfilePage
 import view.RecyclerViewAdapter
-import view.RegisterPage
 import view.SeeAllFriends
-import view.ui.main.IncomingRequests
 
 class ProfilePageViewModel() : ViewModel() {
     private lateinit var ctx: Context
@@ -50,36 +44,32 @@ class ProfilePageViewModel() : ViewModel() {
         // Add any other UI updates you need here
     }
 
-
-
-
-    fun setRecyclerView(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
-        val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.playlists_rec_view)
-        recyclerView?.layoutManager =  GridLayoutManager(ctx, 3, GridLayoutManager.HORIZONTAL, false)
-
-        val adapter = RecyclerViewAdapter(itemList, 1)
-        recyclerView?.adapter = adapter
-
-
-    }
-
     fun setRecyclerViewForArtists(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.artists_rec_view)
-        recyclerView?.layoutManager =  GridLayoutManager(ctx, 2, GridLayoutManager.HORIZONTAL, false)
+        if(itemList.isEmpty()){
+            recyclerView?.visibility =  View.INVISIBLE
+        }
+        else{
+            recyclerView?.layoutManager =  GridLayoutManager(ctx, 1, GridLayoutManager.HORIZONTAL, false)
 
-        val adapter = RecyclerViewAdapter(itemList, 2)
-        recyclerView?.adapter = adapter
-
+            val adapter = RecyclerViewAdapter(itemList, 2)
+            recyclerView?.adapter = adapter
+            recyclerView?.visibility =  View.VISIBLE
+        }
     }
 
     fun setRecyclerViewForTracks(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.tracks_rec_view)
-        recyclerView?.layoutManager =  GridLayoutManager(ctx, 2, GridLayoutManager.HORIZONTAL, false)
+        if(itemList.isEmpty()){
+            recyclerView?.visibility =  View.INVISIBLE
+        }
+        else{
+            recyclerView?.layoutManager =  GridLayoutManager(ctx, 1, GridLayoutManager.HORIZONTAL, false)
 
-
-
-        val adapter = RecyclerViewAdapter(itemList, 3)
-        recyclerView?.adapter = adapter
+            val adapter = RecyclerViewAdapter(itemList, 3)
+            recyclerView?.adapter = adapter
+            recyclerView?.visibility =  View.VISIBLE
+        }
     }
 
     fun switchToImportTrack(){
@@ -382,5 +372,68 @@ class ProfilePageViewModel() : ViewModel() {
             // Handle the exception here (e.g. log it or display an error message)
         }
     }
+
+
+    fun refreshArtists(){
+        try {
+            val retrofit = Retrofit.Builder()
+                .baseUrl(constants.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val retrofitBuilder = retrofit.create(APIRequest::class.java)
+
+            val token = "Bearer " + constants.bearerToken
+            val retrofitData = retrofitBuilder.recommendTrack(token)
+
+            retrofitData.enqueue(object : Callback<List<RequestDataInterface.RecommendTrackResponse>> {
+                override fun onResponse(call: Call<List<RequestDataInterface.RecommendTrackResponse>>, response: Response<List<RequestDataInterface.RecommendTrackResponse>>) {
+                    Log.e("artist response:", "retrieving body")
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.e("artist response: ",
+                            (responseBody ?: "Response body is null").toString()
+                        )
+                        val trackNames = responseBody?.get(0)?.ratedTracks
+                        val itemList = mutableListOf<RequestDataInterface.MyPlaylistsResponse>()
+                        val itemList2 = mutableListOf<RequestDataInterface.MyPlaylistsResponse>()
+                        for(track in trackNames!!){
+                            val response = RequestDataInterface.MyPlaylistsResponse(track.id, track.artists[0])
+                            val response2 = RequestDataInterface.MyPlaylistsResponse(track.id, track.name)
+                            if(!itemList.contains(response)){
+                                itemList.add(response)
+                            }
+                            if(!itemList2.contains(response2)){
+                                itemList2.add(response2)
+                            }
+                        }
+                        setRecyclerViewForArtists(itemList)
+                        setRecyclerViewForTracks(itemList2)
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("artist error: ", "HTTP ${response.code()}: $errorBody")
+                            Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show()
+                        } catch (e: Exception) {
+                            Log.e("artist error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<List<RequestDataInterface.RecommendTrackResponse>>, t: Throwable) {
+                    Log.e("artist error: ", t.toString())
+                }
+            })
+
+        }
+        catch (e: Exception) {
+            Log.e("artist", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
+    }
+
 
 }

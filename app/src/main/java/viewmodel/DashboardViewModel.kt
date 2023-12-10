@@ -67,9 +67,6 @@ class DashboardViewModel() : ViewModel() {
             recyclerView?.visibility =  View.VISIBLE
             msg?.visibility = View.INVISIBLE
         }
-
-
-
     }
 
 

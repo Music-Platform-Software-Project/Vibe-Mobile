@@ -16,7 +16,6 @@
         tools:context="view.Dashboard"
         android:id="@+id/drawerLayout1"
         android:fitsSystemWindows="true"
-        tools:openDrawer="start"
         >
 
         <ScrollView

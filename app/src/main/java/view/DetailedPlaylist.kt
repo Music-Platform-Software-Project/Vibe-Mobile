@@ -3,6 +3,7 @@ package view
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -39,6 +40,10 @@ class DetailedPlaylist : AppCompatActivity() {
 
         val id = intent.getStringExtra("id")
         val from = intent.getStringExtra("from")
+        val image = findViewById<ImageView>(R.id.playlistIcon)
+        image.setOnClickListener {
+            startActivity(Intent(this, Dashboard::class.java))
+        }
         textView = findViewById(R.id.playlistName)
         viewModel.getDetails(id!!)
 

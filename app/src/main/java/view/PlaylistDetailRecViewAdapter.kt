@@ -24,7 +24,7 @@ class PlaylistDetailRecViewAdapter(private val itemList: List<RequestDataInterfa
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder {
-        var inflateLayout = R.layout.track_in_playlist
+        val inflateLayout = R.layout.track_in_playlist
 
         val itemView = LayoutInflater.from(parent.context).inflate(inflateLayout, parent, false)
         return ViewHolder(itemView)
@@ -39,7 +39,7 @@ class PlaylistDetailRecViewAdapter(private val itemList: List<RequestDataInterfa
             names = "$names $name "
         }
         holder.artists.text = names
-        var duration : Int = currentItem.duration
+        var duration : Int = currentItem.duration_ms
         val durationInMinutes : String = secondsToMinutes(duration)
         holder.duration.text = durationInMinutes
         var rating = "★ ${currentItem.rating}/5"
