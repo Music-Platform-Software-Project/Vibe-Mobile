@@ -129,20 +129,28 @@ class PersonalizedTracks : AppCompatActivity() {
 
 
 
-        val chartWidth = 900 // Width in pixels
-        val chartHeight = 600 // Height in pixels
-        val chartBitmap = captureChartAsBitmap(barChart, chartWidth, chartHeight)
+
 
 
         val share : Button = findViewById(R.id.shareResults)
         share.setOnClickListener {
-            val intent = Intent()
-            intent.action = Intent.ACTION_SEND
-            val path = MediaStore.Images.Media.insertImage(contentResolver, chartBitmap, "Bar Chart", null)
-            val uri = Uri.parse(path)
-            intent.putExtra(Intent.EXTRA_STREAM, uri)
-            intent.type = "image/*"
-            startActivity(Intent.createChooser(intent, "Share To: "))
+            // Invalidate the chart to ensure it is fully drawn.
+            barChart.invalidate()
+
+            // Wait for the chart to be fully drawn before capturing the bitmap.
+            barChart.post {
+                val chartWidth = 900 // Width in pixels
+                val chartHeight = 600 // Height in pixels
+                val chartBitmap = captureChartAsBitmap(barChart, chartWidth, chartHeight)
+
+                // Create an intent to share the captured chart.
+                val intent = Intent(Intent.ACTION_SEND)
+                val path = MediaStore.Images.Media.insertImage(contentResolver, chartBitmap, "Bar Chart", null)
+                val uri = Uri.parse(path)
+                intent.putExtra(Intent.EXTRA_STREAM, uri)
+                intent.type = "image/*"
+                startActivity(Intent.createChooser(intent, "Share To: "))
+            }
         }
 
         val text : TextView = findViewById(R.id.textView2)

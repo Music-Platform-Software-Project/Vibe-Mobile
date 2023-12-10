@@ -72,9 +72,7 @@ class MyRequestAdapter(private var requests: List<RequestDataInterface.sentFrien
                     Log.e("rejecting invitations:", "rejecting body")
                     if (response.isSuccessful) {
                         val responseBody = response.body()
-                        Log.e("rejecting invitations: ",
-                            (responseBody ?: "Response body is null").toString()
-                        )
+                        Log.e("rejecting invitations: ", (responseBody ?: "Response body is null").toString())
                         // Parse the responseBody as needed or handle the string response
                         if (responseBody != null) {
                             Log.e("rejecting", "invitation list changed")
