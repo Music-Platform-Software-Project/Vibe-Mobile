@@ -95,7 +95,9 @@ class Dashboard : AppCompatActivity() {
                 return true
             }
             R.id.action_plus -> {
-                startActivity(Intent(this, ImportTrack::class.java))
+                //startActivity(Intent(this, ImportTrack::class.java))
+                showImportDialog()
+
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -155,5 +157,32 @@ class Dashboard : AppCompatActivity() {
 
         dialog.show()
     }
+
+
+    private fun showImportDialog() {
+        val builder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.import_dialog, null)
+        val buttonSpoti = dialogView.findViewById<Button>(R.id.buttonSpoti)
+        val buttonManuel = dialogView.findViewById<Button>(R.id.buttonManuel)
+
+        builder.setView(dialogView)
+
+        val dialog = builder.create()
+        buttonSpoti.setOnClickListener {
+            startActivity(Intent(this, ImportTrackSpotify::class.java))
+            dialog.dismiss()
+        }
+
+        buttonManuel.setOnClickListener {
+            startActivity(Intent(this, ImportTrack::class.java))
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+
+
 
 }

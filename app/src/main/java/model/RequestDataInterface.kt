@@ -226,6 +226,9 @@ interface RequestDataInterface {
     )
 
 
+    data class ImportFromSpotifyRequest(
+        val url :String
+    )
 
 
 }

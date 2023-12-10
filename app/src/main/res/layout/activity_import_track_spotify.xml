@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="importTrackSpotifyViewModel"
+            type="viewmodel.ImportTrackSpotifyViewModel" />
+    </data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_theme"
+    tools:context="view.ImportTrackSpotify">
+
+    <ImageButton
+        android:id="@+id/goBackBtn"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:layout_marginTop="26dp"
+        android:background="@color/transparent"
+        android:src="@drawable/back_arrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageButton>
+    <TextView
+        android:id="@+id/importTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="59dp"
+        android:fontFamily="@font/dmsans_bold"
+        android:text="Import Track From Spotify"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/importTxt"
+        app:layout_constraintEnd_toEndOf="@id/importTxt"
+        app:layout_constraintTop_toBottomOf="@id/importTxt"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
+        android:text="Please enter the track URL to import from Spotify"
+        android:fontFamily="@font/dmsans_regular"
+        android:layout_marginTop="@dimen/_20sdp"
+        >
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/spotiUrl"
+        android:layout_width="@dimen/_270sdp"
+        android:layout_height="@dimen/_30sdp"
+        app:layout_constraintStart_toStartOf="@id/desc"
+        app:layout_constraintEnd_toEndOf="@id/desc"
+        app:layout_constraintTop_toBottomOf="@id/desc"
+        android:background="@drawable/import_track_entry"
+        android:paddingLeft="@dimen/_10sdp"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/_11sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        >
+
+    </EditText>
+
+    <Button
+        android:id="@+id/importButton"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/import_track_entry"
+        android:fontFamily="@font/dmsans_bold"
+        android:text="Import"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp"
+       android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="@id/spotiUrl"
+        app:layout_constraintHorizontal_bias="0.479"
+        android:layout_marginBottom="@dimen/_50sdp"
+        app:layout_constraintStart_toStartOf="@id/spotiUrl"
+        app:layout_constraintTop_toBottomOf="@id/spotiUrl"
+
+        app:layout_constraintVertical_bias="1.0" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

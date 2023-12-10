@@ -209,5 +209,12 @@ interface APIRequest {
         @Body request: RequestDataInterface.UserStatsRequest
     ):Call<List<RequestDataInterface.UserStatResponse>>
 
+    @POST("/track/addSpotify")
+    @Headers(constants.contentType)
+    fun importTrackFromSpotify(
+    @Body request: RequestDataInterface.ImportFromSpotifyRequest
+    ): Call<Boolean>
+
+
 
 }
