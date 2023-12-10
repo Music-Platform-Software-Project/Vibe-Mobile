@@ -56,7 +56,8 @@ class DetailedTrackViewModel(): ViewModel() {
                         )
                         (ctx as? Activity)?.findViewById<TextView>(R.id.trackName)?.text = responseBody?.name
 
-                        (ctx as? Activity)?.findViewById<TextView>(R.id.trackArtist)?.text = manageArtist(responseBody!!.artist)
+                        val artistNames = responseBody?.artists?.joinToString(", ")
+                        (ctx as? Activity)?.findViewById<TextView>(R.id.trackArtist)?.text = artistNames
                         //Log.e("artists: ", responseBody!!.artist.toString())
                         (ctx as? Activity)?.findViewById<TextView>(R.id.trackTempo)?.text = manageTempo(responseBody?.tempo)
                         (ctx as? Activity)?.findViewById<TextView>(R.id.trackAcoustic)?.text = manageAcoustic(responseBody?.acousticness)
@@ -254,6 +255,7 @@ class DetailedTrackViewModel(): ViewModel() {
         }
     }
 
+
     fun rateTrack(id: String, rate : Int){
         try {
 
@@ -268,7 +270,9 @@ class DetailedTrackViewModel(): ViewModel() {
                     if (response.isSuccessful) {
                         val responseBody = response.body()
                         Log.e("rate track response: ", (responseBody ?: "Response body is null").toString())
+                        getAll(id)
                         Toast.makeText(ctx, "Track Rated as ${rate.toString()}", Toast.LENGTH_SHORT).show()
+
                     }
                     else {
                         try {
@@ -277,7 +281,7 @@ class DetailedTrackViewModel(): ViewModel() {
                             errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
                             Log.e("delete track error: ", "HTTP ${response.code()}: $errorBody")
                             Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show()
-                            getAll(id)
+
                         } catch (e: Exception) {
                             Log.e("delete track error: ", "Error parsing error response.")
                         }

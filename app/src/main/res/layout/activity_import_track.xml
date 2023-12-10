@@ -377,6 +377,7 @@
         android:paddingLeft="@dimen/_10sdp"
         app:layout_constraintHorizontal_bias="0.034"
         android:inputType="number"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@id/moodTxt"
         app:layout_constraintTop_toBottomOf="@id/moodTxt">
 

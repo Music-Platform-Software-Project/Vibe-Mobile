@@ -382,4 +382,5 @@ class ProfilePageViewModel() : ViewModel() {
             // Handle the exception here (e.g. log it or display an error message)
         }
     }
+
 }

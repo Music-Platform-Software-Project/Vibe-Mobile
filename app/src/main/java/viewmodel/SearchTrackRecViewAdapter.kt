@@ -33,8 +33,14 @@ class SearchTrackRecViewAdapter(private val context : Context, private val data 
         // Populate the UI elements with track data
         //holder.trackName.text = data[1].toString()
         //holder.trackArtist.text = data[3].toString() // Assuming trackArtist is a property of RequestDataInterface.SearchTrackResponse
+
+        val artistNames = track.artists.map { it.name } // Extract artist names
+        val artistNamesString = artistNames.joinToString(", ") // Join artist names into a single string
         holder.trackName.text = track.name
-        holder.trackArtist.text = track.artists.joinToString(", ")
+        holder.trackArtist.text = artistNamesString
+        Log.e("artiz: ", track.artists.toString())
+        Log.e("names: ", artistNames.toString())
+        Log.e("name string: ", artistNamesString)
         holder.item.setOnClickListener {
             val intent = Intent(holder.item.context, DetailedTrack::class.java)
             intent.putExtra("id", track.id)

@@ -1,0 +1,35 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_115sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/input_fields"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:layout_margin="@dimen/_10sdp"
+    android:layout_height="120dp"
+    android:id="@+id/artistRow">
+
+    <TextView
+        android:id="@+id/artistNameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dmsans_bold"
+        android:text="Artist Name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/artistRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dmsans_regular"
+        android:layout_below="@id/artistNameTxt"
+        android:layout_alignLeft="@id/artistNameTxt"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:text="4.5"
+        android:textColor="@color/hint_color"
+        android:textSize="@dimen/_7sdp"
+        android:layout_gravity="center_vertical" />
+</RelativeLayout>

@@ -196,5 +196,16 @@ interface APIRequest {
     ):Call<Boolean>
 
 
+    @GET("/track/recommended")
+    @Headers(constants.contentType)
+    fun recommendTrack(
+        @Header("Authorization") bearerToken: String
+    ):Call<List<RequestDataInterface.RecommendTrackResponse>>
 
+    @POST("/user/stats")
+    @Headers(constants.contentType)
+    fun userStatistics(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.UserStatsRequest
+    ):Call<List<RequestDataInterface.UserStatResponse>>
 }

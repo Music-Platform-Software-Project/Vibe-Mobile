@@ -44,6 +44,7 @@ class RegisterPageViewModel() :ViewModel() {
                         Log.e("registration response: ", responseBody ?: "Response body is null")
                         constants.bearerToken = responseBody.toString()
                         // Parse the responseBody as needed or handle the string response
+                        Toast.makeText(ctx, "Registration Successfull !", Toast.LENGTH_LONG).show()
                         ctx.startActivity(Intent(ctx, LoginPage::class.java))
                     }
                     else {

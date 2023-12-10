@@ -13,7 +13,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import view.Dashboard
 import view.ImportTrack
-import view.PersonalizedTracks
 import view.ProfilePage
 
 class ImportTrackViewModel() : ViewModel() {
@@ -44,6 +43,7 @@ class ImportTrackViewModel() : ViewModel() {
                     if (response.isSuccessful) {
                         var responseBody = response.body()
                         Log.e("add Track response: ", responseBody.toString() ?: "Response body is null")
+                        Toast.makeText(ctx, "Track ${trackData.track.name} imported successfully !", Toast.LENGTH_LONG).show()
                         ctx.startActivity(Intent(ctx, Dashboard::class.java ))
                     }
                     else {

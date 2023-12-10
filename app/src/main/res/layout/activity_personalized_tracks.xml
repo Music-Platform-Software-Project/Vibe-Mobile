@@ -68,17 +68,31 @@
 
    </RelativeLayout>
 
+    <Button
+        android:id="@+id/shareResults"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barHolder"
+        android:background="@drawable/input_fields"
+        android:textAllCaps="false"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:textColor="@color/white"
+        android:text="Share Your Results">
+
+    </Button>
     <TextView
         android:id="@+id/tracksTxt"
         android:layout_width="@dimen/_180sdp"
         android:layout_height="@dimen/_40sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barHolder"
+        app:layout_constraintTop_toBottomOf="@id/shareResults"
         android:fontFamily="@font/dmsans_bold"
         android:textColor="@color/white"
         android:textSize="@dimen/_16sdp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:text="Personalized Tracks"
         android:gravity="center">
 

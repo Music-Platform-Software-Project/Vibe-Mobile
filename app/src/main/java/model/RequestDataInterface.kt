@@ -99,7 +99,7 @@ interface RequestDataInterface {
     data class SearchTrackResponse(
         val id: String,
         val name: String,
-        val artists: List<String>,
+        val artists: List<artiz>,
         val duration_ms : Int,
         val rating: Int
     )
@@ -132,7 +132,7 @@ interface RequestDataInterface {
         val name: String,
         val album: AlbumForTrackDetails,
         val genre: String,
-        val artist: List<String>,
+        val artists: List<String>,
         val rating: Double,
         val duration_ms: Int,
         val tempo: Int,
@@ -141,6 +141,10 @@ interface RequestDataInterface {
         val energy: Int
     )
 
+
+    data class artiz(
+        val name: String
+    )
     data class AlbumForTrackDetails(
         val album_type: String,
         val name: String,
@@ -184,6 +188,41 @@ interface RequestDataInterface {
     data class TrackRateRequest(
         val id: String,
         val rate : Int
+    )
+
+    data class RecommendTrackResponse(
+        val id: String,
+        val username: String,
+        val ratedTracks: List<RatedTrack>
+    )
+
+    data class RatedTrack(
+        val id: String,
+        val artists: List<String>,
+        val name: String,
+        val duration_ms: Int,
+        val rating: Double
+    )
+
+
+    data class UserStatsRequest(
+        val days : Int
+    )
+
+    data class UserStatResponse(
+        val userRate: Int,
+        val rateTime: String,
+        val track: UserStatTrack
+    )
+
+    data class UserStatTrack(
+        val id: String,
+        val tempo: Int,
+        val instrumentalness: Int,
+        val acousticness: Int,
+        val energy: Int,
+        val genre: String,
+        val artists: List<String>
     )
 
 
