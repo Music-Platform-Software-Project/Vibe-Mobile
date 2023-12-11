@@ -125,11 +125,9 @@ class SettingsViewModel() : ViewModel() {
                         val responseBody = response.body()
                         Log.e("registration response: ", responseBody ?: "Response body is null")
                         // Parse the responseBody as needed or handle the string response
-                        Toast.makeText(
-                            ctx,
-                            "Username successfully updated to $username",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        Toast.makeText(ctx, "Username successfully updated to $username", Toast.LENGTH_LONG).show()
+                        getDetails()
+
                     } else {
                         try {
                             var errorBody = response.errorBody()?.string()

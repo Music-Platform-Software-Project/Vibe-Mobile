@@ -391,24 +391,25 @@ class ProfilePageViewModel() : ViewModel() {
                     Log.e("artist response:", "retrieving body")
                     if (response.isSuccessful) {
                         val responseBody = response.body()
-                        Log.e("artist response: ",
-                            (responseBody ?: "Response body is null").toString()
-                        )
-                        val trackNames = responseBody?.get(0)?.ratedTracks
-                        val itemList = mutableListOf<RequestDataInterface.MyPlaylistsResponse>()
-                        val itemList2 = mutableListOf<RequestDataInterface.MyPlaylistsResponse>()
-                        for(track in trackNames!!){
-                            val response = RequestDataInterface.MyPlaylistsResponse(track.id, track.artists[0])
-                            val response2 = RequestDataInterface.MyPlaylistsResponse(track.id, track.name)
-                            if(!itemList.contains(response)){
-                                itemList.add(response)
+                        Log.e("artist response: ", (responseBody ?: "Response body is null").toString())
+                        if (responseBody!!.isNotEmpty()){
+                            val trackNames = responseBody?.get(0)?.ratedTracks
+                            val itemList = mutableListOf<RequestDataInterface.MyPlaylistsResponse>()
+                            val itemList2 = mutableListOf<RequestDataInterface.MyPlaylistsResponse>()
+                            for(track in trackNames!!){
+                                val response = RequestDataInterface.MyPlaylistsResponse(track.id, track.artists[0])
+                                val response2 = RequestDataInterface.MyPlaylistsResponse(track.id, track.name)
+                                if(!itemList.contains(response)){
+                                    itemList.add(response)
+                                }
+                                if(!itemList2.contains(response2)){
+                                    itemList2.add(response2)
+                                }
                             }
-                            if(!itemList2.contains(response2)){
-                                itemList2.add(response2)
-                            }
+                            setRecyclerViewForArtists(itemList)
+                            setRecyclerViewForTracks(itemList2)
                         }
-                        setRecyclerViewForArtists(itemList)
-                        setRecyclerViewForTracks(itemList2)
+
                     }
                     else {
                         try {
