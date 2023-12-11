@@ -43,8 +43,10 @@ class SearchTrackToAddPlaylistRecViewAdapter(private val context : Context, priv
         // Populate the UI elements with track data
         //holder.trackName.text = data[1].toString()
         //holder.trackArtist.text = data[3].toString() // Assuming trackArtist is a property of RequestDataInterface.SearchTrackResponse
+        val artistNames = track.artists.map { it.name } // Extract artist names
+        val artistNamesString = artistNames.joinToString(", ") // Join artist names into a single string
         holder.trackName.text = track.name
-        holder.trackArtist.text = track.artists.joinToString(", ")
+        holder.trackArtist.text = artistNamesString
         holder.item.setOnClickListener {
             addSongToPlaylist(constants.currentPlaylistID, track.id)
             val intent = Intent(holder.item.context, DetailedPlaylist::class.java)
