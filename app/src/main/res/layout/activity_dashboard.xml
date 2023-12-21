@@ -86,6 +86,66 @@
 
 
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:gravity="center_vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Playlists"
+                    android:textSize="@dimen/_20sdp"/>
+
+                <ImageView
+                    android:id="@+id/btnAddPlaylist2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/plus_icon_white"
+                    android:visibility="visible"
+                    android:background="@drawable/white_circle"
+                    android:layout_marginStart="10dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/playlists_view_all2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/hint_color"
+                android:text="@string/view_all"
+                android:textSize="12sp"
+                android:paddingTop="@dimen/_5sdp"
+                android:layout_marginBottom="20dp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/playlists_rec_view2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:spanCount="3"
+                app:reverseLayout="false"
+                app:stackFromEnd="false"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@drawable/div_bcg"/>
+
+            <TextView
+                android:id="@+id/favPlaylist2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="You do not have any liked songs to display"
+                android:visibility="gone"/>
+
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

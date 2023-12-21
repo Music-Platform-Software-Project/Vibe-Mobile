@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
 import model.RequestDataInterface
 
-class RecyclerViewAdapter(private val itemList: List<RequestDataInterface.MyPlaylistsResponse>, private val type : Int) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class LikedRecViewAdapter (private val itemList: List<RequestDataInterface.MyPlaylistsResponse>, private val type : Int) : RecyclerView.Adapter<LikedRecViewAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
@@ -36,12 +36,12 @@ class RecyclerViewAdapter(private val itemList: List<RequestDataInterface.MyPlay
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = itemList[position]
-        Log.e("rec adap: ", currentItem.name)
-        if (currentItem.name != "Liked Songs"){
+        Log.e("fav rec adap: ", currentItem.name)
+        if (currentItem.name == "Liked Songs"){
+            Log.e("fav inside adap: ", currentItem.name)
             holder.imageView.setImageResource(R.drawable.vibe_logo_2)
             holder.textView.text = currentItem.name
         }
-
         holder.item.setOnClickListener {
 
             if(type ==1 ){ //when clicked on playlist

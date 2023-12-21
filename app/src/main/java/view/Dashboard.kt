@@ -43,11 +43,13 @@ class Dashboard : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         viewModel.refreshPlaylists()
+        viewModel.refreshRealPlaylists()
         viewModel.setRecyclerViewForArtists(emptyList())
         viewModel.setRecyclerViewForTracks(emptyList())
 
 
         val playlistAddButton : ImageView = findViewById(R.id.btnAddPlaylist)
+        val realPlaylistAddButton : ImageView = findViewById(R.id.btnAddPlaylist2)
 
 
         val settingsBtn : TextView = findViewById(R.id.nav_settings)
@@ -60,6 +62,10 @@ class Dashboard : AppCompatActivity() {
         playlistAddButton.setOnClickListener {
             showInputDialog()
             playlistAddButton.visibility = View.GONE   //REMOVE THIS AFTER MVP
+        }
+
+        realPlaylistAddButton.setOnClickListener {
+            showPlaylistInputDialog()
         }
 
         //REMOVE THIS AFTER MVP
@@ -133,6 +139,29 @@ class Dashboard : AppCompatActivity() {
 
         builder.show()
     }
+
+    private fun showPlaylistInputDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Enter the name of your Playlist")
+
+        val input = EditText(this)
+        builder.setView(input)
+
+        builder.setPositiveButton("OK") { _, _ ->
+            val userInput = input.text.toString()
+            // Handle the user input here
+            // For example, you can display it in a Toast
+            viewModel.addRealPlaylist(userInput)
+
+        }
+
+        builder.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.cancel()
+        }
+
+        builder.show()
+    }
+
 
 
     private fun showSearchDialog() {

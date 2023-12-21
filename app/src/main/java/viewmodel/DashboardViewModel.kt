@@ -23,6 +23,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import view.Dashboard
+import view.LikedRecViewAdapter
 import view.RecyclerViewAdapter
 import view.RegisterPage
 import view.SearchPlaylist
@@ -53,9 +54,27 @@ class DashboardViewModel() : ViewModel() {
 
 
 
+    //FOR LIKED SONGS
     fun setRecyclerView(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.playlists_rec_view)
         val msg = (ctx as? Activity)?.findViewById<TextView>(R.id.favPlaylist)
+        if(itemList.isEmpty()){
+            recyclerView?.visibility =  View.INVISIBLE
+            msg?.visibility = View.VISIBLE
+        }
+        else{
+            recyclerView?.layoutManager =  GridLayoutManager(ctx, 3, GridLayoutManager.HORIZONTAL, false)
+            val adapter = LikedRecViewAdapter(itemList, 1)
+            recyclerView?.adapter = adapter
+            recyclerView?.visibility =  View.VISIBLE
+            msg?.visibility = View.INVISIBLE
+        }
+    }
+
+    //FOR PLAYLISTS
+    fun setRecyclerViewPlaylist(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
+        val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.playlists_rec_view2)
+        val msg = (ctx as? Activity)?.findViewById<TextView>(R.id.favPlaylist2)
         if(itemList.isEmpty()){
             recyclerView?.visibility =  View.INVISIBLE
             msg?.visibility = View.VISIBLE
@@ -149,7 +168,100 @@ class DashboardViewModel() : ViewModel() {
     }
 
 
+    fun addRealPlaylist(userInput: String) {
+        try {
+            val retrofitBuilder = retrofitClient.createAPIRequest()
 
+            val request = RequestDataInterface.addPlaylistRequest(userInput)
+            val token = "Bearer " + constants.bearerToken
+            val retrofitData = retrofitBuilder.addPlaylist(token, request)
+            Log.e("playlist process", "going...")
+
+            retrofitData.enqueue(object : Callback<Boolean> {
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                    Log.e("playlist response:", "retrieving body")
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.e("playlist response: ",
+                            (responseBody ?: "Response body is null").toString()
+                        )
+                        refreshRealPlaylists()
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("login error: ", "HTTP ${response.code()}: $errorBody")
+                            Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show()
+                        } catch (e: Exception) {
+                            Log.e("login error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                    Log.e("login error: ", t.toString())
+                }
+            })
+
+        }
+        catch (e: Exception) {
+            Log.e("error", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
+    }
+
+
+    //FOR PLAYLISTS
+    fun refreshRealPlaylists(){
+        try {
+            val retrofit = Retrofit.Builder()
+                .baseUrl(constants.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val retrofitBuilder = retrofit.create(APIRequest::class.java)
+
+            val token = "Bearer " + constants.bearerToken
+            val retrofitData = retrofitBuilder.getOwnPlaylists(token)
+
+            retrofitData.enqueue(object : Callback<List<RequestDataInterface.MyPlaylistsResponse>> {
+                override fun onResponse(call: Call<List<RequestDataInterface.MyPlaylistsResponse>>, response: Response<List<RequestDataInterface.MyPlaylistsResponse>>) {
+                    Log.e("refresh response:", "retrieving body")
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.e("refresh response: ",
+                            (responseBody ?: "Response body is null").toString()
+                        )
+                        setRecyclerViewPlaylist(response.body()!!)
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("refresh error: ", "HTTP ${response.code()}: $errorBody")
+                            Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show()
+                        } catch (e: Exception) {
+                            Log.e("refresh error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<List<RequestDataInterface.MyPlaylistsResponse>>, t: Throwable) {
+                    Log.e("refresh error: ", t.toString())
+                }
+            })
+
+        }
+        catch (e: Exception) {
+            Log.e("error", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
+    }
+
+    //FOR LIKED SONGS
     fun refreshPlaylists(){
         try {
             val retrofit = Retrofit.Builder()
@@ -167,9 +279,7 @@ class DashboardViewModel() : ViewModel() {
                     Log.e("refresh response:", "retrieving body")
                     if (response.isSuccessful) {
                         val responseBody = response.body()
-                       Log.e("refresh response: ",
-                            (responseBody ?: "Response body is null").toString()
-                        )
+                       Log.e("refresh response: ", (responseBody ?: "Response body is null").toString())
                         setRecyclerView(response.body()!!)
                     }
                     else {
