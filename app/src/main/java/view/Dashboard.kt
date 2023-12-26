@@ -61,11 +61,13 @@ class Dashboard : AppCompatActivity() {
 
         playlistAddButton.setOnClickListener {
             showInputDialog()
+            //viewModel.addRealPlaylist("Liked Songs")
             playlistAddButton.visibility = View.GONE   //REMOVE THIS AFTER MVP
         }
 
         realPlaylistAddButton.setOnClickListener {
             showPlaylistInputDialog()
+
         }
 
         //REMOVE THIS AFTER MVP

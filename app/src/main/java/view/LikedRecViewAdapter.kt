@@ -14,6 +14,7 @@ import model.RequestDataInterface
 
 class LikedRecViewAdapter (private val itemList: List<RequestDataInterface.MyPlaylistsResponse>, private val type : Int) : RecyclerView.Adapter<LikedRecViewAdapter.ViewHolder>() {
 
+    private val filteredItemList: List<RequestDataInterface.MyPlaylistsResponse> = itemList.filter { it.name == "Liked Songs" }
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
         val textView: TextView = itemView.findViewById(R.id.textView)
@@ -35,7 +36,7 @@ class LikedRecViewAdapter (private val itemList: List<RequestDataInterface.MyPla
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = itemList[position]
+        val currentItem = filteredItemList[position]
         Log.e("fav rec adap: ", currentItem.name)
         if (currentItem.name == "Liked Songs"){
             Log.e("fav inside adap: ", currentItem.name)
@@ -45,7 +46,7 @@ class LikedRecViewAdapter (private val itemList: List<RequestDataInterface.MyPla
         holder.item.setOnClickListener {
 
             if(type ==1 ){ //when clicked on playlist
-                val intent = Intent(holder.itemView.context, DetailedPlaylist::class.java)
+                val intent = Intent(holder.itemView.context, DetailedLikedSongs::class.java)
                 intent.putExtra("id", currentItem.id)
                 // You can also pass data to the new activity using putExtra if needed
                 // intent.putExtra("key", value)
@@ -64,7 +65,7 @@ class LikedRecViewAdapter (private val itemList: List<RequestDataInterface.MyPla
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return filteredItemList.size
     }
 
 

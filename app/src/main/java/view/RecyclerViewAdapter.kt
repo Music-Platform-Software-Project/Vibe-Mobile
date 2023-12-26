@@ -14,6 +14,7 @@ import model.RequestDataInterface
 
 class RecyclerViewAdapter(private val itemList: List<RequestDataInterface.MyPlaylistsResponse>, private val type : Int) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
+    private val filteredItemList: List<RequestDataInterface.MyPlaylistsResponse> = itemList.filter { it.name != "Liked Songs" }
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
         val textView: TextView = itemView.findViewById(R.id.textView)
@@ -35,12 +36,15 @@ class RecyclerViewAdapter(private val itemList: List<RequestDataInterface.MyPlay
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = itemList[position]
+
+
+        val currentItem = filteredItemList[position]
         Log.e("rec adap: ", currentItem.name)
         if (currentItem.name != "Liked Songs"){
             holder.imageView.setImageResource(R.drawable.vibe_logo_2)
             holder.textView.text = currentItem.name
         }
+
 
         holder.item.setOnClickListener {
 
@@ -64,7 +68,7 @@ class RecyclerViewAdapter(private val itemList: List<RequestDataInterface.MyPlay
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return filteredItemList.size
     }
 
 
