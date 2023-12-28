@@ -281,6 +281,11 @@ class DashboardViewModel() : ViewModel() {
                         val responseBody = response.body()
                        Log.e("refresh response: ", (responseBody ?: "Response body is null").toString())
                         setRecyclerView(response.body()!!)
+                        for (item in response.body()!!){
+                            if(item.name == "Liked Songs"){
+                                constants.likedSongsId = item.id
+                            }
+                        }
                     }
                     else {
                         try {

@@ -142,173 +142,35 @@
         android:textColor="@color/white"
         android:textSize="@dimen/_16sdp"
         android:layout_marginTop="60dp"
-        android:text="Personalized Tracks"
+        android:text="Dynamic Banner"
         android:gravity="center">
 
     </TextView>
 
     <LinearLayout
-        android:id="@+id/holder1"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_80sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginTop="25dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
+        android:id="@+id/bannerContainer"
+        android:layout_width="@dimen/_260sdp"
+        android:layout_height="@dimen/_250sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tracksTxt">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dmsans_medium"
-            android:text="Acousticness"
-            android:layout_marginLeft="@dimen/_12sdp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp">
-
-        </TextView>
-
-        <Spinner
-            android:id="@+id/acousticSpinner"
-            android:layout_width="@dimen/_110sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@color/transparent"
-            android:entries="@array/dropdown_items">
-
-        </Spinner>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/holder2"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_80sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginTop="25dp"
-        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.933"
-        app:layout_constraintLeft_toRightOf="@id/holder1"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
         app:layout_constraintTop_toBottomOf="@id/tracksTxt"
-        app:layout_goneMarginLeft="@dimen/_100sdp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dmsans_medium"
-            android:text="@string/energy"
-            android:layout_marginLeft="@dimen/_35sdp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp">
+        <!-- Add other UI elements here if needed -->
 
-        </TextView>
+        <ImageView
+            android:id="@+id/dynamicBannerImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY">
 
-        <Spinner
-            android:id="@+id/energySpinner"
-            android:layout_width="@dimen/_110sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@color/transparent"
-            android:entries="@array/dropdown_items">
-
-        </Spinner>
+        </ImageView> <!-- Replace with your dynamic banner image -->
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/holder3"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_80sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintLeft_toRightOf="@id/holder1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/holder1"
-        app:layout_goneMarginLeft="@dimen/_100sdp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dmsans_medium"
-            android:text="@string/instrumentalness"
-            android:textColor="@color/white"
-            android:layout_marginLeft="@dimen/_4sdp"
-            android:textSize="@dimen/_12sdp">
-
-        </TextView>
-
-        <Spinner
-            android:id="@+id/instrumentsSpinner"
-            android:layout_width="@dimen/_110sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@color/transparent"
-            android:entries="@array/dropdown_items">
-
-        </Spinner>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/holder4"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_80sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.933"
-        app:layout_constraintLeft_toRightOf="@id/holder1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/holder1"
-        app:layout_goneMarginLeft="@dimen/_100sdp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dmsans_medium"
-            android:text="@string/mood"
-            android:layout_marginLeft="@dimen/_35sdp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp">
-
-        </TextView>
-
-        <Spinner
-            android:id="@+id/moodSpinner"
-            android:layout_width="@dimen/_110sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:background="@color/transparent"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:entries="@array/dropdown_items">
-
-        </Spinner>
-
-    </LinearLayout>
-
-    <Button
-        android:layout_width="@dimen/_115sdp"
-        android:layout_height="@dimen/_43sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/holder4"
-        android:layout_marginTop="@dimen/_24sdp"
-        android:background="@drawable/input_fields"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_15sdp"
-        android:text="@string/recommend"
-        android:layout_marginBottom="@dimen/_50sdp"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-    </Button>
 
     <ImageView
         android:id="@+id/changeTime"

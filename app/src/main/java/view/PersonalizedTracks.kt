@@ -1,5 +1,6 @@
 package view
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -14,8 +15,12 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
@@ -33,6 +38,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import viewmodel.PersonalizedTracksViewModel
+import viewmodel.SearchTrackRecViewAdapter
 
 
 class PersonalizedTracks : AppCompatActivity() {
@@ -59,6 +65,9 @@ class PersonalizedTracks : AppCompatActivity() {
     private var currentTime = 0
 
 
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personalized_tracks)
@@ -73,58 +82,7 @@ class PersonalizedTracks : AppCompatActivity() {
 
         getStatistics(7)
         val changeButton : ImageView = findViewById(R.id.changeTime)
-        val spinner1 = findViewById<Spinner>(R.id.acousticSpinner)
-        val categoriesList = arrayOf<String?>("Item1","Item2", "Item3","Item4")
-        val adapter1 =
-            ArrayAdapter<Any?>(this, com.example.cs308_00.R.layout.customized_spinner_item, categoriesList)
-        adapter1.setDropDownViewResource(R.layout.customized_spinner_list)
-        spinner1.adapter = adapter1
-
-        val spinner2  = findViewById<Spinner>(R.id.moodSpinner)
-        val adapter2  = ArrayAdapter<Any?>(this, com.example.cs308_00.R.layout.customized_spinner_item, categoriesList)
-        adapter2.setDropDownViewResource(R.layout.customized_spinner_list)
-        spinner2.adapter = adapter2
-
-        val spinner3  = findViewById<Spinner>(R.id.instrumentsSpinner)
-        val adapter3  = ArrayAdapter<Any?>(this, com.example.cs308_00.R.layout.customized_spinner_item, categoriesList)
-        adapter3.setDropDownViewResource(R.layout.customized_spinner_list)
-        spinner3.adapter = adapter3
-
-
-        val spinner4  = findViewById<Spinner>(R.id.energySpinner)
-        val adapter4  = ArrayAdapter<Any?>(this, com.example.cs308_00.R.layout.customized_spinner_item, categoriesList)
-        adapter4.setDropDownViewResource(R.layout.customized_spinner_list)
-        spinner4.adapter = adapter4
-
-
-
-
-        /*
-
-        viewModel.averageTempo.observe(this, Observer { averageTempo ->
-            // Store the value in the activity variable
-            this.averageTempo = averageTempo
-            Log.e("averageTempo: ", averageTempo.toString())
-        })
-
-        viewModel.averageInstrumentalness.observe(this, Observer { averageInstrumentalness ->
-            // Store the value in the activity variable
-            this.averageInstrumentalness = averageInstrumentalness
-        })
-
-        viewModel.averageAcousticness.observe(this, Observer { averageAcousticness ->
-            // Store the value in the activity variable
-            this.averageAcousticness = averageAcousticness
-        })
-
-        viewModel.averageEnergy.observe(this, Observer { averageEnergy ->
-            // Store the value in the activity variable
-            this.averageEnergy = averageEnergy
-        })
-
-         */
-
-        //Log.e("Tempo in ac: ", averageTempo.toString())
+        val dynamicBannerView = findViewById<ImageView>(R.id.dynamicBannerImageView)
 
 
 
@@ -344,61 +302,6 @@ class PersonalizedTracks : AppCompatActivity() {
         barChart.invalidate()
     }
 
-    /*
-    private fun generateBarChartData(
-        accousticAv: Double,
-        instrumAv: Double,
-        tempoAv: Double,
-        energyAv: Double
-    ): BarData {
-        val barEntries = mutableListOf<BarEntry>()
-
-        val criteria = arrayOf("Accousticness", "Energy", "Instrumentalness", "Mood")
-
-        // Add the average values to the bar entries.
-        barEntries.add(BarEntry(1f, accousticAv.toFloat()))
-        barEntries.add(BarEntry(2f, energyAv.toFloat()))
-        barEntries.add(BarEntry(3f, instrumAv.toFloat()))
-        barEntries.add(BarEntry(4f, tempoAv.toFloat()))
-
-        val dataSet = BarDataSet(barEntries, "Averages")
-
-        return BarData(dataSet)
-    }
-
-
-
-
-
-    private fun setupBarChart() {
-        // Set bar chart data.
-        barChart.data = barData
-
-        // Customize the appearance of the bar chart as needed.
-        barChart.description.isEnabled = false
-        val xAxis = barChart.xAxis
-        //xAxis.valueFormatter = IndexAxisValueFormatter(criteria)
-        xAxis.setCenterAxisLabels(true)
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.setGranularity(1f)
-        xAxis.setGranularityEnabled(true)
-        barChart.setDragEnabled(true)
-        barChart.setVisibleXRangeMaximum(3f)
-        val barSpace = 0.1f
-        // val groupSpace = 0.5f
-        barData.barWidth = 0.15f
-        barChart.xAxis.axisMinimum = 0f
-        barChart.animate()
-        //barChart.groupBars(0f, groupSpace, barSpace)
-        barChart.invalidate()
-    }
-
-    fun goToProfilePage(view :View){
-        startActivity(Intent(this, ProfilePage::class.java))
-    }
-
-
-     */
 
     private fun captureChartAsBitmap(barChart: BarChart, width: Int, height: Int): Bitmap {
         // Create a bitmap with the desired width and height.
