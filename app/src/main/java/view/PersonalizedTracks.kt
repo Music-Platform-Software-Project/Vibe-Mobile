@@ -82,7 +82,7 @@ class PersonalizedTracks : AppCompatActivity() {
 
         getStatistics(7)
         val changeButton : ImageView = findViewById(R.id.changeTime)
-        val dynamicBannerView = findViewById<ImageView>(R.id.dynamicBannerImageView)
+
 
 
 
