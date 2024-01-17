@@ -3,15 +3,38 @@ package viewmodel
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
+import android.net.Uri
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import model.RequestDataInterface
 import network.APIRequest
 import network.RetrofitClient
@@ -32,6 +55,9 @@ class ProfilePageViewModel() : ViewModel() {
     private var checker : Boolean = false
     private var friendsList = mutableListOf<RequestDataInterface.friends>()
     private lateinit var currFriends : List<RequestDataInterface.friends>
+    private val numberOfIntermediatePoints = 10 // Number of points between each data point
+    private var job: Job? = null
+    private val animationScope = CoroutineScope(Dispatchers.Default)
 
     fun setContext(ctx: ProfilePage) {
         this.ctx = ctx
@@ -43,6 +69,219 @@ class ProfilePageViewModel() : ViewModel() {
         setUsernameandFriends()
         // Add any other UI updates you need here
     }
+
+
+    fun generateLineChart(
+        lineChart: LineChart,
+        averageTempo: Double,
+        averageInstrumentalness: Double,
+        averageAcousticness: Double,
+        averageEnergy: Double
+    ) {
+        // Create a list of Entry with the average values.
+        val lineEntries = mutableListOf(
+            Entry(0f, averageTempo.toFloat() /2),
+            Entry(1f, averageInstrumentalness.toFloat()/3),
+            Entry(2f, averageAcousticness.toFloat()/2),
+            Entry(3f, averageEnergy.toFloat()/4),
+            Entry(4f, averageTempo.toFloat()/2),
+            Entry(5f, averageInstrumentalness.toFloat()/3),
+            Entry(6f, averageAcousticness.toFloat()/2),
+            Entry(7f, averageEnergy.toFloat()/4),
+            Entry(8f, averageTempo.toFloat()/2),
+            Entry(9f, averageInstrumentalness.toFloat()/3),
+            Entry(10f, averageAcousticness.toFloat()/2),
+            Entry(11f, averageEnergy.toFloat()/4),
+            Entry(12f, averageTempo.toFloat()/2),
+            Entry(13f, averageInstrumentalness.toFloat()/3),
+            Entry(14f, averageAcousticness.toFloat()/2),
+            Entry(15f, averageEnergy.toFloat()/4),
+
+
+
+        )
+
+
+        // Create a LineDataSet with lineEntries and set label.
+        val dataSet = LineDataSet(lineEntries, "").apply {
+            //color = Color.parseColor("#FFBB86FC") // Replace with your desired color code
+
+            valueTextColor = Color.WHITE
+            lineWidth = 3f
+            circleRadius = 5f
+            setCircleColor(Color.parseColor("#FF6200EE")) // Replace with your desired color code
+            setDrawValues(false)
+            setDrawCircles(false)
+            setDrawCircleHole(false)
+            setDrawFilled(true)
+            fillColor = Color.parseColor("#FF6200EE") // Replace with your desired color code
+            mode = LineDataSet.Mode.CUBIC_BEZIER // Set mode to CUBIC_BEZIER for smooth curves
+            cubicIntensity = 0.2f // Adjust the intensity for the curve smoothness
+        }
+
+
+        val data = LineData(dataSet)
+
+        // Set data to the line chart.
+        lineChart.data = data
+
+        // Customize the line chart further as needed.
+        val xAxis = lineChart.xAxis
+        xAxis.setDrawLabels(false) // No labels for X-axis
+        xAxis.setDrawGridLines(false) // No grid lines
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+
+        lineChart.axisLeft.apply {
+            setDrawLabels(true) // Adjust as needed
+            setDrawGridLines(true)
+            // Adjust these values as needed to "zoom out" the wave
+            axisMinimum = 0f // This should be the minimum value you expect for your data
+            axisMaximum = 100f // This should be the maximum value you expect for your data
+        }
+
+        // Customize the numbers on the horizontal part of the chart.
+        lineChart.axisLeft.setDrawLabels(false) // No labels for left Y-axis
+        lineChart.axisRight.isEnabled = false // Disable right Y-axis
+
+        // Formatter for displaying values (optional)
+        data.setValueFormatter(object : ValueFormatter() {
+            override fun getFormattedValue(value: Float): String {
+                return "%.2f".format(value)
+            }
+        })
+
+        // Other customizations
+        lineChart.setDrawGridBackground(false)
+        lineChart.setDrawBorders(false)
+        lineChart.description.isEnabled = false
+        lineChart.legend.isEnabled = false // Disable the legend
+        //lineChart.animateXY(1500, 1500, Easing.EaseInExpo)
+
+        lineChart.invalidate() // Refresh the line chart
+        startWaveAnimation(lineChart, dataSet,0.3f)
+
+
+    }
+
+
+    private fun startWaveAnimation(lineChart: LineChart, dataSet: LineDataSet, amplitude: Float) {
+        job?.cancel() // Cancel any existing job
+        job = CoroutineScope(Dispatchers.Main).launch {
+            var phaseShift = 10f // Initial phase shift
+
+            while (isActive) {
+                // Calculate a new phase shift for each x-value
+                val phaseShifts = FloatArray(dataSet.entryCount) { index ->
+                    (phaseShift + index * 10f) * 0.5f // Adjust the wave speed as needed (0.1f in this example)
+                }
+
+                // Update the y-values of each entry to create a moving wave
+                dataSet.values.forEachIndexed { index, entry ->
+                    val originalY = lineChart.data.getDataSetByIndex(0).getEntryForXValue(entry.x, 0f).y
+                    val yOffset = originalY + amplitude * kotlin.math.sin(phaseShifts[index])
+                    entry.y = yOffset
+                }
+
+                // Increment the phase shift
+                phaseShift += 0.1f // Adjust the phase shift increment as needed
+
+                dataSet.notifyDataSetChanged()
+                lineChart.notifyDataSetChanged()
+                lineChart.invalidate()
+
+                delay(25) // Control the speed of the wave animation
+            }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job?.cancel()
+    }
+
+    private fun captureChartAsBitmap(lineChart: LineChart, width: Int, height: Int): Bitmap {
+        // Create a bitmap with the desired width and height.
+        val chartBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+
+        // Create a canvas with the bitmap.
+        val canvas = Canvas(chartBitmap)
+
+        // Set the chart's dimensions to match the bitmap's size.
+        lineChart.layout(0, 0, width, height)
+
+        // Draw the chart onto the canvas.
+        lineChart.draw(canvas)
+
+        return chartBitmap
+    }
+
+    fun shareImage(context: Context, lineChart: LineChart) {
+        lineChart.invalidate()
+
+        // Wait for the chart to be fully drawn before capturing the bitmap.
+        lineChart.post {
+            val chartWidth = 900 // Width in pixels
+            val chartHeight = 600 // Height in pixels
+            val chartBitmap = captureChartAsBitmap(lineChart, chartWidth, chartHeight)
+
+            // Create an intent to share the captured chart.
+            val intent = Intent(Intent.ACTION_SEND)
+            val path = MediaStore.Images.Media.insertImage(context.contentResolver, chartBitmap, "Line Graph", null)
+            val uri = Uri.parse(path)
+            intent.putExtra(Intent.EXTRA_STREAM, uri)
+            intent.type = "image/*"
+            context.startActivity(Intent.createChooser(intent, "Share To: "))
+        }
+    }
+
+
+
+    /*
+    private fun startWaveAnimation(lineChart: LineChart, dataSet: LineDataSet) {
+        val waveSpeed = 0.25f // Adjust the wave speed as needed
+        val maxYValue = 100f // Set the maximum y-value based on your data range
+        val minYValue = 0f // Set the minimum y-value based on your data range
+
+        val amplitude = (maxYValue - minYValue) /3f // Calculate the amplitude based on the y-value range
+
+        job?.cancel() // Cancel any existing job
+        job = CoroutineScope(Dispatchers.Main).launch {
+            var phaseShift = 0f // Initial phase shift
+
+            while (isActive) {
+                // Calculate a new phase shift for each x-value
+                val phaseShifts = FloatArray(dataSet.entryCount) { index ->
+                    (phaseShift + index * 6f) * waveSpeed // Adjust the increment as needed
+                }
+
+                // Update the y-values of each entry to create a moving wave
+                dataSet.values.forEachIndexed { index, entry ->
+                    val yOffset = amplitude * kotlin.math.sin(phaseShifts[index])
+                    entry.y = minYValue + amplitude + yOffset
+                }
+
+                // Increment the phase shift
+                phaseShift += 0.1f // Adjust the phase shift increment as needed
+
+                dataSet.notifyDataSetChanged()
+                lineChart.notifyDataSetChanged()
+                lineChart.invalidate()
+
+                delay(10) // Control the speed of the wave animation
+            }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job?.cancel()
+    }
+
+     */
+
+
+
+
 
     fun setRecyclerViewForArtists(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.artists_rec_view)

@@ -2,8 +2,10 @@ package view
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.Editable
 import android.util.Log
 import android.view.MenuItem
@@ -18,10 +20,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.example.cs308_00.R
 import com.example.cs308_00.databinding.ActivityProfilePageBinding
+import com.github.mikephil.charting.charts.LineChart
 import viewmodel.ProfilePageViewModel
 
 class ProfilePage : AppCompatActivity() {
-    private lateinit var binding : ActivityProfilePageBinding
     private lateinit var viewModel : ProfilePageViewModel
     lateinit var toggle : ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,6 +81,14 @@ class ProfilePage : AppCompatActivity() {
             editText.text = Editable.Factory.getInstance().newEditable("")
             Toast.makeText(this, "friend request sent", Toast.LENGTH_SHORT).show()
             viewModel.sendRequest(username)
+        }
+
+        val lineChart = findViewById<LineChart>(R.id.albumHolder)
+        viewModel.generateLineChart(lineChart, 34.2, 23.43,90.43, 45.81)
+        val share = findViewById<Button>(R.id.shareDynamicBanner)
+        share.setOnClickListener {
+            // Invalidate the chart to ensure it is fully drawn.
+            viewModel.shareImage(this, lineChart)
         }
 
     }
