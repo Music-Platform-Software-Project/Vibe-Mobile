@@ -109,12 +109,12 @@
                         </TextView>
 
                         <SeekBar
-                            android:layout_width="@dimen/_190sdp"
-                            android:layout_height="30dp"
-                            android:layout_marginTop="@dimen/_22sdp"
-                            android:background="@drawable/slider_unused_bg"
-                            android:progressDrawable="@color/transparent"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:thumbOffset="6dp"
+                            android:progressDrawable="@drawable/seekbar_background"
                             android:thumb="@drawable/resized_thumb"
+                            android:splitTrack="false"
 
 
                             >
@@ -144,12 +144,12 @@
                         </TextView>
 
                         <SeekBar
-                            android:layout_width="@dimen/_190sdp"
-                            android:layout_height="30dp"
-                            android:layout_marginTop="@dimen/_22sdp"
-                            android:background="@drawable/slider_unused_bg"
-                            android:progressDrawable="@color/transparent"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:thumbOffset="6dp"
+                            android:progressDrawable="@drawable/seekbar_background"
                             android:thumb="@drawable/resized_thumb"
+                            android:splitTrack="false"
 
 
                             >
@@ -178,12 +178,12 @@
                         </TextView>
 
                         <SeekBar
-                            android:layout_width="@dimen/_190sdp"
-                            android:layout_height="30dp"
-                            android:layout_marginTop="@dimen/_22sdp"
-                            android:background="@drawable/slider_unused_bg"
-                            android:progressDrawable="@color/transparent"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:thumbOffset="6dp"
+                            android:progressDrawable="@drawable/seekbar_background"
                             android:thumb="@drawable/resized_thumb"
+                            android:splitTrack="false"
 
 
                             >
@@ -212,13 +212,12 @@
                         </TextView>
 
                         <SeekBar
-                            android:layout_width="@dimen/_190sdp"
-                            android:layout_height="30dp"
-                            android:layout_marginTop="@dimen/_22sdp"
-                            android:background="@drawable/slider_unused_bg"
-                            android:progressDrawable="@color/transparent"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:thumbOffset="6dp"
+                            android:progressDrawable="@drawable/seekbar_background"
                             android:thumb="@drawable/resized_thumb"
-
+                            android:splitTrack="false"
 
                             >
 

@@ -43,13 +43,53 @@
                android:textSize="@dimen/_18sdp"
                />
 
-           <FrameLayout
-               android:id="@+id/spotifyFrame"
+           <ImageView
+               android:id="@+id/roomFrame"
                android:layout_width="match_parent"
                android:layout_height="400dp"
                app:layout_constraintTop_toBottomOf="@id/frinedsRoomTxt"
-               android:layout_marginTop="30dp"
-               android:background="@color/spotify_green" />
+               android:layout_marginTop="30dp" />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_vertical"
+               android:layout_marginTop="@dimen/_15sdp"
+               android:orientation="horizontal">
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="Your Room's Song"
+                   android:textSize="@dimen/_20sdp"
+                   android:textColor="@color/white"
+                   android:fontFamily="@font/dmsans_bold"
+                   android:gravity="center">
+               </TextView>
+
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_vertical"
+               android:layout_marginTop="@dimen/_15sdp"
+               android:layout_marginBottom="@dimen/_15sdp"
+               android:orientation="horizontal">
+               <com.nitish.typewriterview.TypeWriterView
+                   android:id="@+id/personalRoomTrack"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="After Hours"
+                   android:textSize="@dimen/_15sdp"
+                   android:textColor="@color/white"
+                   android:singleLine="true"
+                   android:fontFamily="@font/dmsans_regular"
+                   android:gravity="center">
+               </com.nitish.typewriterview.TypeWriterView>
+
+
+           </LinearLayout>
 
            <LinearLayout
                android:layout_width="match_parent"
@@ -74,9 +114,12 @@
                <SeekBar
                    android:id="@+id/slider_rain"
                    android:layout_width="match_parent"
-                   android:layout_height="30dp"
-                   android:background="@drawable/slider_unused_bg"
+                   android:layout_height="40dp"
+                   android:thumbOffset="6dp"
+                   android:progressDrawable="@drawable/seekbar_background"
                    android:thumb="@drawable/resized_thumb"
+                   android:splitTrack="false"
+
                    />
 
                <TextView
@@ -94,9 +137,11 @@
                <SeekBar
                    android:id="@+id/slider_cafe"
                    android:layout_width="match_parent"
-                   android:layout_height="30dp"
-                   android:background="@drawable/slider_unused_bg"
+                   android:layout_height="40dp"
+                   android:thumbOffset="6dp"
+                   android:progressDrawable="@drawable/seekbar_background"
                    android:thumb="@drawable/resized_thumb"
+                   android:splitTrack="false"
                    />
 
                <TextView
@@ -114,9 +159,11 @@
                <SeekBar
                    android:id="@+id/slider_fireplace"
                    android:layout_width="match_parent"
-                   android:layout_height="30dp"
-                   android:background="@drawable/slider_unused_bg"
+                   android:layout_height="40dp"
+                   android:thumbOffset="6dp"
+                   android:progressDrawable="@drawable/seekbar_background"
                    android:thumb="@drawable/resized_thumb"
+                   android:splitTrack="false"
                    />
 
                <TextView
@@ -134,9 +181,11 @@
                <SeekBar
                    android:id="@+id/slider_nature"
                    android:layout_width="match_parent"
-                   android:layout_height="30dp"
-                   android:background="@drawable/slider_unused_bg"
+                   android:layout_height="40dp"
+                   android:thumbOffset="6dp"
+                   android:progressDrawable="@drawable/seekbar_background"
                    android:thumb="@drawable/resized_thumb"
+                   android:splitTrack="false"
                    />
            </LinearLayout>
 

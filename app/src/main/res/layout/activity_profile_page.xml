@@ -91,7 +91,7 @@
                     android:textColor="@color/white"
                     android:layout_marginTop="@dimen/_25sdp"
                     android:fontFamily="@font/dmsans_bold"
-                    android:text="Check out your Dynamic Banner !"
+                    android:text="Check out your Mood !"
                     >
 
                 </TextView>

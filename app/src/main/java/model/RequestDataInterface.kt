@@ -34,7 +34,30 @@ interface RequestDataInterface {
         val email : String,
         val username: String,
         val active : Boolean,
-        val friends : List<friends>
+        val friends : List<friends>,
+        val selectedRoom: String,
+        val selectedTrack: SelectedTrack
+    )
+
+    data class SelectedTrack(
+        val id: String,
+        val name: String,
+        val album: AlbumUserGetData,
+        val genre: String,
+        val artist: List<String>,
+        val rating: Double,
+        val duration_ms: Long,
+        val tempo: Int,
+        val instrumentalness: Double,
+        val acousticness: Double,
+        val energy: Double
+    )
+
+    data class AlbumUserGetData(
+        val album_type: String,
+        val name: String,
+        val release_year: Int,
+        val total_tracks: Int
     )
 
     data class friends(

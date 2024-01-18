@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.example.cs308_00.R
+import com.nitish.typewriterview.TypeWriterView
+import com.squareup.picasso.Picasso
 import viewmodel.DashboardViewModel
 
 class my_room : AppCompatActivity() {
@@ -40,6 +43,16 @@ class my_room : AppCompatActivity() {
         viewModel.setRecyclerViewForTracks()
 
          */
+        val personalRoomTrack : TypeWriterView = findViewById(R.id.personalRoomTrack)
+        personalRoomTrack.setCharacterDelay(150)
+       personalRoomTrack.animateText("After Hours")
+        //personalRoomTrack.animate()
+        val roomFrame : ImageView = findViewById(R.id.roomFrame)
+        //roomFrame.setImageResource(R.drawable.default_room)
+        Picasso.with(this)
+            .load(R.drawable.default_room) // Replace with your image resource or URL
+            .fit()
+            .into(roomFrame)
 
         val settingBtn : TextView = findViewById(R.id.nav_settings)
         settingBtn.setOnClickListener {

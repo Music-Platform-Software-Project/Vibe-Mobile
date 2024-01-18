@@ -65,4 +65,8 @@ dependencies {
 
     //bar chart and wave graph
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+
+    //effects
+    implementation 'com.github.NitishGadangi:TypeWriter-TextView:v1.3'
 }
