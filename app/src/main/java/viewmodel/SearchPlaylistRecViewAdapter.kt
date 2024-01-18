@@ -31,6 +31,7 @@ class SearchPlaylistRecViewAdapter(private val context : Context, private val da
         Log.e("on bind data", data.toString())
         // Populate the UI elements with track data
         holder.playlistName.text = playlist.name
+        holder.plOwner.text = playlist.ownerUsername
         holder.row_item.setOnClickListener {
             val intent = Intent(holder.row_item.context, DetailedPlaylist::class.java)
             intent.putExtra("id", playlist.id)
@@ -45,6 +46,7 @@ class SearchPlaylistRecViewAdapter(private val context : Context, private val da
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val playlistName: TextView = itemView.findViewById(R.id.playlistNameTxt)
         val row_item : RelativeLayout = itemView.findViewById(R.id.RLitemPlaylist)
+        val plOwner : TextView = itemView.findViewById(R.id.playlistOwner)
 
 
     }
