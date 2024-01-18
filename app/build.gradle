@@ -69,4 +69,5 @@ dependencies {
 
     //effects
     implementation 'com.github.NitishGadangi:TypeWriter-TextView:v1.3'
+
 }
