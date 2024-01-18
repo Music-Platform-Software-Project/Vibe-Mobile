@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
-            android:background="@color/main_theme">
+            android:background="@color/main_bcg">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -64,168 +64,154 @@
                     app:layout_constraintTop_toBottomOf="@id/holder"
                     android:textColor="@color/text_color"
                     android:layout_marginTop="30dp"
-                    android:text="Vibing in Test Friend's Room"
+                    android:text="Vibing in"
                     android:fontFamily="@font/dmsans_bold"
                     android:textSize="@dimen/_18sdp" />
 
-                <FrameLayout
+
+                <ImageView
                     android:id="@+id/spotifyFrame"
-                    android:layout_width="280dp"
+                    android:layout_width="350dp"
                     android:layout_height="370dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/frinedsRoomTxt"
                     android:layout_marginTop="30dp"
-                    android:background="@color/spotify_green" />
+                    android:background="@color/main_theme" />
+
+                <TextView
+                    android:id="@+id/friendSongTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Your Room's Song"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    app:layout_constraintStart_toStartOf="@id/spotifyFrame"
+                    app:layout_constraintEnd_toEndOf="@id/spotifyFrame"
+                    app:layout_constraintTop_toBottomOf="@id/spotifyFrame"
+                    android:textSize="@dimen/_20sdp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/dmsans_bold"
+                    android:gravity="center">
+                </TextView>
+
+                <com.nitish.typewriterview.TypeWriterView
+                    android:id="@+id/friendsRoomTrack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_13sdp"
+                    app:layout_constraintStart_toStartOf="@id/friendSongTxt"
+                    app:layout_constraintEnd_toEndOf="@id/friendSongTxt"
+                    app:layout_constraintTop_toBottomOf="@id/friendSongTxt"
+                    android:textColor="@color/secondary_app_color"
+                    android:singleLine="true"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:fontFamily="@font/dmsans_regular"
+                    android:gravity="center">
+
+                </com.nitish.typewriterview.TypeWriterView>
 
                 <LinearLayout
-                    android:id="@+id/moodHolder"
-                    android:layout_width="@dimen/_280sdp"
+                    android:layout_width="@dimen/_250sdp"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/spotifyFrame"
-                    android:layout_marginTop="20dp"
-                    android:orientation="vertical"
-                    android:gravity="center"
+                    app:layout_constraintTop_toBottomOf="@id/friendsRoomTrack"
+                    android:background="@color/div_bcg"
+                    android:layout_marginBottom="@dimen/_30sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:padding="5dp"
                     >
-
-                    <RelativeLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        >
+                        android:textColor="@color/white"
+                        android:layout_marginTop="27dp"
+                        android:text="Rain"
+                        android:gravity="left"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textSize="@dimen/_15sdp">
 
+                    </TextView>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:textColor="@color/white"
-                            android:text="Rain"
-                            android:layout_marginLeft="@dimen/_3sdp"
-                            android:textSize="@dimen/_15sdp">
+                    <SeekBar
+                        android:id="@+id/slider_rain"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:thumbOffset="6dp"
+                        android:progressDrawable="@drawable/seekbar_background"
+                        android:thumb="@drawable/resized_thumb"
+                        android:splitTrack="false"
 
-                        </TextView>
+                        />
 
-                        <SeekBar
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:thumbOffset="6dp"
-                            android:progressDrawable="@drawable/seekbar_background"
-                            android:thumb="@drawable/resized_thumb"
-                            android:splitTrack="false"
-
-
-                            >
-
-                        </SeekBar>
-
-                    </RelativeLayout>
-
-
-                    <RelativeLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:gravity="center"
-                        >
+                        android:textColor="@color/white"
 
+                        android:text="Cafe"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textSize="@dimen/_15sdp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:textColor="@color/white"
-                            android:text="Cafe"
-                            android:layout_marginLeft="@dimen/_3sdp"
-                            android:textSize="@dimen/_15sdp">
+                    </TextView>
 
-                        </TextView>
+                    <SeekBar
+                        android:id="@+id/slider_cafe"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:thumbOffset="6dp"
+                        android:progressDrawable="@drawable/seekbar_background"
+                        android:thumb="@drawable/resized_thumb"
+                        android:splitTrack="false"
+                        />
 
-                        <SeekBar
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:thumbOffset="6dp"
-                            android:progressDrawable="@drawable/seekbar_background"
-                            android:thumb="@drawable/resized_thumb"
-                            android:splitTrack="false"
-
-
-                            >
-
-                        </SeekBar>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="Fireplace"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textSize="@dimen/_15sdp">
 
-                        android:gravity="center"
-                        >
+                    </TextView>
 
+                    <SeekBar
+                        android:id="@+id/slider_fireplace"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:thumbOffset="6dp"
+                        android:progressDrawable="@drawable/seekbar_background"
+                        android:thumb="@drawable/resized_thumb"
+                        android:splitTrack="false"
+                        />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:textColor="@color/white"
-                            android:text="Fireplace"
-                            android:layout_marginLeft="@dimen/_3sdp"
-                            android:textSize="@dimen/_15sdp">
-
-                        </TextView>
-
-                        <SeekBar
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:thumbOffset="6dp"
-                            android:progressDrawable="@drawable/seekbar_background"
-                            android:thumb="@drawable/resized_thumb"
-                            android:splitTrack="false"
-
-
-                            >
-
-                        </SeekBar>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:gravity="center"
-                        >
+                        android:textColor="@color/white"
+                        android:text="Nature"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textSize="@dimen/_15sdp">
 
+                    </TextView>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:textColor="@color/white"
-                            android:text="Nature"
-                            android:layout_marginLeft="@dimen/_3sdp"
-                            android:textSize="@dimen/_15sdp">
-
-                        </TextView>
-
-                        <SeekBar
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:thumbOffset="6dp"
-                            android:progressDrawable="@drawable/seekbar_background"
-                            android:thumb="@drawable/resized_thumb"
-                            android:splitTrack="false"
-
-                            >
-
-                        </SeekBar>
-
-                    </RelativeLayout>
-
+                    <SeekBar
+                        android:id="@+id/slider_nature"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:thumbOffset="6dp"
+                        android:progressDrawable="@drawable/seekbar_background"
+                        android:thumb="@drawable/resized_thumb"
+                        android:splitTrack="false"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        />
                 </LinearLayout>
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

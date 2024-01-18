@@ -236,52 +236,6 @@ class ProfilePageViewModel() : ViewModel() {
 
 
 
-    /*
-    private fun startWaveAnimation(lineChart: LineChart, dataSet: LineDataSet) {
-        val waveSpeed = 0.25f // Adjust the wave speed as needed
-        val maxYValue = 100f // Set the maximum y-value based on your data range
-        val minYValue = 0f // Set the minimum y-value based on your data range
-
-        val amplitude = (maxYValue - minYValue) /3f // Calculate the amplitude based on the y-value range
-
-        job?.cancel() // Cancel any existing job
-        job = CoroutineScope(Dispatchers.Main).launch {
-            var phaseShift = 0f // Initial phase shift
-
-            while (isActive) {
-                // Calculate a new phase shift for each x-value
-                val phaseShifts = FloatArray(dataSet.entryCount) { index ->
-                    (phaseShift + index * 6f) * waveSpeed // Adjust the increment as needed
-                }
-
-                // Update the y-values of each entry to create a moving wave
-                dataSet.values.forEachIndexed { index, entry ->
-                    val yOffset = amplitude * kotlin.math.sin(phaseShifts[index])
-                    entry.y = minYValue + amplitude + yOffset
-                }
-
-                // Increment the phase shift
-                phaseShift += 0.1f // Adjust the phase shift increment as needed
-
-                dataSet.notifyDataSetChanged()
-                lineChart.notifyDataSetChanged()
-                lineChart.invalidate()
-
-                delay(10) // Control the speed of the wave animation
-            }
-        }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        job?.cancel()
-    }
-
-     */
-
-
-
-
 
     fun setRecyclerViewForArtists(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.artists_rec_view)
@@ -345,9 +299,11 @@ class ProfilePageViewModel() : ViewModel() {
                             }
                             else{
                                 val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
-                                friend1!!.text = "No Friend :("
+                                friend1!!.text = "No friend to display"
                                 val remove1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileVibeFriend1)
+                                val vibe1 = (ctx as? Activity)?.findViewById<TextView>(R.id.realVibeFriend1)
                                 remove1!!.visibility = View.INVISIBLE
+                                vibe1!!.visibility = View.INVISIBLE
                             }
                             if (response.body()!!.friends.size == 2){
                                 val friend2 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername2)
@@ -356,9 +312,11 @@ class ProfilePageViewModel() : ViewModel() {
                             }
                             else{
                                 val friend2 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername2)
-                                friend2!!.text ="No Friend :("
+                                friend2!!.text ="No friend to display"
                                 val remove2 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileVibeFriend2)
+                                val vibe2 = (ctx as? Activity)?.findViewById<TextView>(R.id.realVibeFriend2)
                                 remove2!!.visibility = View.INVISIBLE
+                                vibe2!!.visibility = View.INVISIBLE
                             }
                             if (response.body()!!.friends.size == 3){
                                 val friend3 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername3)
@@ -367,9 +325,11 @@ class ProfilePageViewModel() : ViewModel() {
 
                             else{
                                 val friend3 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername3)
-                                friend3!!.text = "No Friend :("
+                                friend3!!.text = "No friend to display"
                                 val remove3 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileVibeFriend3)
+                                val vibe3 = (ctx as? Activity)?.findViewById<TextView>(R.id.realVibeFriend3)
                                 remove3!!.visibility = View.INVISIBLE
+                                vibe3!!.visibility = View.INVISIBLE
                             }
                             if (response.body()!!.friends.size == 4){
                                 val friend4 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername4)
@@ -377,9 +337,11 @@ class ProfilePageViewModel() : ViewModel() {
                             }
                             else{
                                 val friend4 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername4)
-                                friend4!!.text ="No Friend :("
+                                friend4!!.text ="No friend to display"
                                 val remove4 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileVibeFriend4)
+                                val vibe4 = (ctx as? Activity)?.findViewById<TextView>(R.id.realVibeFriend4)
                                 remove4!!.visibility = View.INVISIBLE
+                                vibe4!!.visibility = View.INVISIBLE
                             }
 
 

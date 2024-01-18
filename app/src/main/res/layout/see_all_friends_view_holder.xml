@@ -35,11 +35,11 @@
 
         <Button
             android:id="@+id/removeFriendBtn"
-            android:layout_width="@dimen/_90sdp"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_35sdp"
             android:background="@drawable/remove_friend_bg"
             android:layout_marginLeft="@dimen/_50sdp"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_10sdp"
             android:text="Remove"
             android:textAllCaps="false"
             android:textColor="@color/white"
