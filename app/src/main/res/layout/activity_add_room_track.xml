@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="addRoomTrackViewModel"
+            type="viewmodel.AddRoomTrackViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_theme">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="view.SearchTrack">
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/white"
+                android:fontFamily="@font/dmsans_bold"
+                android:textSize="@dimen/_20sdp"
+                android:text="Search a Room Track"
+                android:layout_marginTop="@dimen/_30sdp">
+
+            </TextView>
+            <LinearLayout
+                android:id="@+id/holder"
+                android:layout_width="@dimen/_255sdp"
+                android:layout_height="@dimen/_40sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.373"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="104dp"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+
+                <EditText
+                    android:id="@+id/trackTxt"
+                    android:layout_width="@dimen/_220sdp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/input_fields"
+                    android:fontFamily="@font/dmsans_regular"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.373"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </EditText>
+
+                <ImageButton
+                    android:id="@+id/getVoiceBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_mic_none_24"
+                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:background="@color/transparent">
+
+                </ImageButton>
+
+            </LinearLayout>
+
+
+
+            <ImageButton
+                android:id="@+id/searchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/holder"
+                app:layout_constraintTop_toTopOf="@id/holder"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/search_icon_white"
+                >
+            </ImageButton>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/searchTrackRecView"
+                android:layout_width="@dimen/_260sdp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/holder"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:clickable="true"
+                app:layout_goneMarginLeft="@dimen/_22sdp"
+                app:spanCount="2"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                android:focusable="true"
+                >
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

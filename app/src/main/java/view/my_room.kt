@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -37,6 +38,7 @@ class my_room : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+
         /*
         viewModel.setRecyclerView()
         viewModel.setRecyclerViewForArtists()
@@ -44,9 +46,29 @@ class my_room : AppCompatActivity() {
 
          */
         val personalRoomTrack : TypeWriterView = findViewById(R.id.personalRoomTrack)
-        personalRoomTrack.setCharacterDelay(150)
-       personalRoomTrack.animateText("After Hours")
+        //personalRoomTrack.setCharacterDelay(150)
+       //personalRoomTrack.animateText("After Hours")
         //personalRoomTrack.animate()
+
+
+        val roomTrack = intent.getStringExtra("trackName")
+        val keyword = intent.getStringExtra("keyword")
+        if(keyword == "addRoomTrack"){
+            personalRoomTrack.setCharacterDelay(150)
+            personalRoomTrack.animateText(roomTrack)
+        }
+        else{
+            viewModel.setRoomSong()
+        }
+        val addRoomSongBtn : Button = findViewById(R.id.addRoomSong)
+        if (personalRoomTrack.text.isEmpty()){
+            addRoomSongBtn.visibility = View.GONE
+        }
+
+        addRoomSongBtn.setOnClickListener {
+            startActivity(Intent(this, AddRoomTrack::class.java))
+
+        }
         val roomFrame : ImageView = findViewById(R.id.roomFrame)
         //roomFrame.setImageResource(R.drawable.default_room)
         Picasso.with(this)

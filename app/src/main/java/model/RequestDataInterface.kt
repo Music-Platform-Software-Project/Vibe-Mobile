@@ -41,16 +41,17 @@ interface RequestDataInterface {
 
     data class SelectedTrack(
         val id: String,
-        val name: String,
         val album: AlbumUserGetData,
-        val genre: String,
         val artist: List<String>,
-        val rating: Double,
-        val duration_ms: Long,
-        val tempo: Int,
+        val name: String,
+        val genre: String,
+        val duration_ms: Int,
+        val tempo: Double,
         val instrumentalness: Double,
         val acousticness: Double,
-        val energy: Double
+        val energy: Double,
+        val rating: Double,
+        val rateCount : Int
     )
 
     data class AlbumUserGetData(
@@ -251,6 +252,10 @@ interface RequestDataInterface {
 
     data class ImportFromSpotifyRequest(
         val url :String
+    )
+
+    data class SetRoomTrackRequest(
+        val id : String
     )
 
 

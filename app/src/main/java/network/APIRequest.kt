@@ -215,6 +215,12 @@ interface APIRequest {
     @Body request: RequestDataInterface.ImportFromSpotifyRequest
     ): Call<Boolean>
 
+    @POST("/room/setTrack")
+    @Headers(constants.contentType)
+    fun setRoomTrack(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.SetRoomTrackRequest
+    ): Call<Boolean>
 
 
 }

@@ -6,12 +6,14 @@ import android.content.Intent
 import android.opengl.Visibility
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
+import com.nitish.typewriterview.TypeWriterView
 import model.Item
 import model.RequestDataInterface
 import network.APIRequest
@@ -50,6 +52,75 @@ class DashboardViewModel() : ViewModel() {
     fun switchToSettings(){
         val intent = Intent(ctx, Settings::class.java)
         ctx.startActivity(intent)
+    }
+
+    fun selectRoomSong(){
+        val intent = Intent(ctx, SearchTrack::class.java)
+        ctx.startActivity(intent)
+    }
+
+    fun setRoomSong(){
+        try {
+
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl(constants.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val retrofitBuilder = retrofit.create(APIRequest::class.java)
+            val token = "Bearer " + constants.bearerToken
+            Log.e("bearer set username", constants.bearerToken)
+            val retrofitData = retrofitBuilder.userGetData(token)
+            Log.e("myroom process", "Going...")
+
+            retrofitData.enqueue(object : Callback<RequestDataInterface.getUserDataResponse> {
+                override fun onResponse(
+                    call: Call<RequestDataInterface.getUserDataResponse>,
+                    response: Response<RequestDataInterface.getUserDataResponse>
+                ) {
+                    Log.e("my room response:", response.message())
+                    if (response.isSuccessful) {
+                        val responseBody = response.body().toString()
+                       val track = (ctx as? Activity)?.findViewById<TypeWriterView>(R.id.personalRoomTrack)
+                        track!!.setCharacterDelay(150)
+                        track.animateText(response.body()!!.selectedTrack.name)
+                        //track!!.text = response.body()!!.selectedTrack.name
+                        Log.e("my room response: ", responseBody ?: "Response body is null")
+                        if (responseBody.isEmpty()){
+                            track!!.setCharacterDelay(150)
+                            track.animateText("You haven!t selected a song for your room yet")
+                            val addRoomSong = (ctx as? Activity)?.findViewById<Button>(R.id.addRoomSong)
+                            addRoomSong!!.visibility = View.VISIBLE
+                        }
+                        // Parse the responseBody as needed or handle the string response
+
+                    } else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody = errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("username error: ", "HTTP ${response.code()}: $errorBody")
+
+
+                        } catch (e: Exception) {
+                            Log.e("set username error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(
+                    call: Call<RequestDataInterface.getUserDataResponse>,
+                    t: Throwable
+                ) {
+                    Log.e("registration error: ", t.toString())
+                }
+            })
+
+        } catch (e: Exception) {
+            Log.e("error", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
     }
 
 
