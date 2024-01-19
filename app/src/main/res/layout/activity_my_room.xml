@@ -141,6 +141,20 @@
 
                    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
+                   <com.google.android.material.floatingactionbutton.FloatingActionButton
+                       android:id="@+id/rainStopBtn"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:clickable="true"
+                       android:layout_marginTop="@dimen/_5sdp"
+                       android:backgroundTint="@color/main_theme"
+                       android:background="@color/main_theme"
+                       android:layout_marginLeft="@dimen/_10sdp"
+                       app:fabCustomSize="@dimen/_25sdp"
+                       android:src="@drawable/baseline_pause_24">
+
+                   </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
                </LinearLayout>
 
 
@@ -184,6 +198,21 @@
                        android:src="@drawable/baseline_play_arrow_24">
 
                    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+                   <com.google.android.material.floatingactionbutton.FloatingActionButton
+                       android:id="@+id/cafeStopBtn"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:clickable="true"
+                       android:layout_marginTop="@dimen/_5sdp"
+                       android:backgroundTint="@color/main_theme"
+                       android:background="@color/main_theme"
+                       android:layout_marginLeft="@dimen/_10sdp"
+                       app:fabCustomSize="@dimen/_25sdp"
+                       android:src="@drawable/baseline_pause_24">
+
+                   </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
 
                </LinearLayout>
 
@@ -231,6 +260,22 @@
                    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 
+                   <com.google.android.material.floatingactionbutton.FloatingActionButton
+                       android:id="@+id/firePlaceStopBtn"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:clickable="true"
+                       android:layout_marginTop="@dimen/_5sdp"
+                       android:backgroundTint="@color/main_theme"
+                       android:background="@color/main_theme"
+                       android:layout_marginLeft="@dimen/_10sdp"
+                       app:fabCustomSize="@dimen/_25sdp"
+                       android:src="@drawable/baseline_pause_24">
+
+                   </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+
 
 
                </LinearLayout>
@@ -276,6 +321,21 @@
                        android:src="@drawable/baseline_play_arrow_24">
 
                    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+                   <com.google.android.material.floatingactionbutton.FloatingActionButton
+                       android:id="@+id/natureStopBtn"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:clickable="true"
+                       android:layout_marginTop="@dimen/_5sdp"
+                       android:backgroundTint="@color/main_theme"
+                       android:background="@color/main_theme"
+                       android:layout_marginLeft="@dimen/_10sdp"
+                       app:fabCustomSize="@dimen/_25sdp"
+                       android:src="@drawable/baseline_pause_24">
+
+                   </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
 
                </LinearLayout>
 

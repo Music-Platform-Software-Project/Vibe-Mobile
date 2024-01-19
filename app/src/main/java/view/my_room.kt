@@ -30,6 +30,10 @@ class my_room : AppCompatActivity() {
     private val maxProgress = 450 // you can set it as you want
     private val minVolumeLevel = 0.1f // Adjust this value as needed (0.0 to 1.0)
     private val maxVolumeLevel = 35.0f // Adjust this value as needed (0.0 to 1.0)
+    private var mediaPlayerCafe: MediaPlayer? = null
+    private var mediaPlayerRain: MediaPlayer? = null
+    private var mediaPlayerNature: MediaPlayer? = null
+    private var mediaPlayerFire: MediaPlayer? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,8 +54,18 @@ class my_room : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
 
+        val cafeStop : FloatingActionButton = findViewById(R.id.cafeStopBtn)
+        val fireStop : FloatingActionButton = findViewById(R.id.firePlaceStopBtn)
+        val rainStop : FloatingActionButton = findViewById(R.id.rainStopBtn)
+        val natureStop : FloatingActionButton = findViewById(R.id.natureStopBtn)
+        val cafeSeekBar : SeekBar = findViewById(R.id.slider_cafe)
+        val rainSeekBar : SeekBar = findViewById(R.id.slider_rain)
+        val natureSeekBar : SeekBar = findViewById(R.id.slider_nature)
         val fireSeekBar : SeekBar = findViewById(R.id.slider_fireplace)
         fireSeekBar.max = maxProgress
+        cafeSeekBar.max = maxProgress
+        rainSeekBar.max = maxProgress
+        natureSeekBar.max = maxProgress
         var mediaPlayer: MediaPlayer? = null
 
         fireSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -59,8 +73,8 @@ class my_room : AppCompatActivity() {
                 // Calculate the volume level based on progress
                 val volumeLevel =
                     minVolumeLevel + (1.0f - minVolumeLevel) * (progress.toFloat() / maxProgress)
-                mediaPlayer?.setVolume(volumeLevel, volumeLevel)
-                mediaPlayer?.setVolume(volumeLevel, volumeLevel)
+                mediaPlayerFire?.setVolume(volumeLevel, volumeLevel)
+                mediaPlayerFire?.setVolume(volumeLevel, volumeLevel)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -72,18 +86,131 @@ class my_room : AppCompatActivity() {
             }
         })
 
+        cafeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                // Calculate the volume level based on progress
+                val volumeLevel =
+                    minVolumeLevel + (1.0f - minVolumeLevel) * (progress.toFloat() / maxProgress)
+                mediaPlayerCafe?.setVolume(volumeLevel, volumeLevel)
+                mediaPlayerCafe?.setVolume(volumeLevel, volumeLevel)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                // Nothing to do here
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                // Nothing to do here
+            }
+        })
+
+        rainSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                // Calculate the volume level based on progress
+                val volumeLevel =
+                    minVolumeLevel + (1.0f - minVolumeLevel) * (progress.toFloat() / maxProgress)
+                mediaPlayerRain?.setVolume(volumeLevel, volumeLevel)
+                mediaPlayerRain?.setVolume(volumeLevel, volumeLevel)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                // Nothing to do here
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                // Nothing to do here
+            }
+        })
+
+        natureSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                // Calculate the volume level based on progress
+                val volumeLevel =
+                    minVolumeLevel + (1.0f - minVolumeLevel) * (progress.toFloat() / maxProgress)
+                mediaPlayerNature?.setVolume(volumeLevel, volumeLevel)
+                mediaPlayerNature?.setVolume(volumeLevel, volumeLevel)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                // Nothing to do here
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                // Nothing to do here
+            }
+        })
+
+
+
+
+        val rainPlay :FloatingActionButton = findViewById(R.id.rainBtn)
+        val cafePlay : FloatingActionButton = findViewById(R.id.cafeBtn)
+        val nature : FloatingActionButton = findViewById(R.id.natureBtn)
         val firePlay : FloatingActionButton = findViewById(R.id.firePlaceBtn)
         firePlay.setOnClickListener {
-            mediaPlayer?.release()
-            mediaPlayer = MediaPlayer.create(this, R.raw.fireplace)
+            //mediaPlayer?.release()
+            mediaPlayerFire = MediaPlayer.create(this, R.raw.fireplace)
 
             // Set the initial volume based on the SeekBar progress
             val initialVolumeLevel = minVolumeLevel + (maxVolumeLevel - minVolumeLevel) * (fireSeekBar.progress.toFloat() / maxProgress)
-            mediaPlayer?.setVolume(initialVolumeLevel, initialVolumeLevel)
+            mediaPlayerFire?.setVolume(initialVolumeLevel, initialVolumeLevel)
 
 
-            mediaPlayer?.start()
+            mediaPlayerFire?.start()
         }
+
+        rainPlay.setOnClickListener {
+            //mediaPlayer?.release()
+            mediaPlayerRain = MediaPlayer.create(this, R.raw.rain)
+
+            // Set the initial volume based on the SeekBar progress
+            val initialVolumeLevel = minVolumeLevel + (maxVolumeLevel - minVolumeLevel) * (rainSeekBar.progress.toFloat() / maxProgress)
+            mediaPlayerRain?.setVolume(initialVolumeLevel, initialVolumeLevel)
+
+
+            mediaPlayerRain?.start()
+        }
+
+        cafePlay.setOnClickListener {
+            //mediaPlayer?.release()
+            mediaPlayerCafe = MediaPlayer.create(this, R.raw.cafe)
+
+            // Set the initial volume based on the SeekBar progress
+            val initialVolumeLevel = minVolumeLevel + (maxVolumeLevel - minVolumeLevel) * (cafeSeekBar.progress.toFloat() / maxProgress)
+            mediaPlayerCafe?.setVolume(initialVolumeLevel, initialVolumeLevel)
+
+
+            mediaPlayerCafe?.start()
+        }
+        nature.setOnClickListener {
+            //mediaPlayer?.release()
+            mediaPlayerNature = MediaPlayer.create(this, R.raw.nature)
+
+            // Set the initial volume based on the SeekBar progress
+            val initialVolumeLevel = minVolumeLevel + (maxVolumeLevel - minVolumeLevel) * (natureSeekBar.progress.toFloat() / maxProgress)
+            mediaPlayerNature?.setVolume(initialVolumeLevel, initialVolumeLevel)
+
+
+            mediaPlayerNature?.start()
+        }
+
+
+        cafeStop.setOnClickListener {
+            mediaPlayerCafe?.run { stop() }
+        }
+
+        fireStop.setOnClickListener {
+            mediaPlayerFire?.run { stop() }
+        }
+
+        rainStop.setOnClickListener {
+            mediaPlayerRain?.run { stop() }
+        }
+
+        natureStop.setOnClickListener {
+            mediaPlayerNature?.run { stop() }
+        }
+
 
 
         /*
