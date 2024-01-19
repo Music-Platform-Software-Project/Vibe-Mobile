@@ -83,7 +83,7 @@
                     android:id="@+id/friendSongTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Your Room's Song"
+                    android:text=""
                     android:layout_marginTop="@dimen/_30sdp"
                     app:layout_constraintStart_toStartOf="@id/spotifyFrame"
                     app:layout_constraintEnd_toEndOf="@id/spotifyFrame"
@@ -124,17 +124,53 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:padding="5dp"
                     >
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="27dp"
-                        android:text="Rain"
-                        android:gravity="left"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:textSize="@dimen/_15sdp">
+                        android:orientation="horizontal">
 
-                    </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:layout_marginTop="27dp"
+                            android:text="Rain"
+                            android:gravity="left"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:textSize="@dimen/_15sdp">
+
+                        </TextView>
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/rainBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:backgroundTint="@color/main_theme"
+                            android:background="@color/main_theme"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            app:fabCustomSize="@dimen/_25sdp"
+                            android:src="@drawable/baseline_play_arrow_24">
+
+                        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/rainStopBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:backgroundTint="@color/main_theme"
+                            android:background="@color/main_theme"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            app:fabCustomSize="@dimen/_25sdp"
+                            android:src="@drawable/baseline_pause_24">
+
+                        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+                    </LinearLayout>
+
 
                     <SeekBar
                         android:id="@+id/slider_rain"
@@ -146,17 +182,50 @@
                         android:splitTrack="false"
 
                         />
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
+                        android:orientation="horizontal">
 
-                        android:text="Cafe"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:textSize="@dimen/_15sdp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="Cafe"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:textSize="@dimen/_15sdp">
 
-                    </TextView>
+                        </TextView>
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/cafeBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:backgroundTint="@color/main_theme"
+                            android:background="@color/main_theme"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            app:fabCustomSize="@dimen/_25sdp"
+                            android:src="@drawable/baseline_play_arrow_24">
+
+                        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/cafeStopBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:backgroundTint="@color/main_theme"
+                            android:background="@color/main_theme"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            app:fabCustomSize="@dimen/_25sdp"
+                            android:src="@drawable/baseline_pause_24">
+
+                        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+                    </LinearLayout>
+
+
 
                     <SeekBar
                         android:id="@+id/slider_cafe"
@@ -167,17 +236,53 @@
                         android:thumb="@drawable/resized_thumb"
                         android:splitTrack="false"
                         />
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="Fireplace"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:textSize="@dimen/_15sdp">
+                        android:orientation="horizontal">
 
-                    </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Fireplace"
+                            android:textColor="@color/white"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:textSize="@dimen/_15sdp">
+
+                        </TextView>
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/firePlaceBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:backgroundTint="@color/main_theme"
+                            android:background="@color/main_theme"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            app:fabCustomSize="@dimen/_25sdp"
+                            android:src="@drawable/baseline_play_arrow_24">
+
+                        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/firePlaceStopBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:backgroundTint="@color/main_theme"
+                            android:background="@color/main_theme"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            app:fabCustomSize="@dimen/_25sdp"
+                            android:src="@drawable/baseline_pause_24">
+
+                        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+                    </LinearLayout>
+
 
                     <SeekBar
                         android:id="@+id/slider_fireplace"
@@ -189,15 +294,50 @@
                         android:splitTrack="false"
                         />
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:text="Nature"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:textSize="@dimen/_15sdp">
+                        android:orientation="horizontal">
 
-                    </TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="Nature"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:textSize="@dimen/_15sdp">
+
+                        </TextView>
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/natureBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:backgroundTint="@color/main_theme"
+                            android:background="@color/main_theme"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            app:fabCustomSize="@dimen/_25sdp"
+                            android:src="@drawable/baseline_play_arrow_24">
+
+                        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/natureStopBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/main_theme"
+                            android:background="@color/main_theme"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            app:fabCustomSize="@dimen/_25sdp"
+                            android:src="@drawable/baseline_pause_24">
+
+                        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+                    </LinearLayout>
+
 
                     <SeekBar
                         android:id="@+id/slider_nature"
