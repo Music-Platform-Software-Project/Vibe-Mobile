@@ -3,10 +3,13 @@ package viewmodel
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.opengl.Visibility
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
@@ -14,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
 import com.nitish.typewriterview.TypeWriterView
+import com.squareup.picasso.Picasso
 import model.Item
 import model.RequestDataInterface
 import network.APIRequest
@@ -62,6 +66,10 @@ class DashboardViewModel() : ViewModel() {
     fun setRoomSong(){
         try {
 
+            val roomFrame : ImageView = (ctx as? Activity)?.findViewById<ImageView>(R.id.roomFrame)!!
+            var base64Image : String = ""
+
+
 
             val retrofit = Retrofit.Builder()
                 .baseUrl(constants.baseURL)
@@ -87,6 +95,23 @@ class DashboardViewModel() : ViewModel() {
                         track.animateText(response.body()!!.selectedTrack.name)
                         //track!!.text = response.body()!!.selectedTrack.name
                         Log.e("my room response: ", responseBody ?: "Response body is null")
+
+                        base64Image = response.body()!!.selectedRoom
+                        /*
+                        val decodedBytes = Base64.decode(base64Image, Base64.DEFAULT)
+                        // Decode the byte array to a Bitmap
+                        val bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+                        // Set the Bitmap to the ImageView
+                        roomFrame.setImageBitmap(bitmap)
+                         */
+
+
+                        //DUMMY ENDPOINT BITINCE BURAYI SIL USTTEKINI AC TODO
+                        val decodedBytesDummy = Base64.decode(constants.dummyBase64, Base64.DEFAULT)
+                        val bitmapDummy = BitmapFactory.decodeByteArray(decodedBytesDummy, 0, decodedBytesDummy.size)
+                        roomFrame.setImageBitmap(bitmapDummy)
+
+
                         if (responseBody.isEmpty()){
                             track!!.setCharacterDelay(150)
                             track.animateText("You haven!t selected a song for your room yet")
@@ -447,6 +472,10 @@ class DashboardViewModel() : ViewModel() {
         val intent = Intent(ctx, SearchTrack::class.java)
         ctx.startActivity(intent)
     }
+
+
+
+
 
 
 

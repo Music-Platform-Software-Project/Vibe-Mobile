@@ -222,5 +222,18 @@ interface APIRequest {
         @Body request: RequestDataInterface.SetRoomTrackRequest
     ): Call<Boolean>
 
+    @GET("/room/get")
+    @Headers(constants.contentType)
+    fun getImages(
+        @Header("Authorization") bearerToken: String
+    ):Call<List<RequestDataInterface.ImageData>>
+
+    @POST("/room/setImage")
+    @Headers(constants.contentType)
+    fun setRoomImage(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.SetRoomTrackRequest
+    ): Call<RequestDataInterface.ImageData>
+
 
 }

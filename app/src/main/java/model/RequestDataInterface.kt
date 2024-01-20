@@ -258,5 +258,11 @@ interface RequestDataInterface {
         val id : String
     )
 
+    data class ImageData(
+        val id : String,
+        val name: String,
+        val image: String
+    )
+
 
 }

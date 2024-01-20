@@ -20,6 +20,7 @@ import com.example.cs308_00.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.nitish.typewriterview.TypeWriterView
 import com.squareup.picasso.Picasso
+import org.w3c.dom.Text
 import viewmodel.DashboardViewModel
 
 
@@ -62,6 +63,7 @@ class my_room : AppCompatActivity() {
         val rainSeekBar : SeekBar = findViewById(R.id.slider_rain)
         val natureSeekBar : SeekBar = findViewById(R.id.slider_nature)
         val fireSeekBar : SeekBar = findViewById(R.id.slider_fireplace)
+        val changeImage : TextView = findViewById(R.id.changeImage)
         fireSeekBar.max = maxProgress
         cafeSeekBar.max = maxProgress
         rainSeekBar.max = maxProgress
@@ -139,6 +141,9 @@ class my_room : AppCompatActivity() {
                 // Nothing to do here
             }
         })
+        changeImage.setOnClickListener {
+            startActivity(Intent(this, ChangeRoomImage::class.java))
+        }
 
 
 
@@ -243,17 +248,13 @@ class my_room : AppCompatActivity() {
             startActivity(Intent(this, AddRoomTrack::class.java))
 
         }
-        val roomFrame : ImageView = findViewById(R.id.roomFrame)
-        //roomFrame.setImageResource(R.drawable.default_room)
-        Picasso.with(this)
-            .load(R.drawable.default_room) // Replace with your image resource or URL
-            .fit()
-            .into(roomFrame)
+
 
         val settingBtn : TextView = findViewById(R.id.nav_settings)
         settingBtn.setOnClickListener {
             viewModel.switchToSettings()
         }
+
 
 
     }
