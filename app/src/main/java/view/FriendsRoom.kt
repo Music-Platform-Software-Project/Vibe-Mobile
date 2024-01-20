@@ -35,8 +35,8 @@ class FriendsRoom : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_friends_room)
-        //viewModel = ViewModelProvider(this).get(FriendsRoomViewModel::class.java)
-        //viewModel.setContext(this)
+        viewModel = ViewModelProvider(this).get(FriendsRoomViewModel::class.java)
+        viewModel.setContext(this)
 
         //var navBarBtn = findViewById<ImageButton>(R.id.navBarBtn)
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout1)
