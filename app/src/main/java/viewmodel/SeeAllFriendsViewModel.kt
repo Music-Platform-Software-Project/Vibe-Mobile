@@ -71,6 +71,7 @@ class SeeAllFriendsViewModel() : ViewModel() {
                             constants.friendsList.add(friend)
                             Log.e("in see all friends", constants.friendsList.toString())
                             val username = friend.username
+                            Log.e("see alL username " , username)
                             recViewList.add(username)
                         }
 
