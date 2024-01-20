@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.example.cs308_00.R
 import com.github.mikephil.charting.charts.LineChart
+import network.constants
 import viewmodel.ProfilePageViewModel
 
 class ProfilePage : AppCompatActivity() {
@@ -113,12 +114,13 @@ class ProfilePage : AppCompatActivity() {
             val username = findViewById<EditText>(R.id.profileAddFriendsField).text.toString()
             val editText = findViewById<EditText>(R.id.profileAddFriendsField)
             editText.text = Editable.Factory.getInstance().newEditable("")
-            Toast.makeText(this, "friend request sent", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Friend Request is Sent to $username", Toast.LENGTH_SHORT).show()
             viewModel.sendRequest(username)
         }
 
         val lineChart = findViewById<LineChart>(R.id.albumHolder)
-        viewModel.generateLineChart(lineChart, 34.2, 23.43,90.43, 45.81)
+        viewModel.getDynamicBannerData(constants.likedSongsId, lineChart)
+        //viewModel.generateLineChart(lineChart, 34.2, 23.43,90.43, 45.81)
         val share = findViewById<Button>(R.id.shareDynamicBanner)
         share.setOnClickListener {
             // Invalidate the chart to ensure it is fully drawn.

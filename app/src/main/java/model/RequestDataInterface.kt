@@ -256,6 +256,18 @@ interface RequestDataInterface {
 
     data class SetRoomTrackRequest(
         val id : String
+
+    )
+
+    data class PlaylistAverageRequest(
+        val id: String
+    )
+
+    data class PlaylistAverageResponse(
+        val tempoAverage: Double,
+        val instrumentalnessAverage : Double,
+        val acousticnessAverage: Double,
+        val energyAverage : Double
     )
 
     data class ImageData(

@@ -70,6 +70,62 @@ class ProfilePageViewModel() : ViewModel() {
         // Add any other UI updates you need here
     }
 
+    fun getDynamicBannerData(id : String, lineChart : LineChart){
+        try {
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl(constants.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val retrofitBuilder = retrofit.create(APIRequest::class.java)
+            val request = RequestDataInterface.PlaylistAverageRequest(id)
+
+            val token = "Bearer " + constants.bearerToken
+            val retrofitData = retrofitBuilder.getDynamicBannerData(token, request)
+            Log.e("sending invitation", "going...")
+
+            retrofitData.enqueue(object : Callback<RequestDataInterface.PlaylistAverageResponse> {
+                override fun onResponse(call: Call<RequestDataInterface.PlaylistAverageResponse>, response: Response<RequestDataInterface.PlaylistAverageResponse>) {
+                    Log.e("sending invitation:", "retrieving body")
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.e("sending invitation: ",
+                            (responseBody ?: "Response body is null").toString()
+                        )
+                        // Parse the responseBody as needed or handle the string response
+                        if (responseBody != null) {
+                            Log.e("dynamic banner av",  response.body()!!.tempoAverage.toString() + " "  + response.body()!!.instrumentalnessAverage.toString())
+                            generateLineChart(lineChart, response.body()!!.tempoAverage, response.body()!!.instrumentalnessAverage.toDouble(),
+                                response.body()!!.acousticnessAverage.toDouble(),response.body()!!.energyAverage.toDouble())
+                        }
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("sending error: ", "HTTP ${response.code()}: $errorBody")
+
+                        } catch (e: Exception) {
+                            Log.e("sending error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<RequestDataInterface.PlaylistAverageResponse>, t: Throwable) {
+                    Log.e("sending error: ", t.toString())
+                }
+            })
+        }
+        catch (e: Exception) {
+            Log.e("error", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
+
+
+    }
+
 
     fun generateLineChart(
         lineChart: LineChart,
