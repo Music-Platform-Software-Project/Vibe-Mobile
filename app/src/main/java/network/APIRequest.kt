@@ -235,5 +235,13 @@ interface APIRequest {
         @Body request: RequestDataInterface.SetRoomTrackRequest
     ): Call<RequestDataInterface.ImageData>
 
+    @POST("/playlist/average")
+    @Headers(constants.contentType)
+    fun getDynamicBannerData(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.PlaylistAverageRequest
+    ): Call<RequestDataInterface.PlaylistAverageResponse>
+
+
 
 }

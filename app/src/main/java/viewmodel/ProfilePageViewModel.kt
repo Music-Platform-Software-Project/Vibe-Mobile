@@ -70,6 +70,62 @@ class ProfilePageViewModel() : ViewModel() {
         // Add any other UI updates you need here
     }
 
+    fun getDynamicBannerData(id : String, lineChart : LineChart){
+        try {
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl(constants.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val retrofitBuilder = retrofit.create(APIRequest::class.java)
+            val request = RequestDataInterface.PlaylistAverageRequest(id)
+
+            val token = "Bearer " + constants.bearerToken
+            val retrofitData = retrofitBuilder.getDynamicBannerData(token, request)
+            Log.e("sending invitation", "going...")
+
+            retrofitData.enqueue(object : Callback<RequestDataInterface.PlaylistAverageResponse> {
+                override fun onResponse(call: Call<RequestDataInterface.PlaylistAverageResponse>, response: Response<RequestDataInterface.PlaylistAverageResponse>) {
+                    Log.e("sending invitation:", "retrieving body")
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.e("sending invitation: ",
+                            (responseBody ?: "Response body is null").toString()
+                        )
+                        // Parse the responseBody as needed or handle the string response
+                        if (responseBody != null) {
+                            Log.e("dynamic banner av",  response.body()!!.tempoAverage.toString() + " "  + response.body()!!.instrumentalnessAverage.toString())
+                            generateLineChart(lineChart, response.body()!!.tempoAverage, response.body()!!.instrumentalnessAverage.toDouble(),
+                                response.body()!!.acousticnessAverage.toDouble(),response.body()!!.energyAverage.toDouble())
+                        }
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("sending error: ", "HTTP ${response.code()}: $errorBody")
+
+                        } catch (e: Exception) {
+                            Log.e("sending error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<RequestDataInterface.PlaylistAverageResponse>, t: Throwable) {
+                    Log.e("sending error: ", t.toString())
+                }
+            })
+        }
+        catch (e: Exception) {
+            Log.e("error", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
+
+
+    }
+
 
     fun generateLineChart(
         lineChart: LineChart,
@@ -293,19 +349,26 @@ class ProfilePageViewModel() : ViewModel() {
                         {
                             checker = true
                             Log.e("array size: ", response.body()!!.friends.size.toString())
-                            if (response.body()!!.friends.size == 1){
+                            Log.e("array size: ", response.body()!!.friends[0].username.toString())
+                            Log.e("array size: ", response.body()!!.friends[1].username.toString())
+                            if (response.body()!!.friends.size == 1){ // eğer sadece 1 arkadaşı varsa
                                 val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
                                 friend1!!.text = response.body()!!.friends[0].username
                             }
                             else{
-                                val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
-                                friend1!!.text = "No friend to display"
-                                val remove1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileVibeFriend1)
-                                val vibe1 = (ctx as? Activity)?.findViewById<TextView>(R.id.realVibeFriend1)
-                                remove1!!.visibility = View.INVISIBLE
-                                vibe1!!.visibility = View.INVISIBLE
+                                if (response.body()!!.friends.size == 0){
+                                    val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
+                                    friend1!!.text = "No friend to display"
+                                    val remove1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileVibeFriend1)
+                                    val vibe1 = (ctx as? Activity)?.findViewById<TextView>(R.id.realVibeFriend1)
+                                    remove1!!.visibility = View.INVISIBLE
+                                    vibe1!!.visibility = View.INVISIBLE
+                                }
+
                             }
-                            if (response.body()!!.friends.size == 2){
+                            if (response.body()!!.friends.size == 2){ // eğer iki arkadaşı varsa
+                                val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
+                                friend1!!.text = response.body()!!.friends[0].username
                                 val friend2 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername2)
                                 friend2!!.text = response.body()!!.friends[1].username
 
@@ -319,6 +382,10 @@ class ProfilePageViewModel() : ViewModel() {
                                 vibe2!!.visibility = View.INVISIBLE
                             }
                             if (response.body()!!.friends.size == 3){
+                                val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
+                                friend1!!.text = response.body()!!.friends[0].username
+                                val friend2 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername2)
+                                friend2!!.text = response.body()!!.friends[1].username
                                 val friend3 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername3)
                                 friend3!!.text = response.body()!!.friends[2].username
                             }
@@ -332,6 +399,12 @@ class ProfilePageViewModel() : ViewModel() {
                                 vibe3!!.visibility = View.INVISIBLE
                             }
                             if (response.body()!!.friends.size == 4){
+                                val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
+                                friend1!!.text = response.body()!!.friends[0].username
+                                val friend2 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername2)
+                                friend2!!.text = response.body()!!.friends[1].username
+                                val friend3 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername3)
+                                friend3!!.text = response.body()!!.friends[2].username
                                 val friend4 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername4)
                                 friend4!!.text = response.body()!!.friends[3].username
                             }

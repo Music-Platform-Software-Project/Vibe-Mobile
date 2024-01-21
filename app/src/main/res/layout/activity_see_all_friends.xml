@@ -64,14 +64,17 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/friendsRecView"
-            android:layout_width="370dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_30sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_300sdp"
+            android:layout_margin="@dimen/_10sdp"
             android:clickable="true"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/holder"
+            app:layout_constraintVertical_bias="0.0"
             app:spanCount="1">
 
         </androidx.recyclerview.widget.RecyclerView>
