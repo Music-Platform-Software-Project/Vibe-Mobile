@@ -28,7 +28,31 @@ class ChangeImageViewModel() : ViewModel() {
     }
 
 
+    fun getImages(){
 
+        val image1 = RequestDataInterface.ImageData("65ac6fb36d0df497b0201315", "LordOfTheRingsRoom")
+        val image2 = RequestDataInterface.ImageData("65ac6fb36d0df497b0201309", "CoffeeHouse")
+        val image3 = RequestDataInterface.ImageData("65ac6fb36d0df497b0201307", "Classroom")
+        val image4 = RequestDataInterface.ImageData("65ac6fb36d0df497b0201305", "ClassicalMusicianRoom")
+        val image5 = RequestDataInterface.ImageData("65ac6fb36d0df497b020131d", "OrganizedStudyRoom")
+        val image6 = RequestDataInterface.ImageData("65ac6fb36d0df497b0201319", "NatureRoom")
+        val image7 = RequestDataInterface.ImageData("65ac6fb36d0df497b0201303", "CatRoom")
+        val image8 = RequestDataInterface.ImageData("65ac6fb36d0df497b0201325", "StudyRoom")
+
+        var imageList : List<RequestDataInterface.ImageData> = mutableListOf(image1, image2, image3, image4, image5, image6, image7, image8)
+
+
+
+
+
+        val recView : RecyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.imagesRecView)!!
+        val adapter = RoomImageAdapter(ctx, imageList)
+
+        recView.layoutManager = LinearLayoutManager(ctx)
+        recView.adapter = adapter
+    }
+
+    /*
     fun getImages(){
         try {
             val retrofitBuilder = retrofitClient.createAPIRequestWithToken(constants.bearerToken)
@@ -82,4 +106,6 @@ class ChangeImageViewModel() : ViewModel() {
         }
 
     }
+
+     */
 }

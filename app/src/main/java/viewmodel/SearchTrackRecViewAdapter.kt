@@ -12,8 +12,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
 import model.RequestDataInterface
+import network.APIRequest
 import network.constants
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import view.DetailedPlaylist
 import view.DetailedTrack
+import view.my_room
 
 class SearchTrackRecViewAdapter(private val context : Context, private val data : List<RequestDataInterface.SearchTrackResponse>)
     : RecyclerView.Adapter<SearchTrackRecViewAdapter.ViewHolder>(){
@@ -42,11 +50,22 @@ class SearchTrackRecViewAdapter(private val context : Context, private val data 
         Log.e("names: ", artistNames.toString())
         Log.e("name string: ", artistNamesString)
         holder.item.setOnClickListener {
-            val intent = Intent(holder.item.context, DetailedTrack::class.java)
-            intent.putExtra("id", track.id)
-            intent.putExtra("from", "searchTrack")
-            constants.currentPlaylistID = "0"
-            holder.item.context.startActivity(intent)
+            Log.e("changeRoom", constants.changeRoom.toString())
+            if(!constants.changeRoom){
+                val intent = Intent(holder.item.context, DetailedTrack::class.java)
+                intent.putExtra("id", track.id)
+                intent.putExtra("from", "searchTrack")
+                constants.currentPlaylistID = "0"
+                holder.item.context.startActivity(intent)
+            }
+            else{
+                addRoomTrack(track.id)
+                constants.changeRoom = false
+                Log.e("changeRoom2", constants.changeRoom.toString())
+                val intent = Intent(holder.item.context, my_room::class.java)
+                holder.item.context.startActivity(intent)
+
+            }
         }
 
     }
@@ -56,6 +75,54 @@ class SearchTrackRecViewAdapter(private val context : Context, private val data 
         val trackArtist : TextView = itemView.findViewById(R.id.trackArtist)
         val item : RelativeLayout = itemView.findViewById(R.id.trackRow)
 
+    }
+
+    private fun addRoomTrack(trackId : String){
+        try {
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl(constants.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val retrofitBuilder = retrofit.create(APIRequest::class.java)
+
+            val token = "Bearer " + constants.bearerToken
+            val request = RequestDataInterface.SetRoomTrackRequest(trackId)
+            val retrofitData = retrofitBuilder.setRoomTrack(token, request)
+            Log.e("adding roomtrack", "going...")
+
+            retrofitData.enqueue(object : Callback<Boolean> {
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                    Log.e("adding roomtrack:", "retrieving body")
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.e("adding roomtrack",
+                            (responseBody ?: "Response body is null").toString()
+                        )
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("adding roomtrack error ", "HTTP ${response.code()}: $errorBody")
+
+                        } catch (e: Exception) {
+                            Log.e("adding roomtrack error", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                    Log.e("adding roomtrack error ", t.toString())
+                }
+            })
+        }
+        catch (e: Exception) {
+            Log.e("error", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
     }
 
 }

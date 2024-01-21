@@ -96,20 +96,22 @@ class DashboardViewModel() : ViewModel() {
                         //track!!.text = response.body()!!.selectedTrack.name
                         Log.e("my room response: ", responseBody ?: "Response body is null")
 
-                        base64Image = response.body()!!.selectedRoom
-                        /*
+                        base64Image = response.body()!!.selectedRoom.image
+
                         val decodedBytes = Base64.decode(base64Image, Base64.DEFAULT)
                         // Decode the byte array to a Bitmap
                         val bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
                         // Set the Bitmap to the ImageView
                         roomFrame.setImageBitmap(bitmap)
-                         */
+
 
 
                         //DUMMY ENDPOINT BITINCE BURAYI SIL USTTEKINI AC TODO
+                        /*
                         val decodedBytesDummy = Base64.decode(constants.dummyBase64, Base64.DEFAULT)
                         val bitmapDummy = BitmapFactory.decodeByteArray(decodedBytesDummy, 0, decodedBytesDummy.size)
                         roomFrame.setImageBitmap(bitmapDummy)
+                         */
 
 
                         if (responseBody.isEmpty()){

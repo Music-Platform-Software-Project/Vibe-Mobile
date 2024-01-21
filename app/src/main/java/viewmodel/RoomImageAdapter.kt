@@ -41,12 +41,33 @@ class RoomImageAdapter(private val context: Context, private val data: List<Requ
 
     override fun onBindViewHolder(holder: RoomImageAdapter.ViewHolder, position: Int) {
         val imageItem = data[position]
-        var base64 = constants.dummyBase64 //imageItem.image TODO
+        var base64 = constants.dummyBase64
 
-        val decodedBytesDummy = Base64.decode(base64, Base64.DEFAULT)
-        val bitmapDummy = BitmapFactory.decodeByteArray(decodedBytesDummy, 0, decodedBytesDummy.size)
-        holder.image.setImageBitmap(bitmapDummy)
         holder.imageName.text = imageItem.name
+        if(imageItem.id == "65ac6fb36d0df497b0201315"){
+            holder.image.setImageResource(R.drawable.roomlordoftheringsroom)
+        }
+        if(imageItem.id == "65ac6fb36d0df497b0201309"){
+            holder.image.setImageResource(R.drawable.roomcoffeehouse)
+        }
+        if(imageItem.id == "65ac6fb36d0df497b0201307"){
+            holder.image.setImageResource(R.drawable.roomclassroom)
+        }
+        if(imageItem.id == "65ac6fb36d0df497b0201305"){
+            holder.image.setImageResource(R.drawable.roomclassic)
+        }
+        if(imageItem.id == "65ac6fb36d0df497b020131d"){
+            holder.image.setImageResource(R.drawable.roomorganizedstudy)
+        }
+        if(imageItem.id == "65ac6fb36d0df497b0201319"){
+            holder.image.setImageResource(R.drawable.roomnature)
+        }
+        if(imageItem.id == "65ac6fb36d0df497b0201303"){
+            holder.image.setImageResource(R.drawable.roomcat)
+        }
+        if(imageItem.id == "65ac6fb36d0df497b0201325"){
+            holder.image.setImageResource(R.drawable.roomstudy)
+        }
 
         holder.item.setOnClickListener {
             setImage(imageItem.id)
@@ -59,7 +80,6 @@ class RoomImageAdapter(private val context: Context, private val data: List<Requ
         val image: ImageView = itemView.findViewById(R.id.roomImageView)
         val imageName : TextView = itemView.findViewById(R.id.roomImageName)
         val item : LinearLayout = itemView.findViewById(R.id.imageItem)
-
     }
 
 

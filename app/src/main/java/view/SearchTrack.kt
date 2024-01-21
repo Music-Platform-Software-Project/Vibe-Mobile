@@ -54,6 +54,7 @@ class SearchTrack : AppCompatActivity() {
                 val addToPlaylist = intent.getBooleanExtra("addToPlaylist", false)
                 if (addToPlaylist){
                     viewModel.searchTrackToAdd(searchTxt.text.toString())
+
                 }
                 else{
                     viewModel.searchTrack(searchTxt.text.toString())

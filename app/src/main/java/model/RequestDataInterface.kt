@@ -29,13 +29,25 @@ interface RequestDataInterface {
         val receiver: String,
         val id: String
     )
+    data class mood(
+        val rain: Int,
+        val cafe: Int,
+        val fireplace: Int,
+        val nature: Int
+    )
+    data class roomSpecs(
+        val id: String,
+        val name : String,
+        val image: String
+    )
 
     data class getUserDataResponse(
         val email : String,
         val username: String,
         val active : Boolean,
         val friends : List<friends>,
-        val selectedRoom: String,
+        val moodSettings: mood,
+        val selectedRoom: roomSpecs,
         val selectedTrack: SelectedTrack
     )
 
@@ -261,7 +273,6 @@ interface RequestDataInterface {
     data class ImageData(
         val id : String,
         val name: String,
-        val image: String
     )
 
 
