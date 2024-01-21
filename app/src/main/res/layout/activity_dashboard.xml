@@ -151,41 +151,111 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:text="@string/favorite_artists"
+                android:text="Weekly Top 3 Artists"
                 android:textSize="@dimen/_20sdp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="40dp"/>
 
-            <TextView
-                android:id="@+id/artists_view_all"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/_70sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/firstArtist"
+                    android:layout_width="@dimen/_115sdp"
+                    android:layout_height="@dimen/_115sdp"
+
+
+                    >
+
+                </ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dmsans_bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_45sdp"
+                    android:text="1"
+                    >
+
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/hint_color"
-                android:text="@string/view_all"
-                android:textSize="12sp"
-                android:paddingTop="@dimen/_5sdp"
-                android:layout_marginBottom="20dp"/>
+                android:orientation="horizontal">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/artists_rec_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:spanCount="2"
-                app:reverseLayout="false"
-                app:stackFromEnd="false"
-                android:layout_gravity="center"
-                android:padding="10dp"
-                android:layout_marginTop="@dimen/_3sdp"
-                android:background="@drawable/div_bcg"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_10sdp"
 
-            <TextView
-                android:id="@+id/favArtist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="You do not have any favorite artists to display"
-                android:visibility="gone"/>
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/secondArtist"
+                        android:layout_width="@dimen/_115sdp"
+                        android:layout_height="@dimen/_115sdp"
+
+                        >
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsans_bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_45sdp"
+                        android:text="2"
+                        >
+
+                    </TextView>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_30sdp"
+
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/thirdArtist"
+                        android:layout_width="@dimen/_115sdp"
+                        android:layout_height="@dimen/_115sdp"
+
+                        >
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsans_bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_45sdp"
+                        android:text="3"
+                        >
+
+                    </TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
 
 
             <TextView
@@ -193,42 +263,113 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:text="@string/favorite_tracks"
+                android:text="Weekly Top 3 Tracks"
                 android:textSize="@dimen/_20sdp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="40dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/_70sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:gravity="center">
 
-            <TextView
-                android:id="@+id/tracks_view_all"
+                <ImageView
+                    android:id="@+id/firstTrack"
+                    android:layout_width="@dimen/_115sdp"
+                    android:layout_height="@dimen/_115sdp"
+
+
+                    >
+
+                </ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dmsans_bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_45sdp"
+                    android:text="1"
+                    >
+
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/hint_color"
-                android:text="@string/view_all"
-                android:textSize="12sp"
-                android:paddingTop="@dimen/_5sdp"
-                android:layout_marginBottom="20dp"/>
+                android:orientation="horizontal">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/tracks_rec_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:spanCount="3"
-                app:reverseLayout="false"
-                app:stackFromEnd="false"
-                android:layout_marginTop="@dimen/_3sdp"
-                android:layout_gravity="center"
-                android:padding="10dp"
-                android:background="@drawable/div_bcg"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_10sdp"
 
-            <TextView
-                android:id="@+id/favTrack"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:fontFamily="@font/dmsans_regular"
-                android:text="You do not have any favorite tracks to display"
-                android:visibility="gone"/>
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/secondTrack"
+                        android:layout_width="@dimen/_115sdp"
+                        android:layout_height="@dimen/_115sdp"
+
+                        >
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsans_bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_45sdp"
+                        android:text="2"
+                        >
+
+                    </TextView>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_30sdp"
+
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/thirdTrack"
+                        android:layout_width="@dimen/_115sdp"
+                        android:layout_height="@dimen/_115sdp"
+
+                        >
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dmsans_bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_45sdp"
+                        android:text="3"
+                        >
+
+                    </TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
 
 
         </LinearLayout>

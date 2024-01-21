@@ -1,6 +1,9 @@
 package view
 
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
 import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +13,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.DecelerateInterpolator
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -20,6 +25,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.example.cs308_00.R
+import com.squareup.picasso.Picasso
 import viewmodel.DashboardViewModel
 
 class Dashboard : AppCompatActivity() {
@@ -47,9 +53,137 @@ class Dashboard : AppCompatActivity() {
         viewModel.setRecyclerViewForArtists(emptyList())
         viewModel.setRecyclerViewForTracks(emptyList())
 
-
+        val  firstArtist : ImageView = findViewById(R.id.firstArtist)
+        val secondArtist : ImageView = findViewById(R.id.secondArtist)
+        val thirdArtist : ImageView = findViewById(R.id.thirdArtist)
+        val  firstTrack : ImageView = findViewById(R.id.firstTrack)
+        val secondTrack : ImageView = findViewById(R.id.secondTrack)
+        val thirdTrack : ImageView = findViewById(R.id.thirdTrack)
         val playlistAddButton : ImageView = findViewById(R.id.btnAddPlaylist)
         val realPlaylistAddButton : ImageView = findViewById(R.id.btnAddPlaylist2)
+
+
+        Picasso.with(this)
+            .load(R.drawable.weeknd) // Replace with your image resource or URL
+            .fit()
+            .into(firstArtist)
+        Picasso.with(this)
+            .load(R.drawable.imagine_dragons) // Replace with your image resource or URL
+            .fit()
+            .into(secondArtist)
+        Picasso.with(this)
+            .load(R.drawable.adele) // Replace with your image resource or URL
+            .fit()
+            .into(thirdArtist)
+
+        Picasso.with(this)
+            .load(R.drawable.starboy) // Replace with your image resource or URL
+            .fit()
+            .into(firstTrack)
+
+        Picasso.with(this)
+            .load(R.drawable.thunder) // Replace with your image resource or URL
+            .fit()
+            .into(secondTrack)
+
+        Picasso.with(this)
+            .load(R.drawable.oh_my_god) // Replace with your image resource or URL
+            .fit()
+            .into(thirdTrack)
+
+        firstTrack.setOnClickListener {
+            firstTrack.animate().apply {
+                duration = 800
+                //rotationXBy(360f)
+                rotationY(360f)
+
+            }.withEndAction {
+                firstTrack.animate().apply {
+                    duration = 800
+                    //rotationXBy(360f)
+                    rotationY(3600f)
+                }.start()
+            }
+        }
+
+        secondTrack.setOnClickListener {
+            secondTrack.animate().apply {
+                duration = 800
+                //rotationXBy(360f)
+                rotationY(360f)
+
+            }.withEndAction {
+                secondTrack.animate().apply {
+                    duration = 800
+                    //rotationXBy(360f)
+                    rotationY(3600f)
+                }.start()
+            }
+        }
+        thirdTrack.setOnClickListener {
+            thirdTrack.animate().apply {
+                duration = 800
+                //rotationXBy(360f)
+                rotationY(360f)
+
+            }.withEndAction {
+                thirdTrack.animate().apply {
+                    duration = 800
+                    //rotationXBy(360f)
+                    rotationY(3600f)
+                }.start()
+            }
+        }
+
+
+
+        firstArtist.setOnClickListener {
+            firstArtist.animate().apply {
+                duration = 800
+                //rotationXBy(360f)
+                rotationY(360f)
+
+            }.withEndAction {
+                firstArtist.animate().apply {
+                    duration = 800
+                    //rotationXBy(360f)
+                    rotationY(3600f)
+                }.start()
+            }
+        }
+
+        secondArtist.setOnClickListener {
+            secondArtist.animate().apply {
+                duration = 800
+                //rotationXBy(360f)
+                rotationY(360f)
+
+            }.withEndAction {
+                secondArtist.animate().apply {
+                    duration = 800
+                    //rotationXBy(360f)
+                    rotationY(3600f)
+                }.start()
+            }
+        }
+
+        thirdArtist.setOnClickListener {
+            thirdArtist.animate().apply {
+                duration = 800
+                //rotationXBy(360f)
+                rotationY(360f)
+
+            }.withEndAction {
+                thirdArtist.animate().apply {
+                    duration = 800
+                    //rotationXBy(360f)
+                    rotationY(3600f)
+                }.start()
+            }
+        }
+
+
+
 
 
         val settingsBtn : TextView = findViewById(R.id.nav_settings)
@@ -86,6 +220,7 @@ class Dashboard : AppCompatActivity() {
 
 
     }
+
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

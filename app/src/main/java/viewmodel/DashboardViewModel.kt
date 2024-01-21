@@ -189,10 +189,10 @@ class DashboardViewModel() : ViewModel() {
 
     fun setRecyclerViewForArtists(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.artists_rec_view)
-        val msg = (ctx as? Activity)?.findViewById<TextView>(R.id.favArtist)
+
         if(itemList.isEmpty()){
             recyclerView?.visibility =  View.INVISIBLE
-            msg?.visibility = View.VISIBLE
+
         }
         else{
             recyclerView?.layoutManager =  GridLayoutManager(ctx, 2, GridLayoutManager.HORIZONTAL, false)
@@ -200,16 +200,16 @@ class DashboardViewModel() : ViewModel() {
             val adapter = RecyclerViewAdapter(itemList, 2)
             recyclerView?.adapter = adapter
             recyclerView?.visibility =  View.VISIBLE
-            msg?.visibility = View.INVISIBLE
+
         }
     }
 
     fun setRecyclerViewForTracks(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.tracks_rec_view)
-        val msg = (ctx as? Activity)?.findViewById<TextView>(R.id.favTrack)
+
         if(itemList.isEmpty()){
             recyclerView?.visibility =  View.INVISIBLE
-            msg?.visibility = View.VISIBLE
+
         }
         else{
             recyclerView?.layoutManager =  GridLayoutManager(ctx, 2, GridLayoutManager.HORIZONTAL, false)
@@ -217,7 +217,7 @@ class DashboardViewModel() : ViewModel() {
             val adapter = RecyclerViewAdapter(itemList, 3)
             recyclerView?.adapter = adapter
             recyclerView?.visibility =  View.VISIBLE
-            msg?.visibility = View.INVISIBLE
+
         }
     }
 
