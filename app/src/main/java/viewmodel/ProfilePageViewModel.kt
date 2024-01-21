@@ -348,9 +348,9 @@ class ProfilePageViewModel() : ViewModel() {
                         if(response.body()!!.friends.isNotEmpty())
                         {
                             checker = true
-                            Log.e("array size: ", response.body()!!.friends.size.toString())
-                            Log.e("array size: ", response.body()!!.friends[0].username.toString())
-                            Log.e("array size: ", response.body()!!.friends[1].username.toString())
+                            //Log.e("array size: ", response.body()!!.friends.size.toString())
+                            //Log.e("array size: ", response.body()!!.friends[0].username.toString())
+                            //Log.e("array size: ", response.body()!!.friends[1].username.toString())
                             if (response.body()!!.friends.size == 1){ // eğer sadece 1 arkadaşı varsa
                                 val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
                                 friend1!!.text = response.body()!!.friends[0].username
