@@ -6,6 +6,7 @@ import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
@@ -63,11 +64,21 @@ class my_room : AppCompatActivity() {
         val natureSeekBar : SeekBar = findViewById(R.id.slider_nature)
         val fireSeekBar : SeekBar = findViewById(R.id.slider_fireplace)
         val changeImage : TextView = findViewById(R.id.changeImage)
+        var natureValue : Int = 0
+        var fireValue : Int = 0
+        var cafeValue : Int = 0
+        var rainValue : Int = 0
         fireSeekBar.max = maxProgress
         cafeSeekBar.max = maxProgress
         rainSeekBar.max = maxProgress
         natureSeekBar.max = maxProgress
         var mediaPlayer: MediaPlayer? = null
+        val moodBtn : Button = findViewById(R.id.roomMoodBtn)
+        viewModel.getPrevMood()
+
+        moodBtn.setOnClickListener {
+            viewModel.setMood(rainValue, cafeValue, fireValue, natureValue)
+        }
 
         fireSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -94,6 +105,8 @@ class my_room : AppCompatActivity() {
                     minVolumeLevel + (1.0f - minVolumeLevel) * (progress.toFloat() / maxProgress)
                 mediaPlayerCafe?.setVolume(volumeLevel, volumeLevel)
                 mediaPlayerCafe?.setVolume(volumeLevel, volumeLevel)
+                cafeValue = cafeSeekBar.progress
+                //Log.e("cafe number ", cafeValue.toString())
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -112,6 +125,7 @@ class my_room : AppCompatActivity() {
                     minVolumeLevel + (1.0f - minVolumeLevel) * (progress.toFloat() / maxProgress)
                 mediaPlayerRain?.setVolume(volumeLevel, volumeLevel)
                 mediaPlayerRain?.setVolume(volumeLevel, volumeLevel)
+                rainValue = rainSeekBar.progress
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -130,6 +144,7 @@ class my_room : AppCompatActivity() {
                     minVolumeLevel + (1.0f - minVolumeLevel) * (progress.toFloat() / maxProgress)
                 mediaPlayerNature?.setVolume(volumeLevel, volumeLevel)
                 mediaPlayerNature?.setVolume(volumeLevel, volumeLevel)
+                natureValue = natureSeekBar.progress
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -161,6 +176,7 @@ class my_room : AppCompatActivity() {
 
 
             mediaPlayerFire?.start()
+            fireValue = fireSeekBar.progress
         }
 
         rainPlay.setOnClickListener {
@@ -283,3 +299,5 @@ class my_room : AppCompatActivity() {
 
 
 }
+
+

@@ -298,6 +298,14 @@ interface RequestDataInterface {
     data class ImageData(
         val id : String,
         val name: String,
+
+    )
+
+    data class SetMoodSettingsRequest(
+        val rain : Int,
+        val cafe : Int,
+        val fireplace : Int,
+        val nature : Int
     )
 
 

@@ -371,6 +371,22 @@
            </LinearLayout>
 
 
+           <Button
+               android:id="@+id/roomMoodBtn"
+               android:layout_width="220dp"
+               android:layout_height="60dp"
+               android:layout_marginTop="20dp"
+               android:background="@drawable/input_fields"
+               android:textAllCaps="false"
+               android:textColor="@color/white"
+               android:fontFamily="@font/dmsans_bold"
+               android:textSize="@dimen/_15sdp"
+               android:text="Save Room Ambiance">
+
+
+           </Button>
+
+
        </LinearLayout>
 
 

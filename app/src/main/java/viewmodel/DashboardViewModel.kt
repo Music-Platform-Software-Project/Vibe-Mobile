@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
@@ -219,6 +220,114 @@ class DashboardViewModel() : ViewModel() {
             recyclerView?.adapter = adapter
             recyclerView?.visibility =  View.VISIBLE
 
+        }
+    }
+
+    fun getPrevMood(){
+        try {
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl(constants.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val retrofitBuilder = retrofit.create(APIRequest::class.java)
+            val token = "Bearer " + constants.bearerToken
+            Log.e("bearer set username", constants.bearerToken)
+            val retrofitData = retrofitBuilder.userGetData(token)
+            Log.e("getMood process", "Going...")
+
+            retrofitData.enqueue(object : Callback<RequestDataInterface.getUserDataResponse> {
+                override fun onResponse(
+                    call: Call<RequestDataInterface.getUserDataResponse>,
+                    response: Response<RequestDataInterface.getUserDataResponse>
+                ) {
+                    Log.e("getMood response:", "retrieving body")
+                    if (response.isSuccessful) {
+                        val responseBody = response.body().toString()
+                        val rain =
+                            (ctx as? Activity)?.findViewById<SeekBar>(R.id.slider_rain)
+                        rain!!.progress = response.body()!!.moodSettings.rain
+                        val fire = (ctx as? Activity)?.findViewById<SeekBar>(R.id.slider_fireplace)
+                        fire!!.progress = response.body()!!.moodSettings.fireplace
+                        val cafe =
+                            (ctx as? Activity)?.findViewById<SeekBar>(R.id.slider_cafe)
+                        cafe!!.progress = response.body()!!.moodSettings.cafe
+                        val nature =  (ctx as? Activity)?.findViewById<SeekBar>(R.id.slider_nature)
+                        nature!!.progress = response.body()!!.moodSettings.nature
+                        Log.e("getMood response: ", responseBody ?: "Response body is null")
+                        // Parse the responseBody as needed or handle the string response
+
+
+                    } else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody = errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("getMood error: ", "HTTP ${response.code()}: $errorBody")
+
+
+                        } catch (e: Exception) {
+                            Log.e("getMood error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(
+                    call: Call<RequestDataInterface.getUserDataResponse>,
+                    t: Throwable
+                ) {
+                    Log.e("getMood error: ", t.toString())
+                }
+            })
+
+        } catch (e: Exception) {
+            Log.e("error", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
+    }
+
+    fun setMood(rain : Int, cafe : Int, fireplace: Int, nature :Int){
+        try {
+            val retrofitBuilder = retrofitClient.createAPIRequest()
+
+            val request = RequestDataInterface.SetMoodSettingsRequest(rain, cafe, fireplace, nature)
+            val token = "Bearer " + constants.bearerToken
+            val retrofitData = retrofitBuilder.setMoodSettings(token, request)
+            Log.e("mood process", "going...")
+
+            retrofitData.enqueue(object : Callback<Boolean> {
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                    Log.e("mood response:", "retrieving body")
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.e("mood response: ",
+                            (responseBody ?: "Response body is null").toString()
+                        )
+                        Toast.makeText(ctx,"Room Ambiance Saved Successfully",Toast.LENGTH_LONG).show()
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("mood error: ", "HTTP ${response.code()}: $errorBody")
+                            Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show()
+                        } catch (e: Exception) {
+                            Log.e("mood error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                    Log.e("mood error: ", t.toString())
+                }
+            })
+
+        }
+        catch (e: Exception) {
+            Log.e("error", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
         }
     }
 

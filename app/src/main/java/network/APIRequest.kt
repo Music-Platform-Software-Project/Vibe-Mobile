@@ -261,6 +261,14 @@ interface APIRequest {
         @Body request: RequestDataInterface.PlaylistAverageRequest
     ): Call<RequestDataInterface.getUserDataResponse>
 
+    @POST("/room/setMoodSettings")
+    @Headers(constants.contentType)
+    fun setMoodSettings(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.SetMoodSettingsRequest
+    ): Call<Boolean>
+
+
 
 
 }
