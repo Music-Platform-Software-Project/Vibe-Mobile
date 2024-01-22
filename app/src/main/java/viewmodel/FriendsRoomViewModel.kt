@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cs308_00.R
+import com.nitish.typewriterview.TypeWriterView
 import model.RequestDataInterface
 import network.RetrofitClient
 import network.constants
@@ -74,6 +75,9 @@ class FriendsRoomViewModel() : ViewModel() {
                         // Set the Bitmap to the ImageView
                         val imageView = (ctx as? Activity)?.findViewById<ImageView>(R.id.spotifyFrame)
                         imageView?.setImageBitmap(bitmap)
+
+                        val friendsRoomTrack: TypeWriterView? = (ctx as? Activity)?.findViewById<TypeWriterView>(R.id.friendsRoomTrack)
+                        friendsRoomTrack?.text = responseBody?.selectedTrack?.name
 
                     }
                     else {
