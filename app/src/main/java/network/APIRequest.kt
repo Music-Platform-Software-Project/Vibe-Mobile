@@ -202,6 +202,18 @@ interface APIRequest {
         @Header("Authorization") bearerToken: String
     ):Call<List<RequestDataInterface.RecommendTrackResponse>>
 
+    @GET("/track/recomendedLiked")
+    @Headers(constants.contentType)
+    fun recommendTrackLiked(
+        @Header("Authorization") bearerToken: String
+    ):Call<List<RequestDataInterface.RecommendTrackResponseLiked>>
+
+    @GET("/track/recomendedRated")
+    @Headers(constants.contentType)
+    fun recommendTrackrated(
+        @Header("Authorization") bearerToken: String
+    ):Call<List<RequestDataInterface.RecommendTrackResponseLiked>>
+
     @POST("/user/stats")
     @Headers(constants.contentType)
     fun userStatistics(
@@ -241,6 +253,13 @@ interface APIRequest {
         @Header("Authorization") bearerToken: String,
         @Body request: RequestDataInterface.PlaylistAverageRequest
     ): Call<RequestDataInterface.PlaylistAverageResponse>
+
+    @POST("/room/user")
+    @Headers(constants.contentType)
+    fun getUserRoom(
+        @Header("Authorization") bearerToken: String,
+        @Body request: RequestDataInterface.PlaylistAverageRequest
+    ): Call<RequestDataInterface.getUserDataResponse>
 
 
 

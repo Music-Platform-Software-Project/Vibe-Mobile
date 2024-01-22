@@ -171,7 +171,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/dmsans_regular"
-                        android:text="@string/suggested_artists"
+                        android:text="Recommended for your Likes"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_20sdp">
 
@@ -231,7 +231,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/dmsans_regular"
-                        android:text="@string/suggested_tracks"
+                        android:text="Recommended for your Rating"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_20sdp">
 
@@ -428,6 +428,13 @@
                                 android:text="Vibe"
                                 android:textAllCaps="false"
                                 android:background="@drawable/add_friend_bg" />
+
+                            <TextView
+                                android:id="@+id/first"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:visibility="gone"/>
+
                         </LinearLayout>
                     </LinearLayout>
 
@@ -476,6 +483,12 @@
                                 android:text="Vibe"
                                 android:textAllCaps="false"
                                 android:background="@drawable/add_friend_bg" />
+
+                            <TextView
+                                android:id="@+id/second"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:visibility="gone"/>
                         </LinearLayout>
 
                     </LinearLayout>
@@ -523,6 +536,12 @@
                                 android:text="Vibe"
                                 android:textAllCaps="false"
                                 android:background="@drawable/add_friend_bg" />
+
+                            <TextView
+                                android:id="@+id/third"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:visibility="gone"/>
 
                         </LinearLayout>
                     </LinearLayout>
@@ -573,6 +592,12 @@
                                 android:text="Vibe"
                                 android:textAllCaps="false"
                                 android:background="@drawable/add_friend_bg" />
+
+                            <TextView
+                                android:id="@+id/fourth"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:visibility="gone"/>
 
 
                         </LinearLayout>

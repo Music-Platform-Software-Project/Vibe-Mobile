@@ -14,8 +14,7 @@
         android:layout_height="match_parent"
         tools:context="view.Dashboard"
         android:id="@+id/drawerLayout1"
-        android:fitsSystemWindows="true"
-        tools:openDrawer="start">
+        android:fitsSystemWindows="true">
 
         <ScrollView
             android:layout_width="match_parent"

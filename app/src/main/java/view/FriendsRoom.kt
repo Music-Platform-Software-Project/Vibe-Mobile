@@ -56,11 +56,15 @@ class FriendsRoom : AppCompatActivity() {
         val friendsSong : TextView = findViewById(R.id.friendSongTxt)
         friendsSong.text = "$friendUsername's Room Song"
 
+        val userID  = intent.getStringExtra("friendID")
+        viewModel.getImage(userID)
+        /*
         val roomImage : ImageView = findViewById(R.id.spotifyFrame)
         Picasso.with(this)
             .load(R.drawable.default_room) // Replace with your image resource or URL
             .fit()
             .into(roomImage)
+         */
 
 
         val dashBtn : TextView = findViewById(R.id.nav_dashboard)

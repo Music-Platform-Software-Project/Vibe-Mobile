@@ -321,6 +321,10 @@ class ProfilePageViewModel() : ViewModel() {
         }
     }
 
+
+
+
+
     fun switchToImportTrack(){
         val i = Intent(ctx, ImportTrack::class.java)
         ctx.startActivity(i)
@@ -354,6 +358,9 @@ class ProfilePageViewModel() : ViewModel() {
                             if (response.body()!!.friends.size == 1){ // eğer sadece 1 arkadaşı varsa
                                 val friend1 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername1)
                                 friend1!!.text = response.body()!!.friends[0].username
+
+                                val friend1Id = (ctx as? Activity)?.findViewById<TextView>(R.id.first)
+                                friend1Id!!.text = response.body()!!.friends[0].id
                             }
                             else{
                                 if (response.body()!!.friends.size == 0){
@@ -372,6 +379,12 @@ class ProfilePageViewModel() : ViewModel() {
                                 val friend2 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername2)
                                 friend2!!.text = response.body()!!.friends[1].username
 
+                                val friend1Id = (ctx as? Activity)?.findViewById<TextView>(R.id.first)
+                                friend1Id!!.text = response.body()!!.friends[0].id
+
+                                val friend2Id = (ctx as? Activity)?.findViewById<TextView>(R.id.second)
+                                friend2Id!!.text = response.body()!!.friends[1].id
+
                             }
                             else{
                                 val friend2 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername2)
@@ -388,6 +401,15 @@ class ProfilePageViewModel() : ViewModel() {
                                 friend2!!.text = response.body()!!.friends[1].username
                                 val friend3 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername3)
                                 friend3!!.text = response.body()!!.friends[2].username
+
+                                val friend1Id = (ctx as? Activity)?.findViewById<TextView>(R.id.first)
+                                friend1Id!!.text = response.body()!!.friends[0].id
+
+                                val friend2Id = (ctx as? Activity)?.findViewById<TextView>(R.id.second)
+                                friend2Id!!.text = response.body()!!.friends[1].id
+
+                                val friend3Id = (ctx as? Activity)?.findViewById<TextView>(R.id.third)
+                                friend3Id!!.text = response.body()!!.friends[2].id
                             }
 
                             else{
@@ -407,6 +429,18 @@ class ProfilePageViewModel() : ViewModel() {
                                 friend3!!.text = response.body()!!.friends[2].username
                                 val friend4 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername4)
                                 friend4!!.text = response.body()!!.friends[3].username
+
+                                val friend1Id = (ctx as? Activity)?.findViewById<TextView>(R.id.first)
+                                friend1Id!!.text = response.body()!!.friends[0].id
+
+                                val friend2Id = (ctx as? Activity)?.findViewById<TextView>(R.id.second)
+                                friend2Id!!.text = response.body()!!.friends[1].id
+
+                                val friend3Id = (ctx as? Activity)?.findViewById<TextView>(R.id.third)
+                                friend3Id!!.text = response.body()!!.friends[2].id
+
+                                val friend4Id = (ctx as? Activity)?.findViewById<TextView>(R.id.fourth)
+                                friend4Id!!.text = response.body()!!.friends[3].id
                             }
                             else{
                                 val friend4 = (ctx as? Activity)?.findViewById<TextView>(R.id.profileFriendUsername4)
@@ -699,6 +733,155 @@ class ProfilePageViewModel() : ViewModel() {
                 }
 
                 override fun onFailure(call: Call<List<RequestDataInterface.RecommendTrackResponse>>, t: Throwable) {
+                    Log.e("artist error: ", t.toString())
+                }
+            })
+
+        }
+        catch (e: Exception) {
+            Log.e("artist", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
+    }
+
+
+
+
+    fun setRecyclerViewForLiked(itemList: List<RequestDataInterface.RecViewHolder>){
+        val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.artists_rec_view)
+        if(itemList.isEmpty()){
+            recyclerView?.visibility =  View.INVISIBLE
+        }
+        else{
+            recyclerView?.layoutManager =  GridLayoutManager(ctx, 1, GridLayoutManager.HORIZONTAL, false)
+
+            val adapter = RecyclerViewAdapter2(itemList, 2)
+            recyclerView?.adapter = adapter
+            recyclerView?.visibility =  View.VISIBLE
+        }
+    }
+
+
+
+    fun getRecomLiked(){
+        try {
+            val retrofit = Retrofit.Builder()
+                .baseUrl(constants.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val retrofitBuilder = retrofit.create(APIRequest::class.java)
+
+            val token = "Bearer " + constants.bearerToken
+            val retrofitData = retrofitBuilder.recommendTrackLiked(token)
+
+            retrofitData.enqueue(object : Callback<List<RequestDataInterface.RecommendTrackResponseLiked>> {
+                override fun onResponse(call: Call<List<RequestDataInterface.RecommendTrackResponseLiked>>, response: Response<List<RequestDataInterface.RecommendTrackResponseLiked>>) {
+
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.e("artist response: ", (responseBody ?: "Response body is null").toString())
+                        if (responseBody!!.isNotEmpty()){
+                            val itemList = mutableListOf<RequestDataInterface.RecViewHolder>()
+
+                            for(item in responseBody){
+                                val newItem = RequestDataInterface.RecViewHolder(item.id, item.name)
+                                itemList.add(newItem)
+                            }
+
+
+                            setRecyclerViewForLiked(itemList)
+
+                        }
+
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("artist error: ", "HTTP ${response.code()}: $errorBody")
+                            Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show()
+                        } catch (e: Exception) {
+                            Log.e("artist error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<List<RequestDataInterface.RecommendTrackResponseLiked>>, t: Throwable) {
+                    Log.e("artist error: ", t.toString())
+                }
+            })
+
+        }
+        catch (e: Exception) {
+            Log.e("artist", e.toString())
+            // Handle the exception here (e.g. log it or display an error message)
+        }
+    }
+
+
+
+    fun setRecyclerViewForRated(itemList: List<RequestDataInterface.RecViewHolder>){
+        val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.tracks_rec_view)
+        if(itemList.isEmpty()){
+            recyclerView?.visibility =  View.INVISIBLE
+        }
+        else{
+            recyclerView?.layoutManager =  GridLayoutManager(ctx, 1, GridLayoutManager.HORIZONTAL, false)
+
+            val adapter = RecyclerViewAdapter2(itemList, 2)
+            recyclerView?.adapter = adapter
+            recyclerView?.visibility =  View.VISIBLE
+        }
+    }
+
+    fun getRecomRated(){
+        try {
+            val retrofit = Retrofit.Builder()
+                .baseUrl(constants.baseURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val retrofitBuilder = retrofit.create(APIRequest::class.java)
+
+            val token = "Bearer " + constants.bearerToken
+            val retrofitData = retrofitBuilder.recommendTrackrated(token)
+
+            retrofitData.enqueue(object : Callback<List<RequestDataInterface.RecommendTrackResponseLiked>> {
+                override fun onResponse(call: Call<List<RequestDataInterface.RecommendTrackResponseLiked>>, response: Response<List<RequestDataInterface.RecommendTrackResponseLiked>>) {
+
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.e("artist response: ", (responseBody ?: "Response body is null").toString())
+                        if (responseBody!!.isNotEmpty()){
+                            val itemList = mutableListOf<RequestDataInterface.RecViewHolder>()
+
+                            for(item in responseBody){
+                                val newItem = RequestDataInterface.RecViewHolder(item.id, item.name)
+                                itemList.add(newItem)
+                            }
+
+
+                            setRecyclerViewForRated(itemList)
+
+                        }
+
+                    }
+                    else {
+                        try {
+                            var errorBody = response.errorBody()?.string()
+                            errorBody =  errorBody!!.substringAfter(":").trim()
+                            errorBody = errorBody.replace(Regex("[\"{}]"), "").trim()
+                            Log.e("artist error: ", "HTTP ${response.code()}: $errorBody")
+                            Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show()
+                        } catch (e: Exception) {
+                            Log.e("artist error: ", "Error parsing error response.")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<List<RequestDataInterface.RecommendTrackResponseLiked>>, t: Throwable) {
                     Log.e("artist error: ", t.toString())
                 }
             })

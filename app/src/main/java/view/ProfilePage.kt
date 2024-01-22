@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cs308_00.R
 import com.github.mikephil.charting.charts.LineChart
 import network.constants
+import org.w3c.dom.Text
 import viewmodel.ProfilePageViewModel
 
 class ProfilePage : AppCompatActivity() {
@@ -45,14 +46,19 @@ class ProfilePage : AppCompatActivity() {
         val vibe3 : Button = findViewById(R.id.realVibeFriend3)
         val vibe4 : Button = findViewById(R.id.realVibeFriend4)
 
-       viewModel.refreshArtists()
 
+        viewModel.getRecomLiked()
+        viewModel.getRecomRated()
 
         viewModel.setUsernameandFriends()
 
         vibe1.setOnClickListener {
             val friendName : TextView = findViewById(R.id.profileFriendUsername1)
             val intent = Intent(this, FriendsRoom::class.java)
+            val friendID : TextView = findViewById(R.id.first)
+            val friendIDString = friendID.text
+            intent.putExtra("friendID", friendIDString)
+
             Log.e("friendName ", friendName.text.toString())
             intent.putExtra("friendName1", friendName.text.toString())
             Log.e("friendName after", friendName.text.toString())
@@ -62,6 +68,9 @@ class ProfilePage : AppCompatActivity() {
         vibe2.setOnClickListener {
             val friendName : TextView = findViewById(R.id.profileFriendUsername2)
             val intent = Intent(this, FriendsRoom::class.java)
+            val friendID : TextView = findViewById(R.id.second)
+            val friendIDString = friendID.text
+            intent.putExtra("friendID", friendIDString)
             Log.e("friendName ", friendName.text.toString())
             intent.putExtra("friendName1", friendName.text.toString())
             Log.e("friendName after", friendName.text.toString())
@@ -71,14 +80,20 @@ class ProfilePage : AppCompatActivity() {
         vibe3.setOnClickListener {
             val friendName : TextView = findViewById(R.id.profileFriendUsername3)
             val intent = Intent(this, FriendsRoom::class.java)
+            val friendID : TextView = findViewById(R.id.third)
+            val friendIDString = friendID.text
+            intent.putExtra("friendID", friendIDString)
             Log.e("friendName ", friendName.text.toString())
             intent.putExtra("friendName1", friendName.text.toString())
             Log.e("friendName after", friendName.text.toString())
             startActivity(intent)
         }
         vibe4.setOnClickListener {
-            val friendName : TextView = findViewById(R.id.profileFriendUsername1)
+            val friendName : TextView = findViewById(R.id.profileFriendUsername4)
             val intent = Intent(this, FriendsRoom::class.java)
+            val friendID : TextView = findViewById(R.id.fourth)
+            val friendIDString = friendID.text
+            intent.putExtra("friendID", friendIDString)
             Log.e("friendName ", friendName.text.toString())
             intent.putExtra("friendName1", friendName.text.toString())
             Log.e("friendName after", friendName.text.toString())

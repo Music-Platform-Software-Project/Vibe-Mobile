@@ -232,12 +232,25 @@ interface RequestDataInterface {
         val ratedTracks: List<RatedTrack>
     )
 
+    data class RecommendTrackResponseLiked(
+        val id: String,
+        val artists: List<String>,
+        val name : String,
+        val duration_ms: Int,
+        val rating: Double
+    )
+
     data class RatedTrack(
         val id: String,
         val artists: List<String>,
         val name: String,
         val duration_ms: Int,
         val rating: Double
+    )
+
+    data class RecViewHolder(
+        val id: String,
+        val name : String,
     )
 
 

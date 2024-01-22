@@ -170,6 +170,7 @@ class DashboardViewModel() : ViewModel() {
     }
 
     //FOR PLAYLISTS
+
     fun setRecyclerViewPlaylist(itemList: List<RequestDataInterface.MyPlaylistsResponse>){
         val recyclerView = (ctx as? Activity)?.findViewById<RecyclerView>(R.id.playlists_rec_view2)
         val msg = (ctx as? Activity)?.findViewById<TextView>(R.id.favPlaylist2)
@@ -220,6 +221,8 @@ class DashboardViewModel() : ViewModel() {
 
         }
     }
+
+
 
     fun addPlaylist(userInput: String) {
         try {
